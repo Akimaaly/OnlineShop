@@ -1,13 +1,8 @@
 // Шаблон antDesign : Header Sider 2
 import "antd/dist/antd.css";
 import {
-  AppstoreOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
-  PieChartOutlined,
-  DesktopOutlined,
-  ContainerOutlined,
-  MailOutlined,
   UserOutlined,
   LaptopOutlined,
   NotificationOutlined,
@@ -34,34 +29,41 @@ const CategoriesNavBar = () => {
         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </Button>
       <Menu
-        defaultSelectedKeys={["1"]}
-        defaultOpenKeys={["sub1"]}
         mode="inline"
         theme="dark"
         inlineCollapsed={collapsed}
       >
-        <SubMenu key="sub1" icon={<UserOutlined />} title="Для дома">
-          <Menu.Item key="1">Мебель</Menu.Item>
-          <Menu.Item key="2">Посуда</Menu.Item>
-          <Menu.Item key="3">Текстиль</Menu.Item>
-          <Menu.Item key="4">Ремонт</Menu.Item>
-          <Menu.Item key="4">option4</Menu.Item>
+        <SubMenu key="sub1" icon={<UserOutlined />} title="Обувь">
+          <Menu.Item key="11">Женская обувь</Menu.Item>
+          <Menu.Item key="21">Мужская обувь</Menu.Item>
+          <Menu.Item key="31">Детская обувь</Menu.Item>
         </SubMenu>
         <SubMenu key="sub2" icon={<LaptopOutlined />} title="Электроника">
-          <Menu.Item key="5">TV</Menu.Item>
-          <Menu.Item key="6">Bluetooth</Menu.Item>
-          <Menu.Item key="7">Computers</Menu.Item>
-          <Menu.Item key="8">Phone</Menu.Item>
+          <Menu.Item key="52">Телевизоры</Menu.Item>
+          <Menu.Item key="62">Компьютеры</Menu.Item>
+          <Menu.Item key="82">Телефоны</Menu.Item>
         </SubMenu>
-        <SubMenu key="sub3" icon={<NotificationOutlined />} title="Спорт">
-          <Menu.Item key="9">Тренажеры/инвентарь</Menu.Item>
-          <Menu.Item key="10">Одежда</Menu.Item>
-          <Menu.Item key="11">Обувь</Menu.Item>
-          <Menu.Item key="12">Здоровое питание/ПП</Menu.Item>
+        <SubMenu key="sub3" icon={<NotificationOutlined />} title="Книги">
+          <Menu.Item key="93">Художественная литература</Menu.Item>
+          <Menu.Item key="103">Учебная литература</Menu.Item>
+          <Menu.Item key="113">Энциклопедии</Menu.Item>
+        </SubMenu>
+        <SubMenu key="sub4" icon={<NotificationOutlined />} title="Ремонт">
+          <Menu.Item key="94">Инструмент</Menu.Item>
+          <Menu.Item key="104">Электроинструмент</Menu.Item>
+          <Menu.Item key="114">Сантехника</Menu.Item>
+          <Menu.Item key="124">Краски</Menu.Item>
+        </SubMenu>
+        <SubMenu key="sub5" icon={<NotificationOutlined />} title="Прочее">
+          <Menu.Item key="95">Канцтовары</Menu.Item>
+          <Menu.Item key="105">Спорт</Menu.Item>
+          <Menu.Item key="115">Продукты</Menu.Item>
+          <Menu.Item key="125">Игрушки</Menu.Item>
         </SubMenu>
       </Menu>
     </div>
-  );
+  ); 
+
 };
 
 export default CategoriesNavBar;
