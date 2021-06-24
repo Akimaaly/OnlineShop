@@ -5,6 +5,10 @@ import Sider from "./Components/Sider/Sider";
 import CardsList from "./Components/CardsList/CardsList";
 import "antd/dist/antd.css";
 import CategoriesNavBar from "./Components/Categories/CategoriesNavBar";
+import Login from './Components/Registration/Login'
+import Logup from './Components/Registration/Logup'
+
+import Home from "./Components/Home/Home";
 
 const { Content, Footer } = Layout;
 
@@ -36,7 +40,15 @@ function App() {
       <Route path="/cardlist">
         <CardsList />
       </Route>
-
+      <Route path="/login">
+        <Login />
+      </Route>
+      <Route path="/logup">
+        <Logup />
+      </Route>
+      <Route path="/">
+        <Home />
+      </Route>
       </Switch>
     </BrowserRouter>
   );
