@@ -23,6 +23,10 @@ const sellerSchema = Schema({
     type: Number,
     required: true,
   },
+  password: {
+    type: String,
+    required: true,
+  },
 })
 
 const SellerModel = model('Seller', sellerSchema)

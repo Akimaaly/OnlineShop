@@ -15,6 +15,10 @@ const buyerSchema = Schema({
     type: Number,
     required: true,
   },
+  password: {
+    type: String,
+    required: true,
+  },
 })
 
 const BuyerModel = model('Buyer', buyerSchema)
