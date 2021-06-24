@@ -3,6 +3,7 @@ import Header from './Components/Header/Header';
 import Sider from './Components/Sider/Sider';
 import CardsList from './Components/CardsList/CardsList';
 import 'antd/dist/antd.css';
+import CategoriesNavBar from './Components/Categories/CategoriesNavBar';
 
 const { Content, Footer } = Layout;
 
@@ -14,7 +15,7 @@ function App() {
         <Layout>
           <Row>
             <Col flex='300px'>
-              <Sider />
+              <CategoriesNavBar />
             </Col>
             <Col flex='auto'>
               <Content>
