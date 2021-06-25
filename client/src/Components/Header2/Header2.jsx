@@ -1,8 +1,30 @@
 import { PageHeader, Button } from 'antd';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect }  from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import api from '../../api';
+import { historyServer } from '../../api/server';
 
 function Header2() {
+  const history = useHistory();
+
+  async function butHandler() {
+    // Cookie.remove("key");
+    await api.getLogout();
+    history.push('/auth');
+  }
+
+  useEffect(() => {
+    api.getHome();
+  }, []);
+// import Sider from "./Components/Sider/Sider";
+// import Sider from "./Components/Sider/Sider";
+
+  useEffect(() => {
+    historyServer.listen(({ location, action }) => { // надо пофиксить возвращение назад
+      history.push(location.pathname);
+    });
+  }, []);
+
   return (
   <div className="site-page-header-ghost-wrapper">
     <PageHeader
@@ -16,9 +38,9 @@ function Header2() {
         <Link to='/auth'>
           <Button key="2">Login</Button>
         </Link>,
-        <Link to='/logout'>
-          <Button key="1">Logout</Button>
-        </Link>,
+        
+          <Button key="1" onClick={butHandler}>Logout</Button>
+   
       ]}
     >
     </PageHeader>
