@@ -12,7 +12,6 @@ function Header() {
 
       <PageHeader
         className="site-page-header"
-        onBack={() => null}
         title="AKIM EXPRESS"
         subTitle="WELCOME TO AKIM EXPRESS!!!"
       />

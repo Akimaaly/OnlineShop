@@ -38,7 +38,7 @@ const CategoriesNavBar = () => {
         </Button>
       <Text strong icon={<TableOutlined/>}  style={{marginLeft: '50px'}} onClick={handleGetAllItems}>Все товары</Text>
       </div>
-      <Menu mode="inline" theme="dark" inlineCollapsed={collapsed}>
+      <Menu mode="inline" theme="light" inlineCollapsed={collapsed}>
         <SubMenu key="sub11" icon={<SkinOutlined />} title="Обувь">
           <Menu.Item
             key="11"

@@ -5,7 +5,7 @@
   justify-content: center;
 }
 .typing {
-  width: 92ch;
+  width: 110ch;
   animation: typing 9s steps(40), blink 0.5s step-end infinite alternate;
   white-space: nowrap;
   overflow: hidden;
