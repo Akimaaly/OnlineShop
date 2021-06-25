@@ -13,7 +13,7 @@ function CardsList() {
   return (
     <div>
       <Row gutter={[16, 16]}>
-        {cards.map((el) => <div><CardsItem title={el.title} description={el.description} image={el.image} /></div>)}
+        {cards.map((el,i) => <div key={i}><CardsItem title={el.title} description={el.description} image={el.image} /></div>)}
       </Row>
     </div>
   );
