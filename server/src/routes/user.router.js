@@ -40,18 +40,18 @@ router.post('/reg', async (req, res) => {
       });
 
       console.log('=====', seller);
-      // const jwtToken = jwt.sign({ id: seller._id }, process.env.SESSION_KEY, {
-      //   expiresIn: '24h',
-      // });
-      // return res.status(200).json({
-      //   name: seller.name,
-      //   email: seller.email,
-      //   phoneNumber: seller.phoneNumber,
-      //   role,
-      //   token: jwtToken,
-      //   location: 'hs',
-      //   balance: 9,
-      // });
+      const jwtToken = jwt.sign({ id: seller._id }, process.env.SESSION_KEY, {
+        expiresIn: '24h',
+      });
+      return res.status(200).json({
+        name: seller.name,
+        email: seller.email,
+        phoneNumber: seller.phoneNumber,
+        role,
+        token: jwtToken,
+        location: 'hs',
+        balance: 9,
+      });
     }
   } catch (error) {
     if (error.code === 11000) {
@@ -67,6 +67,7 @@ router.post('/login', async (req, res) => {
   try {
     if (role === 'user') {
       const currentUser = await Buyer.findOne({ email });
+      console.log(currentUser);
       const jwtToken = jwt.sign(
         { id: currentUser._id },
         process.env.SESSION_KEY,
@@ -74,6 +75,8 @@ router.post('/login', async (req, res) => {
           expiresIn: '24h',
         }
       );
+      console.log('bcrypt', bcrypt.compare(password, currentUser.password));
+      console.log(jwtToken);
       if (
         !currentUser ||
         !(await bcrypt.compare(password, currentUser.password))

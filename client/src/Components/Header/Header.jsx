@@ -7,30 +7,29 @@ import { historyServer } from '../../api/server';
 function Header() {
   const history = useHistory();
 
-  // async function butHandler() {
-  //   // Cookie.remove("key");
-  //   await api.getLogout();
-  //   history.push('/login');
-  // }
+  async function butHandler() {
+    // Cookie.remove("key");
+    await api.getLogout();
+    history.push('/auth');
+  }
 
-  // useEffect(() => {
-  //   api.getHome();
-  // }, []);
+  useEffect(() => {
+    api.getHome();
+  }, []);
 
-  // useEffect(() => {
-  //   historyServer.listen(({ location, action }) => {
-  //     history.push(location.pathname);
-  //   });
-  // }, []);
+  useEffect(() => {
+    historyServer.listen(({ location, action }) => {
+      history.push(location.pathname);
+    });
+  }, []);
 
   return (
     <div>
       <div className='d-flex justify-content-evenly'>
         <Link to='/'>Home</Link>
-        <Link to='/logup'>Logup</Link>
-        <Link to='/login'>Login</Link>
         <Link to='/reg'>Reg</Link>
-        {/* <button onClick={butHandler}>Logout</button> */}
+        <Link to='/auth'>Auth</Link>
+        <button onClick={butHandler}>Logout</button>
       </div>
 
       <PageHeader

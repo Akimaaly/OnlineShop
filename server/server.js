@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const { connect } = require('./src/db/config');
+require('dotenv').config();
 
 const basketRouter = require('./src/routes/basket.router');
 const goodRouter = require('./src/routes/good.router');

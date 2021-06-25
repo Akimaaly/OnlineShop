@@ -1,4 +1,3 @@
-import { Layout, Row, Col } from 'antd';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import Header from './Components/Header/Header';
 // import Sider from "./Components/Sider/Sider";
@@ -9,7 +8,8 @@ import Login from './Components/Registration.style/Login';
 import Logup from './Components/Registration.style/Logup';
 import Registration from './Components/Registration/Registration';
 import Home from './Components/Home/Home';
-import Footer from './Components/Footer/Footer';
+import Body from './Components/Body/Body';
+import Auth from './Components/Auth/Auth';
 
 function App() {
   return (
@@ -31,8 +31,11 @@ function App() {
           <Logup />
         </Route>
         <Route exact path='/'>
-          <Footer />
+          <Body />
           <Home />
+        </Route>
+        <Route exact path='/auth'>
+          <Auth />
         </Route>
       </Switch>
     </BrowserRouter>
