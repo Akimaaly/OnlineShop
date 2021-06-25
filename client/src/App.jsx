@@ -7,8 +7,7 @@ import "antd/dist/antd.css";
 import CategoriesNavBar from "./Components/Categories/CategoriesNavBar";
 import Login from './Components/Registration.style/Login'
 import Logup from './Components/Registration.style/Logup'
-
-import Home from "./Components/Home/Home";
+import CardForm from "./Components/CardForm/CardForm";
 
 const { Content, Footer } = Layout;
 
@@ -16,8 +15,8 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <Layout>
           <Header />
+        {/* <Layout>
           <Layout>
           <Row gutter={[16, 16]}>
             <Col span={4}>
@@ -30,8 +29,10 @@ function App() {
             </Col>
           </Row>
           </Layout>
-          <Footer>Footer</Footer>
-        </Layout>
+          <Footer>Footer
+          <CardForm />
+          </Footer>
+        </Layout> */}
       </div>
       <Switch>
       <Route path="/cardlist:name">
@@ -46,8 +47,11 @@ function App() {
       <Route path="/logup">
         <Logup />
       </Route>
-      <Route path="/">
-        <Home />
+      <Route path="/logup">
+        <Logup />
+      </Route>
+      <Route path="/cardform">
+        <CardForm />
       </Route>
       </Switch>
     </BrowserRouter>
