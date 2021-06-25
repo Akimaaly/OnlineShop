@@ -6,11 +6,13 @@ import Logup from './Components/Registration.style/Logup';
 import Registration from './Components/Registration/Registration';
 import Home from './Components/Home/Home';
 import Body from './Components/Body/Body';
+import Header2 from './Components/Header2/Header2';
 
 
 function App() {
   return (
     <BrowserRouter>
+      <Header2 />
       <Switch>
         <Route exact path='/reg'>
           <Registration />
@@ -21,12 +23,12 @@ function App() {
         <Route exact path='/cardlist'>
           <CardsList />
         </Route>
-        <Route exact path='/login'>
+        {/* <Route exact path='/login'>
           <Login />
         </Route>
         <Route exact path='/logup'>
           <Logup />
-        </Route>
+        </Route> */}
         <Route exact path='/'>
           <Body />
           <Home />

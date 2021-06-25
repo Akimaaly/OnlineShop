@@ -6,7 +6,7 @@ const catListGoods = [
   {
     title: 'Кеды Converse',
     image:
-      'https://images.unsplash.com/photo-1463100099107-aa0980c362e6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
+      'https://images.unsplash.com/photo-1576190215096-4541ac2a3364?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80',
     shortDescription: 'Вечная классика',
     longDescription: 'Лучшие кроссовки, для тех, кому 18 лет в душе',
     articul: 'shoes001',
@@ -41,9 +41,9 @@ const catListGoods = [
     price: 600,
   },
   {
-    title: 'Набор валиков с красками',
+    title: 'Валики с краской',
     image:
-      'https://images.unsplash.com/photo-1619212099013-f143f0eba952?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80',
+      'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80',
     shortDescription: 'Наполни жизнь красками',
     longDescription: 'Набор для тех, кто хочет раскарасить свои серые будни',
     articul: 'tools001',
@@ -53,7 +53,7 @@ const catListGoods = [
     price: 3500,
   },
   {
-    title: 'Ручка для важных документов',
+    title: 'Ручка Parker',
     image:
       'https://images.unsplash.com/photo-1553101568-34bd00376c40?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
     shortDescription: 'Только для больших боссов',
@@ -66,7 +66,7 @@ const catListGoods = [
     price: 1200,
   },
   {
-    title: 'Экипировка для сноубордиста',
+    title: 'Зимняя экипировка',
     image:
       'https://images.unsplash.com/photo-1611124601110-f804e03a2a6a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
     shortDescription: 'Не для лыжников',
