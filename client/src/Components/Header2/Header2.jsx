@@ -10,14 +10,14 @@ function Header2() {
       title="AkimShop"
       subTitle="The best online-shop you ever seen"
       extra={[
-        <Link to='/logup'>
-          <Button key="3">Logup</Button>
+        <Link to='/reg'>
+          <Button key="3">Reg</Button>
         </Link>,
-        <Link to='/login'>
+        <Link to='/auth'>
           <Button key="2">Login</Button>
         </Link>,
-        <Link to='/reg'>
-          <Button key="1">Reg</Button>
+        <Link to='/logout'>
+          <Button key="1">Logout</Button>
         </Link>,
       ]}
     >
