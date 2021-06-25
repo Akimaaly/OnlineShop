@@ -33,25 +33,26 @@ router.post('/reg', async (req, res) => {
       const seller = await SellerModel.create({
         name,
         email,
-        phoneNumber,
+        phoneNumber: phone,
         password: hashPass,
         location: 'hs',
         balance: 9,
       });
+
+      console.log('=====', seller);
+      // const jwtToken = jwt.sign({ id: seller._id }, process.env.SESSION_KEY, {
+      //   expiresIn: '24h',
+      // });
+      // return res.status(200).json({
+      //   name: seller.name,
+      //   email: seller.email,
+      //   phoneNumber: seller.phoneNumber,
+      //   role,
+      //   token: jwtToken,
+      //   location: 'hs',
+      //   balance: 9,
+      // });
     }
-    console.log('=====', seller);
-    const jwtToken = jwt.sign({ id: seller._id }, process.env.SESSION_KEY, {
-      expiresIn: '24h',
-    });
-    return res.status(200).json({
-      name: seller.name,
-      email: seller.email,
-      phoneNumber: seller.phoneNumber,
-      role,
-      token: jwtToken,
-      location: 'hs',
-      balance: 9,
-    });
   } catch (error) {
     if (error.code === 11000) {
       return res
