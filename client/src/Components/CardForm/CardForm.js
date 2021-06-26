@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 const {  Text } = Typography;
 
 const CardForm = () => {
-  const goods = useSelector(state=>state.goods)
+  // const goods = useSelector(state=>state.goods)
 // const currentItemID = useParams()
 
 // const currentItem = goods.find(el=>el.id === currentItemID.id )
