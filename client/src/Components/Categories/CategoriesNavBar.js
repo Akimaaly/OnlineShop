@@ -20,8 +20,8 @@ const CategoriesNavBar = () => {
   const toggleCollapsed = () => {
     setCollapsed((pre) => !pre);
   };
-  const handleGetNameOfCategory = (e) => {
-    history.push(`/cardlist:${e}`);
+  const handleGetNameOfCategory = (event) => {
+    history.push(`/cardlist/${event}`);
   };
   const handleGetAllItems = ()=>{
     history.push("/cardlist");

@@ -15,7 +15,7 @@ router.route('/all').get(async (req, res) => {
 });
 
 /*добавляем новый товар*/
-router.route('/new').post(upload.single('file'), async (req, res) => {
+router.route('/new').post(async (req, res) => {
   const { title, longDescription, articul, residence, quantity, price } =
     req.body;
   const newGood = await GoodModel.create({
@@ -27,23 +27,6 @@ router.route('/new').post(upload.single('file'), async (req, res) => {
     price: Number(price),
     seller: ObjectId('60d5e39bd7e8203cfc215d61'),
   });
-  if (
-    req.file &&
-    req.file.mimetype != 'image/jpeg' &&
-    req.file.mimetype != 'image/png'
-  )
-    return res.json({
-      status: 1,
-      message: 'Please Choose JPG or PNG images',
-    });
-  if (req.file) {
-    let image = '/images/' + req.file.filename;
-    res.json({
-      status: 0,
-      message: 'Successfully saved',
-      path: image,
-    });
-  }
   res.json(newGood);
 });
 

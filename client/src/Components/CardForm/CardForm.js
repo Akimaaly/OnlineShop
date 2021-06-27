@@ -10,21 +10,18 @@ import { useSelector } from "react-redux";
 const {  Text } = Typography;
 
 const CardForm = () => {
-  const goods = useSelector((state)=>state.goods
-    
-   
-  )
- 
-  console.log('===========',goods);
+  const goods = useSelector((state)=>state.goods)
 const currentItemID = useParams()
-
-const currentItem = goods.find(el=>el._id === currentItemID._id )
+const currentItem = goods.find(el=>el.id === currentItemID._id )
+console.log(currentItem);
   return (
     <div align="center" className="container">
       <Card
-        style={{ width: 500 }}
+        style={{ width: 400 }}
         cover={
+          
           <img
+          style={{ maxheigth: '100px' }}
             alt="imageOfItem"
             src={currentItem.image}
           />
