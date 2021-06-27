@@ -1,6 +1,7 @@
 import { Layout, Row, Col } from 'antd';
 import CategoriesNavBar from '../Categories/CategoriesNavBar';
 import CardsList from '../CardsList/CardsList';
+import Home from '../Home/Home';
 
 function Body() {
   const { Content, Footer } = Layout;
@@ -20,7 +21,9 @@ function Body() {
               </Col>
             </Row>
           </Layout>
-          <Footer>Footer</Footer>
+          <Footer>
+            <Home />
+          </Footer>
         </Layout>
       </div>
     </>

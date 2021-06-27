@@ -1,3 +1,4 @@
+/* eslint-disable spaced-comment */
 /* ЭТО МОДЕЛЬ ТОВАРА */
 
 const { Schema, model } = require('mongoose');
@@ -9,11 +10,7 @@ const goodSchema = Schema({
   },
   image: {
     type: String,
-    required: true,
-  },
-  shortDescription: {
-    type: String,
-    required: true,
+    default: 'https://pix10.agoda.net/geo/country/156/3_156_kyrgyzstan_02.jpg?s=1920x',
   },
   longDescription: {
     type: String,
@@ -32,16 +29,15 @@ const goodSchema = Schema({
     required: true,
   },
   seller: {
-    // type: Schema.Types.ObjectId,
-    type: String,
+    type: Schema.Types.ObjectId,
     ref: 'Seller',
   },
   price: {
     type: Number,
     required: true,
   },
-});
+})
 
-const GoodModel = model('Good', goodSchema);
+const GoodModel = model('Good', goodSchema)
 
-module.exports = GoodModel;
+module.exports = GoodModel
