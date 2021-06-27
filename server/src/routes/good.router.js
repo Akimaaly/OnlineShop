@@ -1,22 +1,10 @@
 /* eslint-disable spaced-comment */
 /* ЭТО РУЧКА ОБРАБОТКИ ТОВАРА */
 const mongoose = require('mongoose');
-const multer = require('multer');
 
 const { ObjectId } = mongoose.Types;
 const router = require('express').Router();
 const GoodModel = require('../models/good.model');
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, '../../../client/public/images');
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now());
-  },
-});
-
-const upload = multer({ storage: storage });
 
 /*Получаем вообще все товары которые есть*/
 router.route('/all').get(async (req, res) => {
@@ -27,18 +15,35 @@ router.route('/all').get(async (req, res) => {
 });
 
 /*добавляем новый товар*/
-router.route('/new').post(async (req, res) => {
+router.route('/new').post(upload.single('file'), async (req, res) => {
   const { title, longDescription, articul, residence, quantity, price } =
     req.body;
   const newGood = await GoodModel.create({
     title,
     longDescription,
     articul,
-    category: residence.join(','),
+    category: residence[1],
     quantity: Number(quantity),
     price: Number(price),
     seller: ObjectId('60d5e39bd7e8203cfc215d61'),
   });
+  if (
+    req.file &&
+    req.file.mimetype != 'image/jpeg' &&
+    req.file.mimetype != 'image/png'
+  )
+    return res.json({
+      status: 1,
+      message: 'Please Choose JPG or PNG images',
+    });
+  if (req.file) {
+    let image = '/images/' + req.file.filename;
+    res.json({
+      status: 0,
+      message: 'Successfully saved',
+      path: image,
+    });
+  }
   res.json(newGood);
 });
 
