@@ -1,4 +1,4 @@
-import { Card, Avatar, Descriptions } from "antd";
+import { Card, Descriptions } from "antd";
 import {
   EditOutlined,
   EllipsisOutlined,
@@ -7,21 +7,19 @@ import {
 import { Typography } from "antd";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-const {  Text } = Typography;
+const { Text } = Typography;
 
 const CardForm = () => {
-  const goods = useSelector((state)=>state.goods)
-const currentItemID = useParams()
-const currentItem = goods.find(el=>el.id === currentItemID._id )
-console.log(currentItem);
+  const goods = useSelector((state) => state.goods);
+  const currentItemID = useParams();
+  const currentItem = goods.find((el) => el._id === currentItemID.id);
   return (
     <div align="center" className="container">
       <Card
         style={{ width: 400 }}
         cover={
-          
           <img
-          style={{ maxheigth: '100px' }}
+            style={{ maxheigth: "100px" }}
             alt="imageOfItem"
             src={currentItem.image}
           />
