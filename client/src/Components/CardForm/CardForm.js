@@ -10,18 +10,20 @@ import { useSelector } from "react-redux";
 const {  Text } = Typography;
 
 const CardForm = () => {
-  // const goods = useSelector(state=>state.goods)
-// const currentItemID = useParams()
-
-// const currentItem = goods.find(el=>el.id === currentItemID.id )
+  const goods = useSelector((state)=>state.goods)
+const currentItemID = useParams()
+const currentItem = goods.find(el=>el.id === currentItemID._id )
+console.log(currentItem);
   return (
     <div align="center" className="container">
       <Card
-        style={{ width: 500 }}
+        style={{ width: 400 }}
         cover={
+          
           <img
+          style={{ maxheigth: '100px' }}
             alt="imageOfItem"
-            src={'currentItems.image'}
+            src={currentItem.image}
           />
         }
         actions={[
@@ -30,24 +32,24 @@ const CardForm = () => {
           <EllipsisOutlined key="ellipsis" />,
         ]}
       >
-        <Descriptions title={"currentItem.title"}>
+        <Descriptions title={currentItem.title}>
           <Descriptions.Item label="Категория товара">
-            <Text>{"currentItems.category"}</Text>
+            <Text>{currentItem.category}</Text>
           </Descriptions.Item>
         </Descriptions>
         <Descriptions>
           <Descriptions.Item label="Характеристики">
-            <Text>{"currentItems.longDescription"}</Text>
+            <Text>{currentItem.longDescription}</Text>
           </Descriptions.Item>
         </Descriptions>
         <Descriptions>
           <Descriptions.Item label="Артикул">
-            <Text>{"currentItems.articul"}</Text>
+            <Text>{currentItem.articul}</Text>
           </Descriptions.Item>
         </Descriptions>
         <Descriptions>
           <Descriptions.Item label="Стоимость">
-            <Text>{"currentItems.price"}</Text>
+            <Text>{currentItem.price}</Text>
           </Descriptions.Item>
         </Descriptions>
       </Card>

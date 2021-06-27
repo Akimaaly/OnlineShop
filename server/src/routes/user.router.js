@@ -67,6 +67,7 @@ router.post('/login', async (req, res) => {
   try {
     if (role === 'user') {
       const currentUser = await Buyer.findOne({ email });
+      console.log(currentUser);
       const jwtToken = jwt.sign(
         { id: currentUser._id },
         process.env.SESSION_KEY,
@@ -74,6 +75,8 @@ router.post('/login', async (req, res) => {
           expiresIn: '24h',
         }
       );
+      console.log('bcrypt', bcrypt.compare(password, currentUser.password));
+      console.log(jwtToken);
       if (
         !currentUser ||
         !(await bcrypt.compare(password, currentUser.password))

@@ -2,7 +2,8 @@ import { Card, Col } from 'antd';
 
 const { Meta } = Card;
 
-function CardsItem({title, price, image }) {
+function CardsItem({title, price, image}) {
+  console.log();
 
   return (
     <Col>
