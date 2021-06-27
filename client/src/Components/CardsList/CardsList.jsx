@@ -4,31 +4,29 @@ import { Row } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getAllGoods } from "../../Redux/actions/goods.actions";
-import { useState } from "react";
 
 function CardsList() {
   const dispatch = useDispatch();
   const cards = useSelector((state) => state.goods);
   let currentCategoryName = useParams().id;
-console.log(currentCategoryName);
-  let currentList = cards.filter((el) =>  el.category && el.category === currentCategoryName); ;
-console.log(currentList);
+  let currentList = cards.filter(
+    (el) => el.category && el.category === currentCategoryName
+  );
   useEffect(() => {
     dispatch(getAllGoods());
   }, [dispatch]);
-  console.log(currentList, "currentList");
   return (
     <div>
       <Row gutter={[16, 16]}>
         {currentList.length === 0
-          ? cards.map((el) => (
-              <Link key={el._id} to={`/goods/${el._id}`}>
-                <CardsItem title={el.title} price={el.price} image={el.image} />
+          ? cards.map(({ _id, title, image, price }) => (
+              <Link key={_id} to={`/goods/${_id}`}>
+                <CardsItem title={title} price={price} image={image} />
               </Link>
             ))
-          : currentList.map((el) => (
-              <Link key={el._id} to={`/goods/${el._id}`}>
-                <CardsItem title={el.title} price={el.price} image={el.image} />
+          : currentList.map(({ _id, title, image, price }) => (
+              <Link key={_id} to={`/goods/${_id}`}>
+                <CardsItem title={title} price={price} image={image} />
               </Link>
             ))}
       </Row>
