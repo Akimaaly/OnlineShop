@@ -1,15 +1,13 @@
 import { Layout, Row, Col } from 'antd';
 import CategoriesNavBar from '../Categories/CategoriesNavBar';
-import Header from '../Header/Header';
 import CardsList from '../CardsList/CardsList';
 
-function Footer() {
+function Body() {
   const { Content, Footer } = Layout;
   return (
     <>
       <div>
         <Layout>
-          <Header />
           <Layout>
             <Row gutter={[16, 16]}>
               <Col span={4}>
@@ -29,4 +27,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default Body;

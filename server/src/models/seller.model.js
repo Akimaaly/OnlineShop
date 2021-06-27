@@ -17,10 +17,11 @@ const sellerSchema = Schema({
   },
   location: {
     type: String,
+    required: false,
   },
   balance: {
     type: Number,
-    default: 0,
+    required: false,
   },
   password: {
     type: String,

@@ -1,5 +1,7 @@
 /* ЭТО РУЧКА ОБРАБОТКИ ТОВАРА */
 
+const GoodModel = require('../models/good.model')
+
 const router = require('express').Router()
 
 router.route('/')
@@ -14,6 +16,12 @@ router.route('/')
   })
   .delete((req, res) => {
 
+  })
+
+router.route('/all')
+  .get(async(req, res) => {
+    const allGoods = await GoodModel.find()
+    res.json(allGoods)
   })
 
 module.exports = router
