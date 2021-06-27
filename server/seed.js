@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+const { ObjectId } = mongoose.Types;
 const { connect, disconnect } = require('../server/src/db/config');
 const GoodModel = require('./src/models/good.model');
 const SellerModel = require('./src/models/seller.model');
@@ -12,7 +14,7 @@ const catListGoods = [
     articul: 'shoes001',
     quantity: 12,
     category: 'men_shoes',
-    seller: 'Обувник ООО',
+    seller: ObjectId('60d5e39bd7e8203cfc215d61'),
     price: 4500,
   },
   {
@@ -25,7 +27,7 @@ const catListGoods = [
     articul: 'phone001',
     quantity: 10,
     category: 'phones',
-    seller: 'Эпл ООО',
+    seller: ObjectId('60d5e39bd7e8203cfc215d61'),
     price: 67000,
   },
   {
@@ -37,7 +39,7 @@ const catListGoods = [
     articul: 'book001',
     quantity: 10,
     category: 'literature',
-    seller: 'БукРу ООО',
+    seller: ObjectId('60d5e39bd7e8203cfc215d61'),
     price: 600,
   },
   {
@@ -49,7 +51,7 @@ const catListGoods = [
     articul: 'tools001',
     quantity: 2,
     category: 'tools',
-    seller: 'ВсеИнструменты ООО',
+    seller: ObjectId('60d5e39bd7e8203cfc215d61'),
     price: 3500,
   },
   {
@@ -62,7 +64,7 @@ const catListGoods = [
     articul: 'pens001',
     quantity: 23,
     category: 'office_supplies',
-    seller: 'Канцлер ООО',
+    seller: ObjectId('60d5e39bd7e8203cfc215d61'),
     price: 1200,
   },
   {
@@ -75,7 +77,7 @@ const catListGoods = [
     articul: 'equip001',
     quantity: 1,
     category: 'sports',
-    seller: 'СпортМейстер ООО',
+    seller: ObjectId('60d5e39bd7e8203cfc215d61'),
     price: 33000,
   },
 ];

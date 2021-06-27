@@ -8,7 +8,6 @@ function Header2() {
   const history = useHistory();
 
   async function butHandler() {
-    // Cookie.remove("key");
     await api.getLogout();
     history.push('/auth');
   }
@@ -16,11 +15,10 @@ function Header2() {
   useEffect(() => {
     api.getHome();
   }, []);
-// import Sider from "./Components/Sider/Sider";
-// import Sider from "./Components/Sider/Sider";
+
 
   useEffect(() => {
-    historyServer.listen(({ location, action }) => { // надо пофиксить возвращение назад
+    historyServer.listen(({ location, action }) => { // надо проверить возвращение назад()
       history.push(location.pathname);
     });
   }, []);
@@ -38,6 +36,9 @@ function Header2() {
         <Link to='/auth'>
           <Button key="2">Login</Button>
         </Link>,
+        <Link to='/seller/profile'>
+        <Button key="3">Личный кабинет</Button>
+      </Link>,
         
           <Button key="1" onClick={butHandler}>Logout</Button>
    
