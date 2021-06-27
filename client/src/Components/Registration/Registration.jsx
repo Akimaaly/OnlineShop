@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import { Form, Input, Button, Checkbox, Select } from 'antd';
 import api from '../../api';
