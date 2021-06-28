@@ -9,10 +9,14 @@ import GoodItem from '../GoodItem/GoodItem';
 export default function GoodsForSale() {
   const goodsOfCurrentSeller = useSelector((state) => state.goods);
   const dispatch = useDispatch();
+  const seller = useSelector((state) => state.user);
+  // console.log(seller.id);
 
   useEffect(() => {
-    dispatch(getGoodsOfCurrentSeller('60d5e39bd7e8203cfc215d61'));
-  }, [dispatch]);
+    if (seller.id) {
+      dispatch(getGoodsOfCurrentSeller(`${seller.id}`));
+    }
+  }, [seller]);
 
   const deletehandler = (id) => {
     dispatch(deleteGood(id));

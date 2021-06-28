@@ -1,6 +1,6 @@
-
 const initState = {
-  goods: []
-}
+  goods: [],
+  user: {},
+};
 
-export default initState
+export default initState;

@@ -23,13 +23,13 @@ server.interceptors.request.use((request) => {
 server.interceptors.response.use(
   (response) => {
     return response;
+  },
+  (error) => {
+    if (error.response.status === 401) {
+      historyServer.push('/');
+    }
+    return error;
   }
-  // (error) => {
-  //   if (error.response.status === 401) {
-  //     historyServer.push("/login");
-  //   }
-  //   return error;
-  // }
 );
 
 export default server;

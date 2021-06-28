@@ -3,7 +3,7 @@
 import server from '../server';
 import Cookie from 'js-cookie';
 
-export const getHome = () => server.get('/').then((data) => data);
+export const getHome = () => server.get('/').then((data) => data.data);
 
 export const getLogout = () =>
   server.get('/logout').then((data) => Cookie.remove('key'));

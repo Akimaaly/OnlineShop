@@ -1,10 +1,10 @@
 /* ЭТО РУЧКА ОБРАБОТКИ ПОЛЬЗОВАТЕЛЯ */
 
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const router = require('express').Router();
 const Buyer = require('../models/buyer.model');
 const SellerModel = require('../models/seller.model');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const { tokenChecker } = require('../middleware/protect');
 
 router.post('/reg', async (req, res) => {
@@ -18,10 +18,22 @@ router.post('/reg', async (req, res) => {
         phoneNumber: phone,
         password: hashPass,
       });
-      const jwtToken = jwt.sign({ id: user._id }, process.env.SESSION_KEY, {
-        expiresIn: '24h',
-      });
+      const jwtToken = jwt.sign(
+        {
+          id: user._id,
+          name: user.name,
+          role: role,
+          email: user.email,
+        },
+        process.env.SESSION_KEY,
+        {
+          expiresIn: '24h',
+        }
+      );
+
       return res.status(200).json({
+        id: user._id,
+
         name: user.name,
         email: user.email,
         phoneNumber: user.phoneNumber,
@@ -39,11 +51,21 @@ router.post('/reg', async (req, res) => {
         balance: 9,
       });
 
-      console.log('=====', seller);
-      const jwtToken = jwt.sign({ id: seller._id }, process.env.SESSION_KEY, {
-        expiresIn: '24h',
-      });
+      const jwtToken = jwt.sign(
+        {
+          id: seller._id,
+          name: seller.name,
+          role: role,
+          email: seller.email,
+        },
+        process.env.SESSION_KEY,
+        {
+          expiresIn: '24h',
+        }
+      );
       return res.status(200).json({
+        id: seller._id,
+
         name: seller.name,
         email: seller.email,
         phoneNumber: seller.phoneNumber,
@@ -67,16 +89,20 @@ router.post('/login', async (req, res) => {
   try {
     if (role === 'user') {
       const currentUser = await Buyer.findOne({ email });
-      console.log(currentUser);
+
       const jwtToken = jwt.sign(
-        { id: currentUser._id },
+        {
+          id: currentUser._id,
+          name: currentUser.name,
+          role: role,
+          email: currentUser.email,
+        },
         process.env.SESSION_KEY,
         {
           expiresIn: '24h',
         }
       );
-      console.log('bcrypt', bcrypt.compare(password, currentUser.password));
-      console.log(jwtToken);
+
       if (
         !currentUser ||
         !(await bcrypt.compare(password, currentUser.password))
@@ -84,6 +110,8 @@ router.post('/login', async (req, res) => {
         return res.status(400).json({ mess: 'Неверный логин или пароль' });
       }
       return res.status(200).json({
+        id: currentUser._id,
+
         name: currentUser.name,
         email: currentUser.email,
         role,
@@ -93,7 +121,12 @@ router.post('/login', async (req, res) => {
     if (role === 'seller') {
       const currentSeller = await SellerModel.findOne({ email });
       const jwtToken = jwt.sign(
-        { id: currentSeller._id },
+        {
+          id: currentSeller._id,
+          name: currentSeller.name,
+          role: role,
+          email: currentSeller.email,
+        },
         process.env.SESSION_KEY,
         {
           expiresIn: '24h',
@@ -106,6 +139,8 @@ router.post('/login', async (req, res) => {
         return res.status(400).json({ mess: 'Неверный логин или пароль' });
       }
       return res.status(200).json({
+        id: currentSeller._id,
+
         name: currentSeller.name,
         email: currentSeller.email,
         role,
@@ -122,7 +157,12 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/', tokenChecker, (req, res) => {
-  return res.status(200).json({});
+  return res.status(200).json({
+    id: req.user.id,
+    name: req.user.name,
+    email: req.user.email,
+    role: req.user.role,
+  });
 });
 
 module.exports = router;
