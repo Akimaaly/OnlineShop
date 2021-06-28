@@ -9,6 +9,7 @@ import {
   GOOD_DELETE_SUCCESS,
 } from '../types';
 import axios from 'axios';
+import api from '../../api';
 
 export const getAllGoods = () => async (dispatch) => {
   const allGoods = (await axios.get('http://localhost:8080/good/all')).data;
@@ -31,19 +32,26 @@ export const addGoodErr = (err) => ({
 
 export const addGood = (params) => async (dispatch) => {
   dispatch(addGoodStart());
-  const response = await fetch('http://localhost:8080/good/new', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(params),
-  });
-  if (response.ok) {
-    await response.json();
+
+  try {
+    const response = await api.postAddGood(params);
     return dispatch(addGoodSuccess(params));
+  } catch (error) {
+    dispatch(addGoodErr(error));
   }
-  const err = await response.json();
-  dispatch(addGoodErr(err));
+  // const response = await fetch('http://localhost:8080/good/new', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify(params),
+  // });
+  // if (response.ok) {
+  //   await response.json();
+  //   return dispatch(addGoodSuccess(params));
+  // }
+  // const err = await response.json();
+  // dispatch(addGoodErr(err));
 };
 
 export const getGoodAsyncStart = () => ({
@@ -60,22 +68,35 @@ export const getGoodAsyncErr = (payload) => ({
 
 export const getGoodsOfCurrentSeller = (id) => async (dispatch) => {
   dispatch(getGoodAsyncStart());
-  const response = await fetch(`http://localhost:8080/good/${id}`);
+  // const response = await fetch(`http://localhost:8080/good/${id}`);
 
-  if (response.ok) {
-    const parsedGoods = await response.json();
-    return dispatch(getGoodAsyncSuccess(parsedGoods));
+  try {
+    const response = await api.getGoodsSeller(id);
+    return dispatch(getGoodAsyncSuccess(response));
+  } catch (error) {
+    dispatch(getGoodAsyncErr(error));
   }
-  const err = await response.json();
-  dispatch(getGoodAsyncErr(err));
+
+  // if (response.ok) {
+  //   // const parsedGoods = await response.json();
+  //   const parsedGoods = response;
+  //   return dispatch(getGoodAsyncSuccess(parsedGoods));
+  // }
+  // // const err = await response.json();
+  // const err = response;
+  // dispatch(getGoodAsyncErr(err));
 };
 
 export const deleteGood = (id) => async (dispatch) => {
-  const response = await axios.delete(`http://localhost:8080/good/${id}`);
-  if (response.status === 200) {
+  // const response = await axios.delete(`http://localhost:8080/good/${id}`);
+
+  try {
+    const response = await api.deleteGoodfromBasket(id);
     dispatch({
       type: GOOD_DELETE_SUCCESS,
       payload: { id },
     });
+  } catch (error) {
+    console.log(error);
   }
 };
