@@ -49,6 +49,7 @@ const Auth = () => {
 
   return (
     <Form
+      style={{ paddingTop: '200px', width: '1000px', textAlign: 'center', marginLeft: 'auto', marginRight: 'auto'}}
       name='basic'
       labelCol={{
         span: 8,

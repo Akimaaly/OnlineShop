@@ -51,7 +51,9 @@ function App() {
           <Logup />
         </Route> */}
           <Route exact path="/">
-            <Body />
+            <div style={{ paddingTop: '80px' }}>
+              <Body />
+            </div>
             <Home />
           </Route>
           <Route exact path="/auth">

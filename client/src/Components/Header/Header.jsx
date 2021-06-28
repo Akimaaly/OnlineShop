@@ -47,13 +47,14 @@ function Header2() {
           position: 'fixed',
           zIndex: 1,
           width: '100%',
+          height: '66px'
         }}
       >
         <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['2']}>
           {!user.role && (
             <>
               <Menu.Item key='1'>
-                <Link to='/reg'>Reg</Link>
+                <Link to='/reg'>Registration</Link>
               </Menu.Item>
               <Menu.Item key='6'>
                 <Link to='/auth'>Login</Link>
@@ -62,6 +63,9 @@ function Header2() {
           )}
           {user.role && (
             <>
+              <Menu.Item key='32'>
+                <p>Вы вошли как: {user.name}</p>
+              </Menu.Item>
               <Menu.Item key='7'>
                 <Link to='/seller/profile'>Личный кабинет</Link>
               </Menu.Item>
@@ -74,30 +78,6 @@ function Header2() {
           )}
         </Menu>
       </Header>
-
-      {/* </Layout> */}
-      <PageHeader
-        ghost={false}
-        title='AkimShop'
-        subTitle='The best online-shop you ever seen'
-        extra={[
-          <Link to='/reg'>
-            <Button key='3'>Reg</Button>
-          </Link>,
-          <Link to='/auth'>
-            <Button key='2'>Login</Button>
-          </Link>,
-          <Link to='/seller/profile'>
-            <Button key='3'>Личный кабинет</Button>
-          </Link>,
-
-          <Button key='1' onClick={butHandler}>
-            Logout
-          </Button>,
-        ]}
-      >
-        <p>Вы вошли как: {user.name}</p>
-      </PageHeader>
     </div>
   );
 }

@@ -36,7 +36,7 @@ const prefixSelector = (
         width: 70,
       }}
     >
-      <Option value='8'>8</Option>
+      {/* <Option value='8'>8</Option> */}
       <Option value='+7'>+7</Option>
     </Select>
   </Form.Item>
@@ -78,6 +78,7 @@ const Registration = () => {
 
   return (
     <Form
+      style={{ paddingTop: '200px', width: '1000px', textAlign: 'center', marginLeft: 'auto', marginRight: 'auto'}}
       // onSubmit={(e) => handleSubmit(e)}
       {...layout}
       name='nest-messages'
@@ -185,7 +186,7 @@ const Registration = () => {
           Я продавец
         </Checkbox>
 
-        <Button type='submit' htmlType='submit'>
+        <Button type='primary' htmlType='submit'>
           Submit
         </Button>
       </Form.Item>

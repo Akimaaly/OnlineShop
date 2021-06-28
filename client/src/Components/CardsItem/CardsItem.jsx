@@ -4,13 +4,13 @@ const { Meta } = Card;
 
 function CardsItem({ title, price, image }) {
   return (
-    <Col>
-      <Card
+    <Col >
+      <Card 
         hoverable
-        style={{ width: 240, borderRadius: "20px" }}
+        style={{ width: 180, borderRadius: "20px" }}
         cover={
           <img
-            style={{ height: 360, borderRadius: "20px 20px 0px 0px" }}
+            style={{ height: 240, borderRadius: "20px 20px 0px 0px" }}
             alt="example"
             src={image}
           />

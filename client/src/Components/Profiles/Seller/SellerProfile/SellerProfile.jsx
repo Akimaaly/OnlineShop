@@ -8,7 +8,7 @@ export default function SellerProfile() {
   const user = useSelector((state) => state.user);
 
   return (
-    <>
+    <div style={{ paddingTop: '100px' }}>
       {user.name}
       <Row align='middle'>
         <Col span={24}>
@@ -21,6 +21,6 @@ export default function SellerProfile() {
         </Col>
       </Row>
       <GoodsForSale />
-    </>
+    </div>
   );
 }

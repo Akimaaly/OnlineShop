@@ -1,8 +1,7 @@
 import { Card, Descriptions } from "antd";
 import {
   EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
+  DeleteOutlined,
 } from "@ant-design/icons";
 import { Typography } from "antd";
 import { useParams } from "react-router-dom";
@@ -16,18 +15,17 @@ const CardForm = () => {
   return (
     <div align="center" className="container">
       <Card
-        style={{ width: 400 }}
+        style={{ width: "400px" }}
         cover={
           <img
-            style={{ maxheigth: "100px" }}
+            style={{width: "240px", heigth: "360px" }}
             alt="imageOfItem"
             src={currentItem.image}
           />
         }
         actions={[
-          <SettingOutlined key="setting" />,
+          <DeleteOutlined key="delete" />,
           <EditOutlined key="edit" />,
-          <EllipsisOutlined key="ellipsis" />,
         ]}
       >
         <Descriptions title={currentItem.title}>
@@ -47,7 +45,7 @@ const CardForm = () => {
         </Descriptions>
         <Descriptions>
           <Descriptions.Item label="Стоимость">
-            <Text>{currentItem.price}</Text>
+            <Text>{currentItem.price} руб.</Text>
           </Descriptions.Item>
         </Descriptions>
       </Card>
