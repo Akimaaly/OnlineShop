@@ -5,12 +5,14 @@ import { Link, useHistory } from 'react-router-dom';
 import api from '../../api';
 import { historyServer } from '../../api/server';
 import { deleteUserInfo, getUserInfo } from '../../Redux/actions/user.action';
+// import SortButton from '../Buttons/SortButton'
 
 const { Header } = Layout;
 
 function Header2() {
   const history = useHistory();
   const user = useSelector((state) => state.user);
+  console.log(user.name);
   const dispatch = useDispatch();
 
   async function butHandler() {
@@ -96,7 +98,12 @@ function Header2() {
           </Button>,
         ]}
       >
-        <p>Вы вошли как: {user.name}</p>
+      <div >
+      {user.name !== undefined && 
+      <p>Вы вошли как: {user.name}</p>
+      }
+      {/* <SortButton /> */}
+      </div>
       </PageHeader>
     </div>
   );
