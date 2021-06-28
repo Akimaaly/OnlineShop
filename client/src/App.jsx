@@ -2,8 +2,6 @@ import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import CardsList from './Components/CardsList/CardsList';
 import 'antd/dist/antd.css';
 import CategoriesNavBar from './Components/Categories/CategoriesNavBar';
-import Login from './Components/Registration.style/Login';
-import Logup from './Components/Registration.style/Logup';
 import CardForm from './Components/CardForm/CardForm';
 import Header from './Components/Header/Header';
 import Registration from './Components/Registration/Registration';
@@ -37,12 +35,6 @@ function App() {
         <Route exact path='/goods/:id'>
           <CardForm />
         </Route>
-        {/* <Route exact path='/login'>
-          <Login />
-        </Route>
-        <Route exact path='/logup'>
-          <Logup />
-        </Route> */}
         <Route exact path='/'>
           <Body />
           <Home />

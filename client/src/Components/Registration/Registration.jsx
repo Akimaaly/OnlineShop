@@ -6,6 +6,7 @@ import Cookie from 'js-cookie';
 import { useHistory } from 'react-router';
 import { getUserInfo } from '../../Redux/actions/user.action';
 import { useDispatch } from 'react-redux';
+import styles from './Registration.module.css';
 
 const { Option } = Select;
 
@@ -78,12 +79,17 @@ const Registration = () => {
 
   return (
     <Form
+      className={styles.login}
+      size={'middle'}
       // onSubmit={(e) => handleSubmit(e)}
       {...layout}
       name='nest-messages'
       onFinish={(values) => handleSubmit(values)}
       validateMessages={validateMessages}
     >
+      <p align='right' style={{ color: 'black' }}>
+        AkimExpress style
+      </p>
       <Form.Item
         name={['user', 'name']}
         label='Name'

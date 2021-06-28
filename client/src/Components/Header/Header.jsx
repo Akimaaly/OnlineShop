@@ -53,10 +53,10 @@ function Header2() {
           {!user.role && (
             <>
               <Menu.Item key='1'>
-                <Link to='/reg'>Reg</Link>
+                <Link to='/reg'>Регистрация</Link>
               </Menu.Item>
               <Menu.Item key='6'>
-                <Link to='/auth'>Login</Link>
+                <Link to='/auth'>Войти</Link>
               </Menu.Item>
             </>
           )}
@@ -80,21 +80,7 @@ function Header2() {
         ghost={false}
         title='AkimShop'
         subTitle='The best online-shop you ever seen'
-        extra={[
-          <Link to='/reg'>
-            <Button key='3'>Reg</Button>
-          </Link>,
-          <Link to='/auth'>
-            <Button key='2'>Login</Button>
-          </Link>,
-          <Link to='/seller/profile'>
-            <Button key='3'>Личный кабинет</Button>
-          </Link>,
-
-          <Button key='1' onClick={butHandler}>
-            Logout
-          </Button>,
-        ]}
+        extra={[]}
       >
         <p>Вы вошли как: {user.name}</p>
       </PageHeader>
