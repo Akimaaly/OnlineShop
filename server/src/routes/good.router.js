@@ -9,8 +9,6 @@ const GoodModel = require('../models/good.model');
 /*Получаем вообще все товары которые есть*/
 router.route('/all').get(async (req, res) => {
   const allGoods = await GoodModel.find();
-  console.log('lkmdvlmlfkmldfm');
-  console.log(allGoods);
   res.json(allGoods);
 });
 
