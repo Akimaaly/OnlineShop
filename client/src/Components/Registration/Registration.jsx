@@ -4,6 +4,8 @@ import { Form, Input, Button, Checkbox, Select } from 'antd';
 import api from '../../api';
 import Cookie from 'js-cookie';
 import { useHistory } from 'react-router';
+import { getUserInfo } from '../../Redux/actions/user.action';
+import { useDispatch } from 'react-redux';
 
 const { Option } = Select;
 
@@ -43,6 +45,8 @@ const prefixSelector = (
 const Registration = () => {
   const history = useHistory();
   const [role, setRole] = useState('user');
+  // const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const handleClick = (role) => {
     setRole(role);
@@ -58,11 +62,12 @@ const Registration = () => {
       phone: prefix + phone,
       role,
     };
-    console.log(body);
+    // console.log(body);
 
     try {
       const response = await api.postReg(body);
       Cookie.set('key', response.token);
+      dispatch(getUserInfo(response));
       history.push('/');
     } catch (error) {}
   };

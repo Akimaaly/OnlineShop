@@ -2,7 +2,7 @@
 /* ЭТО РУЧКА ОБРАБОТКИ ТОВАРА */
 const mongoose = require('mongoose');
 const multer = require('multer');
-
+const { tokenChecker } = require('../middleware/protect');
 const { ObjectId } = mongoose.Types;
 const router = require('express').Router();
 const GoodModel = require('../models/good.model');
@@ -21,15 +21,18 @@ const upload = multer({ storage: storage });
 /*Получаем вообще все товары которые есть*/
 router.route('/all').get(async (req, res) => {
   const allGoods = await GoodModel.find();
-  console.log('lkmdvlmlfkmldfm');
-  console.log(allGoods);
+  // console.log('lkmdvlmlfkmldfm');
+  // console.log(allGoods);
   res.json(allGoods);
 });
 
 /*добавляем новый товар*/
-router.route('/new').post(async (req, res) => {
+router.route('/new').post(tokenChecker, async (req, res) => {
   const { title, longDescription, articul, residence, quantity, price } =
     req.body;
+
+  // в каждую ручку на беке нужно доварить tokenChecker он записывает все данные ures в req.user
+
   const newGood = await GoodModel.create({
     title,
     longDescription,
@@ -37,7 +40,7 @@ router.route('/new').post(async (req, res) => {
     category: residence.join(','),
     quantity: Number(quantity),
     price: Number(price),
-    seller: ObjectId('60d5e39bd7e8203cfc215d61'),
+    seller: ObjectId(req.user.id),
   });
   res.json(newGood);
 });
@@ -45,9 +48,13 @@ router.route('/new').post(async (req, res) => {
 /*получаем товары конкретного продавца с помощью id-продавца*/
 router
   .route('/:id')
-  .get(async (req, res) => {
-    const allGoods = await GoodModel.find({ seller: req.params.id });
-    res.json(allGoods);
+  .get(tokenChecker, async (req, res) => {
+    try {
+      const allGoods = await GoodModel.find({ seller: req.params.id });
+      res.json(allGoods);
+    } catch (error) {
+      console.log(error);
+    }
   })
   /*удаление товара продавца с помощью id-товара*/
   .delete(async (req, res) => {

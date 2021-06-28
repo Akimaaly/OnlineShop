@@ -4,10 +4,16 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import { useHistory } from 'react-router-dom';
 import api from '../../api';
 import Cookie from 'js-cookie';
+import { getUserInfo } from '../../Redux/actions/user.action';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Auth = () => {
   const history = useHistory();
   const [role, setRole] = useState('user');
+  // const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  // console.log(user);
 
   const handleClick = (role) => {
     setRole(role);
@@ -20,10 +26,11 @@ const Auth = () => {
       password: password,
       role,
     };
-    console.log(body);
+    // console.log(body);
     try {
       const response = await api.postAuth(body);
       Cookie.set('key', response.token);
+      dispatch(getUserInfo(response));
       history.push('/');
     } catch (error) {}
   };
