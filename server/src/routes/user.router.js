@@ -24,6 +24,7 @@ router.post('/reg', async (req, res) => {
           name: user.name,
           role: role,
           email: user.email,
+          phoneNumber: user.phoneNumber,
         },
         process.env.SESSION_KEY,
         {
@@ -33,10 +34,9 @@ router.post('/reg', async (req, res) => {
 
       return res.status(200).json({
         id: user._id,
-
         name: user.name,
         email: user.email,
-        phoneNumber: user.phoneNumber,
+        phone: user.phoneNumber,
         role,
         token: jwtToken,
       });
@@ -57,6 +57,7 @@ router.post('/reg', async (req, res) => {
           name: seller.name,
           role: role,
           email: seller.email,
+          phoneNumber: seller.phoneNumber,
         },
         process.env.SESSION_KEY,
         {
@@ -65,10 +66,9 @@ router.post('/reg', async (req, res) => {
       );
       return res.status(200).json({
         id: seller._id,
-
         name: seller.name,
         email: seller.email,
-        phoneNumber: seller.phoneNumber,
+        phone: seller.phoneNumber,
         role,
         token: jwtToken,
         location: 'hs',
@@ -96,6 +96,7 @@ router.post('/login', async (req, res) => {
           name: currentUser.name,
           role: role,
           email: currentUser.email,
+          phone: currentUser.phoneNumber,
         },
         process.env.SESSION_KEY,
         {
@@ -111,7 +112,7 @@ router.post('/login', async (req, res) => {
       }
       return res.status(200).json({
         id: currentUser._id,
-
+        phone: currentUser.phoneNumber,
         name: currentUser.name,
         email: currentUser.email,
         role,
@@ -126,6 +127,7 @@ router.post('/login', async (req, res) => {
           name: currentSeller.name,
           role: role,
           email: currentSeller.email,
+          phone: currentSeller.phoneNumber,
         },
         process.env.SESSION_KEY,
         {
@@ -140,7 +142,7 @@ router.post('/login', async (req, res) => {
       }
       return res.status(200).json({
         id: currentSeller._id,
-
+        phone: currentSeller.phoneNumber,
         name: currentSeller.name,
         email: currentSeller.email,
         role,
@@ -157,11 +159,13 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/', tokenChecker, (req, res) => {
+  console.log(req.user);
   return res.status(200).json({
     id: req.user.id,
     name: req.user.name,
     email: req.user.email,
     role: req.user.role,
+    phone: req.user.phone,
   });
 });
 

@@ -100,7 +100,7 @@ const onSearch = ()=>{
                 <CardsItem title={title} price={price} image={image} />
               </Link>
             ))}
-      </Row>
+      </Row> 
     </div>
   );
 }

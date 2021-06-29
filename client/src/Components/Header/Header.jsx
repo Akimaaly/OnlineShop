@@ -26,6 +26,7 @@ function Header2() {
   async function getUser() {
     try {
       const response = await api.getHome();
+      console.log(response);
       dispatch(getUserInfo(response));
     } catch (error) {}
   }
@@ -69,7 +70,8 @@ function Header2() {
               </Menu.Item>
             </>
           )}
-          {user.role && (
+
+          {user.role === 'seller' && (
             <>
               <Menu.Item key='32'>
                 <p style={{ fontSize: '18px', color: 'white' }}>Вы вошли как: {user.name}</p>
@@ -79,6 +81,18 @@ function Header2() {
               </Menu.Item>
               <Menu.Item key='2' onClick={butHandler}>
               <span style={{ fontSize: '18px', color: 'white' }}>Выход</span>
+              </Menu.Item>
+            </>
+          )}
+          {user.role === 'user' && (
+            <>
+              <Menu.Item key='7'>
+                <Link to='/buyer/profile'>Личный кабинет</Link>
+              </Menu.Item>
+              <Menu.Item key='2'>
+                <Button key='12' onClick={butHandler}>
+                  Logout
+                </Button>
               </Menu.Item>
             </>
           )}
