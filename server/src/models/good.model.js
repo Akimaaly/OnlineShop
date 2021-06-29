@@ -6,7 +6,7 @@ const { Schema, model } = require('mongoose');
 const goodSchema = Schema({
   title: {
     type: String,
-    required: true,
+    
   },
   image: {
     type: String,
@@ -15,14 +15,14 @@ const goodSchema = Schema({
   },
   longDescription: {
     type: String,
-    required: true,
+    
   },
   articul: {
     type: String, //заменил на СТРИНГ
     required: true,
   },
   quantity: {
-    type: Number,
+    type: String,
     default: 1,
   },
   category: {
@@ -34,8 +34,8 @@ const goodSchema = Schema({
     ref: 'Seller',
   },
   price: {
-    type: Number,
-    required: true,
+    type: String,
+    
   },
 });
 

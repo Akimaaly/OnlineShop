@@ -22,7 +22,7 @@ function CardsList() {
 
   let currentCategoryName = useParams().name; // получение имени категории для фильтрации
   let currentList = cards.filter(
-    (el) => el.category && el.category === currentCategoryName //отображаемые goods по категориям
+    (el) => el.category === currentCategoryName //отображаемые goods по категориям
   );
   useEffect(() => {
     dispatch(getAllGoods());
@@ -76,46 +76,31 @@ console.log(filteredCards);
   ); // выпадающий список сортировки по ключам
 
   return (
-    <div style={{ marginTop: "100px" }}>
-      {/* <Search />
-      <Row gutter={[16, 16]}>
-        {cards.map(({ _id, title, image, price }) => (
-          <Col key={_id}>
-            <Link to={`/goods/${_id}`}>
-              <CardsItem title={title} price={price} image={image} />
-            </Link>
-          </Col>
-        ))}
-      </Row> */}
 
-      {/* <div> */}
-      <Space size={[120, 16]}>
-        <Dropdown
-          overlay={menu}
-          onVisibleChange={handleVisibleChange}
-          visible={visible}
+    <div style={{ marginTop: '68px', }}>
+      <Space  size={[120, 16]} >
+      <Dropdown
+        overlay={menu}
+        onVisibleChange={handleVisibleChange}
+        visible={visible}
+      >
+        <Button
+          to="#"
+          className="ant-dropdown-link"
+          onClick={(e) => e.preventDefault()}
+          style={{ color: '#fff',
+            background: '#283655',
+            borderColor: '#283655'
+          }}
         >
-          <Button
-            to="#"
-            className="ant-dropdown-link"
-            onClick={(e) => e.preventDefault()}
-            style={{ color: "black" }}
-          >
-            Сортировать <DownOutlined />
-          </Button>
-        </Dropdown>
-        {/* <input type='text' placeholder="input search text" className="search_input" onChange={(e)=>setValue(e.target.value)}/> */}
-        <Search
-          placeholder="input search text"
-          allowClear
-          onChange={searchItems}
-          style={{ width: 200 }}
-        />
-        {/* <Search /> */}
-      </Space>
-
-      <br />
-      <Row gutter={[16, 16]}>
+          Сортировать <DownOutlined /> 
+        </Button>
+      </Dropdown>
+    <Search placeholder="Введите название товара или часть его описания..." allowClear onChange={searchItems} style={{ borderColor: '#283655', width: '500px' }} />
+    </Space>
+    <br />
+      <Row gutter={[16, 16]} style={{ marginTop: '5px' }}>
+        {
         {filteredCards ? 
           filteredCards.map(({ _id, title, image, price }) => (
               <Link key={_id} to={`/goods/${_id}`}>
@@ -123,7 +108,7 @@ console.log(filteredCards);
               </Link>
             ))
         :
-          sortedList
+        sortedList
           ? sortedList.map(({ _id, title, image, price }) => (
               <Link key={_id} to={`/goods/${_id}`}>
                 <CardsItem title={title} price={price} image={image} />
@@ -140,7 +125,7 @@ console.log(filteredCards);
                 <CardsItem title={title} price={price} image={image} />
               </Link>
             ))}
-      </Row>
+      </Row> 
     </div>
   );
 }

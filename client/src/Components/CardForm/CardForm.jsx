@@ -10,14 +10,12 @@ const { Text } = Typography;
 
 const CardForm = () => {
   const goods = useSelector((state) => state.goods);
-
-  console.log('===========', goods);
   const currentItemID = useParams();
-  console.log('currentItemID._id', currentItemID);
+
 
   const currentItem = goods.find((el) => el._id === currentItemID.id);
   return (
-    <div align='center' className='container'>
+    <div align='center' className='container' style={{ paddingTop: '85px', }}>
       <Card
         style={{ width: "400px" }}
         cover={
@@ -53,7 +51,7 @@ const CardForm = () => {
           </Descriptions.Item>
         </Descriptions>
       </Card>
-    </div>
+      </div>
   );
 };
 

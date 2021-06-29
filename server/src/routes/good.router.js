@@ -49,4 +49,10 @@ router
     res.sendStatus(200);
   });
 
-module.exports = router;
+  router.route('/:id')
+  .delete(async (req, res) => {
+    await GoodModel.findByIdAndDelete(req.params.id)
+    res.sendStatus(200)
+  })
+
+module.exports = router

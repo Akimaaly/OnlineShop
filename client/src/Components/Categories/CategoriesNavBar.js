@@ -37,6 +37,7 @@ const CategoriesNavBar = () => {
             background: '#283655',
             borderColor: '#283655',
             color: '#fff',
+            width: '80px',
           }}
         >
           {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
