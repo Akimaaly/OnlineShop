@@ -5,7 +5,7 @@ body {
 .login {
   overflow: hidden;
   /* background-color: #f45b69; */
-  background-color: #8a779c69;
+  background-color: #d0e1f9;
 
   padding: 20px 140px 0px 0px;
   border-radius: 10px;
@@ -32,14 +32,14 @@ body {
 .login::before {
   left: 40%;
   bottom: -130%;
-  background-color: rgba(199, 51, 130, 0.15);
+  background-color: #4d648d9f;
   animation: wawes 6s infinite linear;
 }
 
 .login::after {
   left: 35%;
   bottom: -125%;
-  background-color: rgba(240, 74, 24, 0.2);
+  background-color: #2836559f;
   animation: wawes 7s infinite;
 }
 .login > input {

@@ -27,23 +27,28 @@ const CategoriesNavBar = () => {
     history.push('/cardlist');
   };
   return (
-    <div style={{ width: 256, marginLeft: '5px' }}>
+    <div style={{ width: 256, marginLeft: '5px', marginTop: '100px' }}>
       <div>
         <Button
           type='primary'
           onClick={toggleCollapsed}
-          style={{ marginBottom: '5px' }}
+          style={{
+            marginBottom: '5px',
+            background: '#283655',
+            borderColor: '#283655',
+            color: '#fff',
+          }}
         >
           {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         </Button>
-        <Text
+        {/* <Text
           strong
           icon={<TableOutlined />}
           style={{ marginLeft: '50px' }}
           onClick={handleGetAllItems}
         >
           Все товары
-        </Text>
+        </Text> */}
       </div>
       <Menu mode='inline' theme='dark' inlineCollapsed={collapsed}>
         <SubMenu key='sub11' icon={<SkinOutlined />} title='Обувь'>
