@@ -1,4 +1,7 @@
 import { Card, Col } from "antd";
+import {
+  ShoppingCartOutlined,
+} from "@ant-design/icons";
 
 const { Meta } = Card;
 
@@ -15,6 +18,9 @@ function CardsItem({ title, price, image }) {
             src={image}
           />
         }
+          actions={[
+            <ShoppingCartOutlined key="ellipsis" />
+          ]}
       >
         <Meta title={title} description={`${price} руб.`} />
       </Card>

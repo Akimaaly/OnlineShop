@@ -56,7 +56,7 @@ function Header2() {
         <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['2']} style={{ height: '70px', marginLeft: '-50px', background: '#283655' }}>
           <Menu.Item key='34'>
             <Link to='/'>
-              <span style={{ fontSize: '36px', color: 'white' }}>AkimShop</span>
+              <span style={{ fontSize: '36px', color: 'white' }}>Akim Express</span>
             </Link>
           </Menu.Item>
           {!user.role && (

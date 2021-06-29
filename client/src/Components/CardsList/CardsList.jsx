@@ -63,20 +63,7 @@ const onSearch = ()=>{
   ); // выпадающий список сортировки по ключам
 
   return (
-    <div style={{ marginTop: '100px', }}
-    >
-      {/* <Search />
-      <Row gutter={[16, 16]}>
-        {cards.map(({ _id, title, image, price }) => (
-          <Col key={_id}>
-            <Link to={`/goods/${_id}`}>
-              <CardsItem title={title} price={price} image={image} />
-            </Link>
-          </Col>
-        ))}
-      </Row> */}
-      
-    {/* <div> */}
+    <div style={{ marginTop: '68px', }}>
       <Space  size={[120, 16]} >
       <Dropdown
         overlay={menu}
@@ -95,7 +82,7 @@ const onSearch = ()=>{
     <Search placeholder="input search text" allowClear onSearch={onSearch} style={{ width: 200 }} />
     </Space>
     <br />
-      <Row gutter={[16, 16]}>
+      <Row gutter={[16, 16]} style={{ marginTop: '15px' }}>
         {sortedList
           ? sortedList.map(({ _id, title, image, price }) => (
               <Link key={_id} to={`/goods/${_id}`}>
