@@ -1,0 +1,25 @@
+.ant-menu-dark .ant-menu-inline.ant-menu-sub {
+  background-color: #283655;
+  color: #fff;
+}
+.ant-menu.ant-menu-dark,
+.ant-menu-dark .ant-menu-sub,
+.ant-menu.ant-menu-dark .ant-menu-sub {
+  background-color: #283655;
+  color: #fff;
+}
+.ant-btn-primary {
+  color: #fff;
+  background: #283655;
+  border-color: #283655;
+}
+.ant-menu-title-content {
+  color: #fff;
+}
+span {
+  font-weight: 600;
+}
+label {
+  color: #fff;
+  font-weight: 600;
+}

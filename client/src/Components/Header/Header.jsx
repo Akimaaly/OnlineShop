@@ -47,37 +47,37 @@ function Header2() {
           position: 'fixed',
           zIndex: 1,
           width: '120%',
-          height: '84px',
-          background: 'white',
+          height: '70px',
+          background: "#283655"
         }}
 
       >
-        <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['2']} style={{ marginLeft: '-50px', background: '#8a779c69' }}>
+        <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['2']} style={{ height: '70px', marginLeft: '-50px', background: '#283655' }}>
           <Menu.Item key='34'>
             <Link to='/'>
-              <span style={{ fontSize: '36px', color: 'black' }}>AkimShop</span>
+              <span style={{ fontSize: '36px', color: 'white' }}>AkimShop</span>
             </Link>
           </Menu.Item>
           {!user.role && (
             <>
               <Menu.Item key='1'>
-                <Link to='/reg'><span style={{ fontSize: '20px', color: 'black' }}>Регистрация</span></Link>
+                <Link to='/reg'><span style={{ fontSize: '18px', color: 'white' }}>Регистрация</span></Link>
               </Menu.Item>
               <Menu.Item key='6'>
-                <Link to='/auth'><span style={{ fontSize: '20px', color: 'black' }}>Войти</span></Link>
+                <Link to='/auth'><span style={{ fontSize: '18px', color: 'white' }}>Войти</span></Link>
               </Menu.Item>
             </>
           )}
           {user.role && (
             <>
               <Menu.Item key='32'>
-                <p style={{ fontSize: '20px', color: 'black' }}>Вы вошли как: {user.name}</p>
+                <p style={{ fontSize: '18px', color: 'white' }}>Вы вошли как: {user.name}</p>
               </Menu.Item>
               <Menu.Item key='7'>
-                <Link to='/seller/profile'><span style={{ fontSize: '20px', color: 'black' }}>Личный кабинет</span></Link>
+                <Link to='/seller/profile'><span style={{ fontSize: '18px', color: 'white' }}>Личный кабинет</span></Link>
               </Menu.Item>
               <Menu.Item key='2' onClick={butHandler}>
-              <span style={{ fontSize: '20px', color: 'black' }}>Выход</span>
+              <span style={{ fontSize: '18px', color: 'white' }}>Выход</span>
               </Menu.Item>
             </>
           )}

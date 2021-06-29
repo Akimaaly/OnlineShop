@@ -9,6 +9,7 @@ import SellerProfile from './Components/Profiles/Seller/SellerProfile/SellerProf
 import Home from './Components/Home/Home';
 import Body from './Components/Body/Body';
 import AddGoodForm from './Components/Profiles/Seller/AddGoodForm/AddGoodForm';
+import './App.css'
 
 import Auth from "./Components/Auth/Auth";
 import SortButton from "./Components/Buttons/SortButton";

@@ -1,11 +1,12 @@
 import CardsItem from "../CardsItem/CardsItem";
 import { Link, useParams } from "react-router-dom";
-import { Row } from "antd";
+import { Row, Col } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getAllGoods } from "../../Redux/actions/goods.actions";
 import { useContext } from "react";
 import { Context } from "../../App";
+import Search from "../Search/Search";
 
 function CardsList() {
   const dispatch = useDispatch();
@@ -20,7 +21,18 @@ function CardsList() {
   }, [dispatch]);
 
   return (
-    <div> Hello
+    <div style={{ marginTop: '100px', }}
+    >
+      <Search />
+      <Row gutter={[16, 16]}>
+        {cards.map(({ _id, title, image, price }) => (
+          <Col key={_id}>
+            <Link to={`/goods/${_id}`}>
+              <CardsItem title={title} price={price} image={image} />
+            </Link>
+          </Col>
+        ))}
+      </Row>
       {/* <Row gutter={[16, 16]}>
         {goodsForShow.length > 0
           ? goodsForShow.map(({ _id, title, image, price }) => (
