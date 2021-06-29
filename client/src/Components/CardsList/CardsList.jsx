@@ -16,6 +16,9 @@ function CardsList() {
   const cards = useSelector((state) => state.goods);
   const [visible, setVisible] = useState(false); // visible выпадающего списка сортировки
   const [sortedList, setSortedList] = useState(null);
+  const [value, setValue] = useState("");
+  const [currentArrForSearch, setCurrentArrForSearch] = useState(null);
+  // const [filteredCards, setFilteredCards] = useState(null);
 
   let currentCategoryName = useParams().name; // получение имени категории для фильтрации
   let currentList = cards.filter(
@@ -47,9 +50,19 @@ function CardsList() {
       );
     }
   };
-const onSearch = ()=>{
+  const searchItems = (e)=>{
+    setValue(e.target.value)
+  }
+   const filteredCards = cards.filter((card) => {
+      return (
+        card.title.toLowerCase().includes(value.toLowerCase()) ||
+        card.longDescription.toLowerCase().includes(value.toLowerCase()) ||
+        card.category.toLowerCase().includes(value.toLowerCase()) ||
+        card.price.toString().includes(value.toString())
+      );
+    })
 
-} 
+console.log(filteredCards);
 
   const menu = (
     <Menu onClick={handleMenuClick}>
@@ -63,6 +76,7 @@ const onSearch = ()=>{
   ); // выпадающий список сортировки по ключам
 
   return (
+
     <div style={{ marginTop: '68px', }}>
       <Space  size={[120, 16]} >
       <Dropdown
@@ -82,11 +96,19 @@ const onSearch = ()=>{
           Сортировать <DownOutlined /> 
         </Button>
       </Dropdown>
-    <Search placeholder="Введите название товара или часть его описания..." allowClear onSearch={onSearch} style={{ borderColor: '#283655', width: '500px' }} />
+    <Search placeholder="Введите название товара или часть его описания..." allowClear onChange={searchItems} style={{ borderColor: '#283655', width: '500px' }} />
     </Space>
     <br />
       <Row gutter={[16, 16]} style={{ marginTop: '5px' }}>
-        {sortedList
+        {
+        {filteredCards ? 
+          filteredCards.map(({ _id, title, image, price }) => (
+              <Link key={_id} to={`/goods/${_id}`}>
+                <CardsItem title={title} price={price} image={image} />
+              </Link>
+            ))
+        :
+        sortedList
           ? sortedList.map(({ _id, title, image, price }) => (
               <Link key={_id} to={`/goods/${_id}`}>
                 <CardsItem title={title} price={price} image={image} />

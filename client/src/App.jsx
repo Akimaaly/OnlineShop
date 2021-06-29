@@ -18,6 +18,7 @@ import Auth from './Components/Auth/Auth';
 
 
 function App() {
+  
   return (
     <BrowserRouter>
       <Header />
@@ -29,6 +30,7 @@ function App() {
           <AddGoodForm />
         </Route>
         <Route exact path='/cardlist/:name'>
+
           <Body />
         </Route>
         <Route exact path='/cardlist'>
