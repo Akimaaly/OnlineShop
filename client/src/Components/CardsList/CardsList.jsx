@@ -17,9 +17,9 @@ function CardsList() {
   const [visible, setVisible] = useState(false); // visible выпадающего списка сортировки
   const [sortedList, setSortedList] = useState(null);
 
-  let currentCategoryName = useParams().id; // получение имени категории для фильтрации
+  let currentCategoryName = useParams().name; // получение имени категории для фильтрации
   let currentList = cards.filter(
-    (el) => el.category && el.category === currentCategoryName //отображаемые goods по категориям
+    (el) => el.category === currentCategoryName //отображаемые goods по категориям
   );
   useEffect(() => {
     dispatch(getAllGoods());
@@ -74,15 +74,18 @@ const onSearch = ()=>{
           to="#"
           className="ant-dropdown-link"
           onClick={(e) => e.preventDefault()}
-          style={{ color: "black" }}
+          style={{ color: '#fff',
+            background: '#283655',
+            borderColor: '#283655'
+          }}
         >
           Сортировать <DownOutlined /> 
         </Button>
       </Dropdown>
-    <Search placeholder="input search text" allowClear onSearch={onSearch} style={{ width: 200 }} />
+    <Search placeholder="Введите название товара или часть его описания..." allowClear onSearch={onSearch} style={{ borderColor: '#283655', width: '500px' }} />
     </Space>
     <br />
-      <Row gutter={[16, 16]} style={{ marginTop: '15px' }}>
+      <Row gutter={[16, 16]} style={{ marginTop: '5px' }}>
         {sortedList
           ? sortedList.map(({ _id, title, image, price }) => (
               <Link key={_id} to={`/goods/${_id}`}>
