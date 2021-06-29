@@ -42,6 +42,68 @@ const residences = [
       },
     ],
   },
+  {
+    value: 'books',
+    label: 'Книги',
+    children: [
+      {
+        value: 'literature',
+        label: 'Художественная литература',
+      },
+      {
+        value: 'educational_literature',
+        label: 'Учебная литература',
+      },
+      {
+        value: 'encyclopedias',
+        label: 'Энциклопедии',
+      },
+    ],
+  },
+  {
+    value: 'repairs',
+    label: 'Ремонт',
+    children: [
+      {
+        value: 'tools',
+        label: 'Инструмент',
+      },
+      {
+        value: 'power_tools',
+        label: 'Электроинструмент',
+      },
+      {
+        value: 'plumbing',
+        label: 'Сантехника',
+      },
+      {
+        value: 'paints',
+        label: 'Краски',
+      },
+    ],
+  },
+  {
+    value: 'other',
+    label: 'Прочее',
+    children: [
+      {
+        value: 'office_supplies',
+        label: 'Канцтовары',
+      },
+      {
+        value: 'sports',
+        label: 'Спорт',
+      },
+      {
+        value: 'products',
+        label: 'Продукты',
+      },
+      {
+        value: 'toys',
+        label: 'Игрушки',
+      },
+    ],
+  },
 ];
 const formItemLayout = {
   labelCol: {
