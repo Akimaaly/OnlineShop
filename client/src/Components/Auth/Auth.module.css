@@ -1,0 +1,82 @@
+body {
+  background-color: #ffffff;
+}
+
+.login {
+  overflow: hidden;
+  /* background-color: #f45b69; */
+  background-color: #d0e1f9;
+
+  padding: 20px 140px 0px 0px;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 700px;
+  transform: translate(-50%, -50%);
+  transition: transform 300ms, box-shadow 300ms;
+  box-shadow: 5px 10px 18px rgba(2, 4, 144, 0.2);
+}
+.login::before,
+.login::after {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-top-left-radius: 40%;
+  border-top-right-radius: 45%;
+  border-bottom-left-radius: 35%;
+  border-bottom-right-radius: 40%;
+  z-index: -1;
+}
+.login::before {
+  left: 40%;
+  bottom: -130%;
+  background-color: #4d648d9f;
+  animation: wawes 6s infinite linear;
+}
+
+.login::after {
+  left: 35%;
+  bottom: -125%;
+  background-color: #2836559f;
+  animation: wawes 7s infinite;
+}
+.login > input {
+  display: block;
+  border-radius: 5px;
+  font-size: 16px;
+  background: white;
+  width: 100%;
+  border: 0;
+  padding: 10px 10px;
+  margin: 15px -10px;
+  outline: none !important;
+}
+.login > button {
+  cursor: pointer;
+  color: rgb(173, 118, 118);
+  font-size: 16px;
+  text-transform: uppercase;
+  width: 70px;
+  border: 0;
+  padding: 10px, 0;
+  margin-top: 10px;
+  margin-left: -5px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  transition: background-color 300ms;
+}
+.login > button:hover {
+  background-color: #626262;
+  color: aliceblue;
+}
+
+@keyframes wawes {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

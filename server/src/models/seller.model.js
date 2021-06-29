@@ -1,6 +1,6 @@
 /* ЭТО МОДЕЛЬ ПРОДАВЦА */
 
-const { Schema, model } = require('mongoose')
+const { Schema, model } = require('mongoose');
 
 const sellerSchema = Schema({
   name: {
@@ -17,14 +17,18 @@ const sellerSchema = Schema({
   },
   location: {
     type: String,
-    required: true,
+    required: false,
   },
   balance: {
     type: Number,
+    required: false,
+  },
+  password: {
+    type: String,
     required: true,
   },
-})
+});
 
-const SellerModel = model('Seller', sellerSchema)
+const SellerModel = model('Seller', sellerSchema);
 
-module.exports = SellerModel
+module.exports = SellerModel;
