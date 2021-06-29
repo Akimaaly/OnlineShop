@@ -7,22 +7,9 @@ const { ObjectId } = mongoose.Types;
 const router = require('express').Router();
 const GoodModel = require('../models/good.model');
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, '../../../client/public/images');
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now());
-  },
-});
-
-const upload = multer({ storage: storage });
-
 /*Получаем вообще все товары которые есть*/
 router.route('/all').get(async (req, res) => {
   const allGoods = await GoodModel.find();
-  // console.log('lkmdvlmlfkmldfm');
-  // console.log(allGoods);
   res.json(allGoods);
 });
 
@@ -37,7 +24,7 @@ router.route('/new').post(tokenChecker, async (req, res) => {
     title,
     longDescription,
     articul,
-    category: residence.join(','),
+    category: residence[1],
     quantity: Number(quantity),
     price: Number(price),
     seller: ObjectId(req.user.id),

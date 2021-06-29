@@ -92,10 +92,11 @@ const Registration = () => {
       </p>
       <Form.Item
         name={['user', 'name']}
-        label='Name'
+        label='Введите свое имя'
         rules={[
           {
             required: true,
+            message: 'Введите свое имя',
           },
         ]}
       >
@@ -103,10 +104,12 @@ const Registration = () => {
       </Form.Item>
       <Form.Item
         name={['user', 'email']}
-        label='Email'
+        label='Введите свой Email'
         rules={[
           {
             type: 'email',
+            required: true,
+            message: 'Введите свой Email',
           },
         ]}
       >
@@ -115,11 +118,11 @@ const Registration = () => {
 
       <Form.Item
         name='password'
-        label='Password'
+        label='Придумайте пароль'
         rules={[
           {
             required: true,
-            message: 'Please input your password!',
+            message: 'Введите пароль',
           },
         ]}
         hasFeedback
@@ -129,13 +132,13 @@ const Registration = () => {
 
       <Form.Item
         name='confirm'
-        label='Confirm Password'
+        label='Повторите пароль'
         dependencies={['password']}
         hasFeedback
         rules={[
           {
             required: true,
-            message: 'Please confirm your password!',
+            message: 'Повторите пароль',
           },
           ({ getFieldValue }) => ({
             validator(_, value) {
@@ -143,9 +146,7 @@ const Registration = () => {
                 return Promise.resolve();
               }
 
-              return Promise.reject(
-                new Error('The two passwords that you entered do not match!')
-              );
+              return Promise.reject(new Error('Введеные пароли не совпадают'));
             },
           }),
         ]}
@@ -155,11 +156,11 @@ const Registration = () => {
 
       <Form.Item
         name='phone'
-        label='Phone Number'
+        label='Введите свой номер'
         rules={[
           {
             required: true,
-            message: 'Please input your phone number!',
+            message: 'Введите свой номер',
           },
         ]}
       >
@@ -192,7 +193,7 @@ const Registration = () => {
         </Checkbox>
 
         <Button type='submit' htmlType='submit'>
-          Submit
+          Зарегистрироваться
         </Button>
       </Form.Item>
     </Form>

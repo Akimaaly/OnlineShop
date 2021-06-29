@@ -1,4 +1,4 @@
-import { Card, Avatar, Descriptions } from 'antd';
+import { Card, Descriptions } from 'antd';
 import {
   EditOutlined,
   EllipsisOutlined,
@@ -20,8 +20,14 @@ const CardForm = () => {
   return (
     <div align='center' className='container'>
       <Card
-        style={{ width: 500 }}
-        cover={<img alt='imageOfItem' src={currentItem.image} />}
+        style={{ width: 400 }}
+        cover={
+          <img
+            style={{ maxheigth: '100px' }}
+            alt='imageOfItem'
+            src={currentItem.image}
+          />
+        }
         actions={[
           <SettingOutlined key='setting' />,
           <EditOutlined key='edit' />,

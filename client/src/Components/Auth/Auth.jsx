@@ -8,6 +8,7 @@ import { getUserInfo } from '../../Redux/actions/user.action';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Auth.module.css';
+
 console.log(styles);
 const Auth = () => {
   const history = useHistory();
@@ -22,13 +23,13 @@ const Auth = () => {
   };
 
   const handleSubmit = async (values) => {
-    const { email, password } = values;
+    const { email, password, phone } = values;
     const body = {
       email: email,
       password: password,
       role,
     };
-    // console.log(body);
+    console.log(body);
     try {
       const response = await api.postAuth(body);
       Cookie.set('key', response.token);
@@ -70,15 +71,15 @@ const Auth = () => {
         </p>
         <Form.Item
           name='email'
-          label='E-mail'
+          label='Введите Email'
           rules={[
             {
               type: 'email',
-              message: 'The input is not valid E-mail!',
+              message: 'Такого E-mail не существует!',
             },
             {
               required: true,
-              message: 'Please input your E-mail!',
+              message: 'Введите Email!',
             },
           ]}
         >
@@ -86,12 +87,12 @@ const Auth = () => {
         </Form.Item>
 
         <Form.Item
-          label='Password'
+          label='Введите пароль'
           name='password'
           rules={[
             {
               required: true,
-              message: 'Please input your password!',
+              message: 'Введите пароль!',
             },
           ]}
         >

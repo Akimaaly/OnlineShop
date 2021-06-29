@@ -1,4 +1,3 @@
-// Шаблон antDesign : Header Sider 2
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import "antd/dist/antd.css";
@@ -6,12 +5,13 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   BookOutlined,
-  DesktopOutlined, SkinOutlined ,
+  DesktopOutlined,
+  SkinOutlined,
   TableOutlined,
-  ToolOutlined
+  ToolOutlined,
 } from "@ant-design/icons";
-import { Menu, Button,Typography} from "antd";
-const { Text} = Typography
+import { Menu, Button, Typography } from "antd";
+const { Text } = Typography;
 const { SubMenu } = Menu;
 
 const CategoriesNavBar = () => {
@@ -20,23 +20,30 @@ const CategoriesNavBar = () => {
   const toggleCollapsed = () => {
     setCollapsed((pre) => !pre);
   };
-  const handleGetNameOfCategory = (e) => {
-    history.push(`/cardlist:${e}`);
+  const handleGetNameOfCategory = (event) => {
+    history.push(`/cardlist/${event}`);
   };
-  const handleGetAllItems = ()=>{
+  const handleGetAllItems = () => {
     history.push("/cardlist");
-  }
+  };
   return (
     <div style={{ width: 256, marginLeft: "5px" }}>
       <div>
         <Button
           type="primary"
           onClick={toggleCollapsed}
-          style={{ marginBottom: '5px'}}
+          style={{ marginBottom: "5px" }}
         >
           {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
         </Button>
-      <Text strong icon={<TableOutlined/>}  style={{marginLeft: '50px'}} onClick={handleGetAllItems}>Все товары</Text>
+        <Text
+          strong
+          icon={<TableOutlined />}
+          style={{ marginLeft: "50px" }}
+          onClick={handleGetAllItems}
+        >
+          Все товары
+        </Text>
       </div>
       <Menu mode="inline" theme="light" inlineCollapsed={collapsed}>
         <SubMenu key="sub11" icon={<SkinOutlined />} title="Обувь">

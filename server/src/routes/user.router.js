@@ -1,10 +1,10 @@
 /* ЭТО РУЧКА ОБРАБОТКИ ПОЛЬЗОВАТЕЛЯ */
 
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const router = require('express').Router();
 const Buyer = require('../models/buyer.model');
 const SellerModel = require('../models/seller.model');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const { tokenChecker } = require('../middleware/protect');
 
 router.post('/reg', async (req, res) => {
