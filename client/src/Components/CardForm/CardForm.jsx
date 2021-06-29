@@ -10,10 +10,14 @@ const { Text } = Typography;
 
 const CardForm = () => {
   const goods = useSelector((state) => state.goods);
+
+  console.log('===========', goods);
   const currentItemID = useParams();
+  console.log('currentItemID._id', currentItemID);
+
   const currentItem = goods.find((el) => el._id === currentItemID.id);
   return (
-    <div align="center" className="container">
+    <div align='center' className='container'>
       <Card
         style={{ width: "400px" }}
         cover={
@@ -29,17 +33,17 @@ const CardForm = () => {
         ]}
       >
         <Descriptions title={currentItem.title}>
-          <Descriptions.Item label="Категория товара">
+          <Descriptions.Item label='Категория товара'>
             <Text>{currentItem.category}</Text>
           </Descriptions.Item>
         </Descriptions>
         <Descriptions>
-          <Descriptions.Item label="Характеристики">
+          <Descriptions.Item label='Характеристики'>
             <Text>{currentItem.longDescription}</Text>
           </Descriptions.Item>
         </Descriptions>
         <Descriptions>
-          <Descriptions.Item label="Артикул">
+          <Descriptions.Item label='Артикул'>
             <Text>{currentItem.articul}</Text>
           </Descriptions.Item>
         </Descriptions>

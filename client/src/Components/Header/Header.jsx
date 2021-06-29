@@ -5,6 +5,7 @@ import { Link, useHistory } from 'react-router-dom';
 import api from '../../api';
 import { historyServer } from '../../api/server';
 import { deleteUserInfo, getUserInfo } from '../../Redux/actions/user.action';
+import styles from './Header.modules.css';
 
 const { Header } = Layout;
 
@@ -41,38 +42,42 @@ function Header2() {
 
   return (
     <div className='site-page-header-ghost-wrapper'>
-      {/* <Layout > */}
       <Header
         style={{
           position: 'fixed',
           zIndex: 1,
-          width: '100%',
-          height: '66px'
+          width: '120%',
+          height: '84px',
+          background: 'white',
         }}
+
       >
-        <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['2']}>
+        <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['2']} style={{ marginLeft: '-50px', background: '#8a779c69' }}>
+          <Menu.Item key='34'>
+            <Link to='/'>
+              <span style={{ fontSize: '36px', color: 'black' }}>AkimShop</span>
+            </Link>
+          </Menu.Item>
           {!user.role && (
             <>
               <Menu.Item key='1'>
-                <Link to='/reg'>Registration</Link>
+                <Link to='/reg'><span style={{ fontSize: '20px', color: 'black' }}>Регистрация</span></Link>
               </Menu.Item>
               <Menu.Item key='6'>
-                <Link to='/auth'>Login</Link>
+                <Link to='/auth'><span style={{ fontSize: '20px', color: 'black' }}>Войти</span></Link>
               </Menu.Item>
             </>
           )}
           {user.role && (
             <>
               <Menu.Item key='32'>
-                <p>Вы вошли как: {user.name}</p>
+                <p style={{ fontSize: '20px', color: 'black' }}>Вы вошли как: {user.name}</p>
               </Menu.Item>
               <Menu.Item key='7'>
-                <Link to='/seller/profile'>Личный кабинет</Link>
+                <Link to='/seller/profile'><span style={{ fontSize: '20px', color: 'black' }}>Личный кабинет</span></Link>
               </Menu.Item>
-              <Menu.Item key='2'>
-                <Button key='12' onClick={butHandler}>
-                  Logout
-                </Button>
+              <Menu.Item key='2' onClick={butHandler}>
+              <span style={{ fontSize: '20px', color: 'black' }}>Выход</span>
               </Menu.Item>
             </>
           )}
