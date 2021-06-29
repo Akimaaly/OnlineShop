@@ -8,6 +8,13 @@
   background-color: #283655;
   color: #fff;
 }
+.ant-btn,
+.ant-btn-icon-only,
+.ant-input-search-button {
+  color: #fff;
+  background: #283655;
+  border-color: #283655;
+}
 .ant-btn-primary {
   color: #fff;
   background: #283655;
@@ -16,10 +23,33 @@
 .ant-menu-title-content {
   color: #fff;
 }
+.ant-dropdown-menu,
+.ant-dropdown-menu-root,
+.ant-dropdown-menu-vertical,
+.ant-dropdown-menu-light,
+.ant-dropdown-menu-title-content,
+.ant-dropdown-menu-item,
+.ant-dropdown-menu-item-only-child,
+.ant-dropdown,
+.ant-dropdown-placement-bottomLeft,
+.ant-dropdown-hidden {
+  color: #fff;
+  background: #283655;
+  border-color: #283655;
+}
+.ant-card-actions {
+  background: #283655;
+  border-color: #283655;
+  border-radius: 0px 0px 20px 20px;
+  margin: -1px;
+}
 span {
   font-weight: 600;
 }
 label {
   color: #fff;
   font-weight: 600;
+}
+svg {
+  color: #fff;
 }

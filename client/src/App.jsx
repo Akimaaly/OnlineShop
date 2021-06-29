@@ -28,8 +28,8 @@ function App() {
         <Route exact path='/seller/good/new'>
           <AddGoodForm />
         </Route>
-        <Route exact path='/cardlist:name'>
-          <CardsList />
+        <Route exact path='/cardlist/:name'>
+          <Body />
         </Route>
         <Route exact path='/cardlist'>
           <CardsList />
