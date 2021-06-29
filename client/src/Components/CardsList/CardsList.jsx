@@ -1,13 +1,15 @@
 import CardsItem from "../CardsItem/CardsItem";
 import { Link, useParams } from "react-router-dom";
-import { Row } from "antd";
+import { Row, Input, Space } from "antd";
+import { DownOutlined } from "@ant-design/icons";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getAllGoods } from "../../Redux/actions/goods.actions";
 import React from "react";
 import { Menu, Dropdown, Button } from "antd";
 import { useState } from "react";
-import { DownOutlined } from "@ant-design/icons";
+
+const { Search } = Input;
 
 function CardsList() {
   const dispatch = useDispatch();
@@ -45,6 +47,10 @@ function CardsList() {
       );
     }
   };
+const onSearch = ()=>{
+
+} 
+
   const menu = (
     <Menu onClick={handleMenuClick}>
       <Menu.Item key="category" hidden={!currentCategoryName ? false : true}>
@@ -58,6 +64,7 @@ function CardsList() {
 
   return (
     <div>
+      <Space  size={[120, 16]} >
       <Dropdown
         overlay={menu}
         onVisibleChange={handleVisibleChange}
@@ -72,6 +79,9 @@ function CardsList() {
           Сортировать <DownOutlined /> 
         </Button>
       </Dropdown>
+    <Search placeholder="input search text" allowClear onSearch={onSearch} style={{ width: 200 }} />
+    </Space>
+    <br />
       <Row gutter={[16, 16]}>
         {sortedList
           ? sortedList.map(({ _id, title, image, price }) => (
