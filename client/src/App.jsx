@@ -12,14 +12,9 @@ import AddGoodForm from './Components/Profiles/Seller/AddGoodForm/AddGoodForm';
 import './App.css'
 
 import Auth from "./Components/Auth/Auth";
-import SortButton from "./Components/Buttons/SortButton";
-import { useState } from "react";
-import { createContext } from "react";
 
-export const Context = createContext();
 
 function App() {
-  const [goodsForShow, setGoodsForShow] = useState([]); //state/Context отображаемых goods послее сортировки
   return (
     <BrowserRouter>
       <Header />

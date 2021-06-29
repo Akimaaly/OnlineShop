@@ -12,6 +12,7 @@ const { Header } = Layout;
 function Header2() {
   const history = useHistory();
   const user = useSelector((state) => state.user);
+  console.log(user.name);
   const dispatch = useDispatch();
 
   async function butHandler() {
