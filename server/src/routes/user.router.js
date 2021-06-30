@@ -169,4 +169,38 @@ router.get('/', tokenChecker, (req, res) => {
   });
 });
 
+router.patch('/profile', async (req, res) => {
+  const { name, phone, id, type } = req.body;
+
+  if (type === 'name')
+    await Buyer.findOneAndUpdate({ _id: id }, { name: name });
+  if (type === 'phone')
+    await Buyer.findOneAndUpdate({ _id: id }, { phoneNumber: phone });
+
+  const user = await Buyer.findOne({ _id: id });
+
+  const jwtToken = jwt.sign(
+    {
+      id: user._id,
+      name: user.name,
+      role: user.role,
+      email: user.email,
+      phone: user.phoneNumber,
+    },
+    process.env.SESSION_KEY,
+    {
+      expiresIn: '24h',
+    }
+  );
+
+  return res.status(200).json({
+    id: user._id,
+    phone: user.phoneNumber,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    token: jwtToken,
+  });
+});
+
 module.exports = router;
