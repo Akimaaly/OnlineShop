@@ -6,7 +6,7 @@ export default function BasketItem({ item, qtyChangeHandler, removeHandler }) {
   return (
     <div className={styles.cartitem}>
       <div className={styles.cartitem__image}>
-        <img src={item.image} alt={item.title} />
+        <img className={styles.image} src={item.image} alt={item.title} />
       </div>
 
       <Link to={`/goods/${item._id}`} className={styles.cartitem__name}>

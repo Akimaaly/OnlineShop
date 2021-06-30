@@ -60,14 +60,20 @@ export default function BuyerBasket() {
             <Link to='/'>На главную</Link>
           </div>
         ) : (
-          basket?.map((item) => (
-            <BusketItem
-              key={item._id}
-              item={item}
-              // qtyChangeHandler={qtyChangeHandler}
-              removeHandler={removeFromCartHandler}
-            />
-          ))
+          <>
+            {basket.map((item) => (
+              <>
+                {item.products.map((item) => (
+                  <BusketItem
+                    key={item._id}
+                    item={item}
+                    // qtyChangeHandler={qtyChangeHandler}
+                    removeHandler={removeFromCartHandler}
+                  />
+                ))}
+              </>
+            ))}
+          </>
         )}
       </div>
       <div className={styles.cartscreen__right}>
