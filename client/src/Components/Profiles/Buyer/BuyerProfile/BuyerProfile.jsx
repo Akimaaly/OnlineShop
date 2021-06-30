@@ -14,9 +14,6 @@ export default function BuyerProfile() {
   const [open, setOpen] = useState(false);
   const [typeModalData, setTypeModalData] = useState(null);
 
-<<<<<<< HEAD:client/src/Components/Profiles/Buyer/BuyerProfile/BuyerProfile.jsx
-  // console.log(user);
-=======
   const handleOpen = (type) => {
     setTypeModalData(type);
     setOpen(true);
@@ -25,18 +22,10 @@ export default function BuyerProfile() {
   const handleCancel = () => {
     setOpen(false);
   };
->>>>>>> 7c07572b3c3162a4e68a68c3196d65409d2d863c:client/src/Components/BuyerProfile/BuyerProfile.jsx
 
   return (
     <>
       <NavigationProfile />
-<<<<<<< HEAD:client/src/Components/Profiles/Buyer/BuyerProfile/BuyerProfile.jsx
-      {console.log(user)}
-      <div style={{ padding: '30px', background: '#ececec' }}>
-        <Card title={user.name} bordered={false} style={{ width: 300 }}>
-          <p>Email:{user.email} </p>
-          <p>Телефон:{user.phone} </p>
-=======
       <div
         style={{
           marginTop: '60px',
@@ -79,7 +68,6 @@ export default function BuyerProfile() {
               />
             </span>
           </div>
->>>>>>> 7c07572b3c3162a4e68a68c3196d65409d2d863c:client/src/Components/BuyerProfile/BuyerProfile.jsx
         </Card>
       </div>
       <ModalEdit
