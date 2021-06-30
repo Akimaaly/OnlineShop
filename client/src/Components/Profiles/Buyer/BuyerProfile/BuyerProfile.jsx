@@ -1,12 +1,11 @@
 import React from 'react';
 import Webcam from 'react-webcam';
 import { Space, Card, Button, Row, Col, Input, Tooltip } from 'antd';
-import ModalEdit from './ModalEdit';
+import ModalEdit from '../../../BuyerProfile/ModalEdit';
 import { EditOutlined } from '@ant-design/icons';
 
 import { useSelector } from 'react-redux';
 import NavigationProfile from '../Subnavigation/Subnavigation';
-import EditProfile from '../EditProfile/EditProfile';
 import { useState } from 'react';
 
 export default function BuyerProfile() {
