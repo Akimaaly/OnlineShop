@@ -70,8 +70,8 @@ body {
   background-color: #626262;
   color: aliceblue;
 }
-[title='E-mail'],
-[title='Пароль'] {
+[title='Введите Email'],
+[title='Введите пароль'] {
   color: white !important;
 }
 

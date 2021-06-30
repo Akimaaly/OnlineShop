@@ -70,11 +70,11 @@ body {
   background-color: #626262;
   color: aliceblue;
 }
-[title='Телефон'],
+[title='Введите свое имя'],
+[title='Введите свой Email'],
+[title='Придумайте пароль'],
 [title='Подтвердите пароль'],
-[title='Имя'],
-[title='E-mail'],
-[title='Пароль'] {
+[title='Введите свой номер'] {
   color: white !important;
 }
 

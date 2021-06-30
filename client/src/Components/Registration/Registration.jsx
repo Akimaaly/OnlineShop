@@ -191,11 +191,11 @@ const Registration = () => {
           onChange={onChange}
           style={{ color: 'white' }}
         >
-          Я продавец
+          Я - продавец
         </Checkbox>
 
         <Button type='submit' htmlType='submit'>
-          Зарегистрироваться
+          Готово
         </Button>
       </Form.Item>
     </Form>
