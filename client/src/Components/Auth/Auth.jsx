@@ -63,8 +63,8 @@ const Auth = () => {
         onFinish={(values) => handleSubmit(values)}
         onFinishFailed={onFinishFailed}
       >
-        <p align='right' style={{ color: 'black' }}>
-          AkimExpress style
+        <p align='right' style={{ color: 'white', fontWeight: 'bold' }}>
+          Введите вашу почту и пароль
         </p>
         <Form.Item
           name='email'
@@ -104,7 +104,7 @@ const Auth = () => {
             span: 16,
           }}
         >
-          <Checkbox>Remember me</Checkbox>
+          <Checkbox style={{ color: 'white' }}>Запомнить</Checkbox>
         </Form.Item>
 
         <Form.Item
@@ -117,8 +117,9 @@ const Auth = () => {
             name='user'
             onClick={() => handleClick('user')}
             checked={role === 'user'}
-            onChange={() => {}}
+            onChange={() => { }}
             onChange={onChange}
+            style={{ color: 'white' }}
           >
             Я - покупатель
           </Checkbox>
@@ -128,11 +129,12 @@ const Auth = () => {
             checked={role === 'seller'}
             onChange={() => {}}
             onChange={onChange}
+            style={{ color: 'white' }}
           >
-            Я продавец
+            Я - продавец
           </Checkbox>
           <Button type='primary' htmlType='submit'>
-            Submit
+            Готово
           </Button>
         </Form.Item>
       </Form>

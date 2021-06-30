@@ -150,8 +150,7 @@ const AddGoodForm = () => {
   };
 
   return (
-    <Form
-      className={styles.form}
+    <Form style={{paddingTop: '100px'}}
       {...formItemLayout}
       encType='multipart/form-data'
       form={form}

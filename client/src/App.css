@@ -15,6 +15,9 @@
   background: #283655;
   border-color: #283655;
 }
+.ant-dropdown-menu-item.ant-dropdown-menu-item-active.ant-dropdown-menu-item-only-child {
+  background: #283655;
+}
 .ant-btn-primary {
   color: #fff;
   background: #283655;
@@ -22,6 +25,42 @@
 }
 .ant-menu-title-content {
   color: #fff;
+}
+.ant-menu-overflow-item.ant-menu-item.ant-menu-item-selected {
+  background: #4d648d;
+}
+
+.ant-menu-overflow-item.ant-menu-item.ant-menu-item-active.ant-menu-item-only-child {
+  background: #4d648d;
+}
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: #4d648d;
+}
+.ant-btn.ant-btn-primary:hover {
+  background: #283655;
+  border-color: #283655;
+}
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #4d648d;
+  border-color: #4d648d;
+}
+.ant-card-meta-description {
+  color: black;
+}
+.ant-btn.ant-btn-link:hover {
+  background: #283655;
+  border-color: #283655;
+  color: white;
+}
+.ant-btn.ant-btn-icon-only.ant-input-search-button:hover {
+  background: #283655;
+  border-color: #283655;
+  color: white;
+}
+.ant-btn.ant-btn-icon-only.ant-input-search-button {
+  background: #283655;
+  border-color: #283655;
+  color: white;
 }
 .ant-dropdown-menu,
 .ant-dropdown-menu-root,
@@ -40,9 +79,8 @@
 .ant-card-actions {
   background: #283655;
   border-color: #283655;
-  border-radius: 0px 0px 20px 20px;
-  margin: -1px;
 }
+
 span {
   font-weight: 600;
 }

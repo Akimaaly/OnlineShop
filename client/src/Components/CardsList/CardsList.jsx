@@ -22,7 +22,7 @@ function CardsList() {
 
   let currentCategoryName = useParams().name; // получение имени категории для фильтрации
   let currentList = cards.filter(
-    (el) => el.category === currentCategoryName //отображаемые goods по категориям
+    (el) => el.category === currentCategoryName // отображаемые goods по категориям
   );
   useEffect(() => {
     dispatch(getAllGoods());
