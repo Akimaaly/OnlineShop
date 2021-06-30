@@ -149,7 +149,7 @@ const AddGoodForm = () => {
   };
 
   return (
-    <Form
+    <Form style={{paddingTop: '100px'}}
       {...formItemLayout}
       encType='multipart/form-data'
       form={form}

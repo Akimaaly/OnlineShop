@@ -20,10 +20,10 @@ const layout = {
 };
 
 const validateMessages = {
-  required: '${label} is required!',
+  required: 'Необходимо ввести имя',
   types: {
-    email: '${label} is not a valid email!',
-    number: '${label} is not a valid number!',
+    email: 'Такой e-mail не подойдёт!',
+    number: 'Такой телефон не подойдёт!',
   },
   number: {
     range: '${label} must be between ${min} and ${max}',
@@ -87,12 +87,12 @@ const Registration = () => {
       onFinish={(values) => handleSubmit(values)}
       validateMessages={validateMessages}
     >
-      <p align='right' style={{ color: 'black' }}>
-        AkimExpress style
+      <p align='right' style={{ color: 'white', fontWeight: 'bold' }}>
+        Введите свои данные
       </p>
       <Form.Item
         name={['user', 'name']}
-        label='Name'
+        label='Имя'
         rules={[
           {
             required: true,
@@ -103,7 +103,7 @@ const Registration = () => {
       </Form.Item>
       <Form.Item
         name={['user', 'email']}
-        label='Email'
+        label='E-mail'
         rules={[
           {
             type: 'email',
@@ -115,11 +115,11 @@ const Registration = () => {
 
       <Form.Item
         name='password'
-        label='Password'
+        label='Пароль'
         rules={[
           {
             required: true,
-            message: 'Please input your password!',
+            message: 'Пожалуйста, введите свой пароль',
           },
         ]}
         hasFeedback
@@ -129,13 +129,13 @@ const Registration = () => {
 
       <Form.Item
         name='confirm'
-        label='Confirm Password'
+        label='Подтвердите пароль'
         dependencies={['password']}
         hasFeedback
         rules={[
           {
             required: true,
-            message: 'Please confirm your password!',
+            message: 'Пожалуйста, подтвердите свой пароль',
           },
           ({ getFieldValue }) => ({
             validator(_, value) {
@@ -144,7 +144,7 @@ const Registration = () => {
               }
 
               return Promise.reject(
-                new Error('The two passwords that you entered do not match!')
+                new Error('Оба пароля должны совпадать!')
               );
             },
           }),
@@ -155,11 +155,11 @@ const Registration = () => {
 
       <Form.Item
         name='phone'
-        label='Phone Number'
+        label='Телефон'
         rules={[
           {
             required: true,
-            message: 'Please input your phone number!',
+            message: 'Пожалуйста, введите свой номер телефона',
           },
         ]}
       >
@@ -178,6 +178,7 @@ const Registration = () => {
           checked={role === 'user'}
           onChange={() => {}}
           onChange={onChange}
+          style={{ color: 'white' }}
         >
           Я - покупатель
         </Checkbox>
@@ -185,14 +186,15 @@ const Registration = () => {
           name='seller'
           onClick={() => handleClick('seller')}
           checked={role === 'seller'}
-          onChange={() => {}}
+          onChange={() => { }}
           onChange={onChange}
+          style={{ color: 'white' }}
         >
           Я продавец
         </Checkbox>
 
         <Button type='primary' htmlType='submit'>
-          Submit
+          Готово
         </Button>
       </Form.Item>
     </Form>

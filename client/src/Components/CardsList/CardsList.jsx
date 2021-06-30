@@ -19,7 +19,7 @@ function CardsList() {
 
   let currentCategoryName = useParams().name; // получение имени категории для фильтрации
   let currentList = cards.filter(
-    (el) => el.category === currentCategoryName //отображаемые goods по категориям
+    (el) => el.category === currentCategoryName // отображаемые goods по категориям
   );
   useEffect(() => {
     dispatch(getAllGoods());
@@ -63,7 +63,7 @@ const onSearch = ()=>{
   ); // выпадающий список сортировки по ключам
 
   return (
-    <div style={{ marginTop: '68px', }}>
+    <div style={{ marginTop: '68px'}}>
       <Space  size={[120, 16]} >
       <Dropdown
         overlay={menu}
