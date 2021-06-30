@@ -13,3 +13,6 @@ export const postReg = (body) =>
 
 export const postAuth = (body) =>
   server.post('/login', body).then((data) => data.data);
+
+export const editUser = (body) =>
+  server.patch('/profile', body).then((data) => data.data);
