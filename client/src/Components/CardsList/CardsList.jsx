@@ -105,30 +105,97 @@ function CardsList() {
       </Space>
       <br />
       <Row gutter={[16, 16]} style={{ marginTop: '5px' }}>
-        {
-           sortedList
-          ? sortedList.map(({ _id, title, image, price }) => (
-              <Link key={_id} to={`/goods/${_id}`}>
-                <CardsItem title={title} price={price} image={image} />
-              </Link>
-            ))
+        {sortedList
+          ? sortedList.map(
+              ({
+                _id,
+                title,
+                image,
+                price,
+                longDescription,
+                articul,
+                quantity,
+              }) => (
+                <Link key={_id} to={`/goods/${_id}`}>
+                  <CardsItem
+                    title={title}
+                    price={price}
+                    image={image}
+                    longDescription={longDescription}
+                    articul={articul}
+                    quantity={quantity}
+                  />
+                </Link>
+              )
+            )
           : currentList.length > 0
-          ? currentList.map(({ _id, title, image, price }) => (
-              <Link key={_id} to={`/goods/${_id}`}>
-                <CardsItem title={title} price={price} image={image} />
-              </Link>
-            ))
-          :  filteredCards
-          ? filteredCards.map(({ _id, title, image, price }) => (
-              <Link key={_id} to={`/goods/${_id}`}>
-                <CardsItem title={title} price={price} image={image} />
-              </Link>
-            ))
-          : cards.map(({ _id, title, image, price }) => (
-              <Link key={_id} to={`/goods/${_id}`}>
-                <CardsItem title={title} price={price} image={image} />
-              </Link>
-            ))}
+          ? currentList.map(
+              ({
+                _id,
+                title,
+                image,
+                price,
+                longDescription,
+                articul,
+                quantity,
+              }) => (
+                <Link key={_id} to={`/goods/${_id}`}>
+                  <CardsItem
+                    title={title}
+                    price={price}
+                    image={image}
+                    longDescription={longDescription}
+                    articul={articul}
+                    quantity={quantity}
+                  />
+                </Link>
+              )
+            )
+          : filteredCards
+          ? filteredCards.map(
+              ({
+                _id,
+                title,
+                image,
+                price,
+                longDescription,
+                articul,
+                quantity,
+              }) => (
+                <Link key={_id} to={`/goods/${_id}`}>
+                  <CardsItem
+                    title={title}
+                    price={price}
+                    image={image}
+                    longDescription={longDescription}
+                    articul={articul}
+                    quantity={quantity}
+                  />
+                </Link>
+              )
+            )
+          : cards.map(
+              ({
+                _id,
+                title,
+                image,
+                price,
+                longDescription,
+                articul,
+                quantity,
+              }) => (
+                <Link key={_id} to={`/goods/${_id}`}>
+                  <CardsItem
+                    title={title}
+                    price={price}
+                    image={image}
+                    longDescription={longDescription}
+                    articul={articul}
+                    quantity={quantity}
+                  />
+                </Link>
+              )
+            )}
       </Row>
     </div>
   );

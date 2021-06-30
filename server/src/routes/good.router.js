@@ -1,10 +1,9 @@
 /* eslint-disable spaced-comment */
 /* ЭТО РУЧКА ОБРАБОТКИ ТОВАРА */
 const mongoose = require('mongoose');
-const multer = require('multer');
-const { tokenChecker } = require('../middleware/protect');
-const { ObjectId } = mongoose.Types;
 const router = require('express').Router();
+const { tokenChecker } = require('../middleware/protect');
+
 const GoodModel = require('../models/good.model');
 
 /*Получаем вообще все товары которые есть*/
@@ -27,8 +26,9 @@ router.route('/new').post(tokenChecker, async (req, res) => {
     category: residence[1],
     quantity: Number(quantity),
     price: Number(price),
-    seller: ObjectId(req.user.id),
+    seller: req.user.id,
   });
+  console.log(newGood);
   res.json(newGood);
 });
 
@@ -49,10 +49,4 @@ router
     res.sendStatus(200);
   });
 
-  router.route('/:id')
-  .delete(async (req, res) => {
-    await GoodModel.findByIdAndDelete(req.params.id)
-    res.sendStatus(200)
-  })
-
-module.exports = router
+module.exports = router;

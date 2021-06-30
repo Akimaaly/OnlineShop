@@ -3,8 +3,8 @@ import Webcam from 'react-webcam';
 import { Space, Card, Button, Row, Col, Input, Tooltip } from 'antd';
 
 import { useSelector } from 'react-redux';
-import NavigationProfile from './NavigatonProfile';
-import EditProfile from './EditProfile';
+import NavigationProfile from '../Subnavigation/Subnavigation';
+import EditProfile from '../EditProfile/EditProfile';
 import { useState } from 'react';
 
 export default function BuyerProfile() {

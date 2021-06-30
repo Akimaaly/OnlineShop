@@ -1,9 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
+import { UploadOutlined } from '@ant-design/icons';
 import React from 'react';
-import { Form, Input, Cascader, Button } from 'antd';
+import { Form, Input, Cascader, Button, Upload } from 'antd';
 import { addGood } from '../../../../Redux/actions/goods.actions';
+import styles from './styles.module.css';
 const { TextArea } = Input;
 const residences = [
   {
@@ -150,6 +151,7 @@ const AddGoodForm = () => {
 
   return (
     <Form
+      className={styles.form}
       {...formItemLayout}
       encType='multipart/form-data'
       form={form}
@@ -161,6 +163,7 @@ const AddGoodForm = () => {
       }}
       scrollToFirstError
     >
+      <h3>Добавьте товар</h3>
       <Form.Item name='title' label='Название товара'>
         <Input />
       </Form.Item>
@@ -188,8 +191,10 @@ const AddGoodForm = () => {
       <Form.Item name='price' label='Цена'>
         <Input />
       </Form.Item>
-      <Form.Item name='photo'   label='Загрузить фото'>
-        <Input type='file'/>
+      <Form.Item name='photo' label='Загрузить фото'>
+        <Upload>
+          <Button icon={<UploadOutlined />}>Выберите файлы</Button>
+        </Upload>
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>
         <Button type='primary' htmlType='submit'>
