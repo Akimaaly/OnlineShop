@@ -16,7 +16,7 @@ import SubNavigation from './Components/Profiles/Seller/SubNavigation/SubNavigat
 import BuyerBasket from './Components/Profiles/Buyer/BuyerBasket/BuyerBasket';
 import './App.css';
 
-// import BuyerProfile from './Components/Profiles/Buyer/BuyerProfile/BuyerProfile';
+import BuyerProfile from './Components/Profiles/Buyer/BuyerProfile/BuyerProfile';
 import Auth from './Components/Auth/Auth';
 
 function App() {
@@ -50,7 +50,7 @@ function App() {
           <CardsList />
         </Route>
         <Route exact path='/buyer/profile'>
-          {/* <BuyerProfile /> */}
+          <BuyerProfile />
         </Route>
         <Route exact path='/buyer/basket'>
           <BuyerBasket />
