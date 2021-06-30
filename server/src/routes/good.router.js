@@ -28,7 +28,7 @@ router.route('/new').post(tokenChecker, async (req, res) => {
     price: Number(price),
     seller: req.user.id,
   });
-  console.log(newGood);
+
   res.json(newGood);
 });
 

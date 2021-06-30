@@ -14,7 +14,6 @@ const Auth = () => {
   const [role, setRole] = useState('user');
   const dispatch = useDispatch();
 
-
   const handleClick = (role) => {
     setRole(role);
   };
@@ -26,7 +25,6 @@ const Auth = () => {
       password: password,
       role,
     };
-    console.log(body);
     try {
       const response = await api.postAuth(body);
       Cookie.set('key', response.token);
@@ -44,7 +42,7 @@ const Auth = () => {
   };
 
   function onChange(e) {
-    console.log(`checked = ${e.target.checked}`);
+    `checked = ${e.target.checked}`;
   }
   return (
     <>
@@ -117,7 +115,7 @@ const Auth = () => {
             name='user'
             onClick={() => handleClick('user')}
             checked={role === 'user'}
-            onChange={() => { }}
+            onChange={() => {}}
             onChange={onChange}
             style={{ color: 'white' }}
           >

@@ -11,6 +11,7 @@ import {
 } from '../../../../Redux/actions/basket.actions';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import api from '../../../../api';
 
 export default function BuyerBasket() {
   const dispatch = useDispatch();
@@ -18,12 +19,14 @@ export default function BuyerBasket() {
   const { products } = cart;
   const [basket, setBasket] = useState([]);
 
+  const fetchBasketAll = async () => {
+    const response = await api.getAllBasket();
+    setBasket(response);
+  };
+
   useEffect(() => {
-    axios.get('http://localhost:8080/basket/all').then((res) => {
-      setBasket(res.data);
-    });
+    fetchBasketAll();
   }, []);
-  console.log('============', products);
 
   //функция добавления товара в корзину
   // const qtyChangeHandler = (id, qty) => {
@@ -37,13 +40,13 @@ export default function BuyerBasket() {
 
   // функция для подсчета количества товаров в корзине
   const getCartCount = () => {
-    return basket?.reduce((qty, item) => Number(item.qty) + qty, 0);
+    return basket?.reduce((qty, item) => Number(item.quantity) + qty, 0);
   };
 
   //подсчет общего количества денег
   const getCartSubTotal = () => {
     return basket
-      ?.reduce((price, item) => price + item.price * item.qty, 0)
+      .reduce((price, item) => price + item.totalPrice, 0)
       .toFixed(2);
   };
 
@@ -51,7 +54,7 @@ export default function BuyerBasket() {
     <div className={styles.cartscreen}>
       <div className={styles.cartscreen__left}>
         <h2>Ваша корзина покупок</h2>
-        {basket ? (
+        {basket.length === 0 ? (
           <div>
             Пока что корзина пуста
             <Link to='/'>На главную</Link>
@@ -69,7 +72,7 @@ export default function BuyerBasket() {
       </div>
       <div className={styles.cartscreen__right}>
         <div className={styles.cartscreen__info}>
-          <p>Общее количество товаров ({getCartCount()}) шт.</p>
+          <p>Общее количество товаров {getCartCount()} шт.</p>
           <p>{getCartSubTotal()} р.</p>
         </div>
         <div>
