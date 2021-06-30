@@ -12,6 +12,7 @@ const { Header } = Layout;
 function Header2() {
   const history = useHistory();
   const user = useSelector((state) => state.user);
+  console.log(user.name);
   const dispatch = useDispatch();
 
   async function butHandler() {
@@ -25,6 +26,7 @@ function Header2() {
   async function getUser() {
     try {
       const response = await api.getHome();
+      console.log(response);
       dispatch(getUserInfo(response));
     } catch (error) {}
   }
@@ -45,42 +47,26 @@ function Header2() {
       <Header
         style={{
           position: 'fixed',
-          top: 0,
-          left: 0,
           zIndex: 1,
           width: '120%',
           height: '70px',
-          background: '#283655',
+          background: "#283655"
         }}
+
       >
-        <Menu
-          theme='dark'
-          mode='horizontal'
-          defaultSelectedKeys={['2']}
-          style={{ height: '70px', marginLeft: '-50px', background: '#283655' }}
-        >
+        <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['2']} style={{ height: '70px', marginLeft: '-50px', background: '#283655' }}>
           <Menu.Item key='34'>
             <Link to='/'>
-              <span style={{ fontSize: '36px', color: 'white' }}>
-                Akim Express
-              </span>
+              <span style={{ fontSize: '36px', color: 'white' }}>Akim Express</span>
             </Link>
           </Menu.Item>
           {!user.role && (
             <>
               <Menu.Item key='1'>
-                <Link to='/reg'>
-                  <span style={{ fontSize: '18px', color: 'white' }}>
-                    Регистрация
-                  </span>
-                </Link>
+                <Link to='/reg'><span style={{ fontSize: '18px', color: 'white' }}>Регистрация</span></Link>
               </Menu.Item>
               <Menu.Item key='6'>
-                <Link to='/auth'>
-                  <span style={{ fontSize: '18px', color: 'white' }}>
-                    Войти
-                  </span>
-                </Link>
+                <Link to='/auth'><span style={{ fontSize: '18px', color: 'white' }}>Войти</span></Link>
               </Menu.Item>
             </>
           )}
@@ -88,33 +74,25 @@ function Header2() {
           {user.role === 'seller' && (
             <>
               <Menu.Item key='32'>
-                <p style={{ fontSize: '18px', color: 'white' }}>
-                  Привет {user.name}!
-                </p>
+                <p style={{ fontSize: '18px', color: 'white' }}>Вы вошли как: {user.name}</p>
               </Menu.Item>
               <Menu.Item key='7'>
-                <Link to='/seller/profile'>
-                  <span style={{ fontSize: '18px', color: 'white' }}>
-                    Личный кабинет
-                  </span>
-                </Link>
+                <Link to='/seller/profile'><span style={{ fontSize: '18px', color: 'white' }}>Личный кабинет</span></Link>
               </Menu.Item>
               <Menu.Item key='2' onClick={butHandler}>
-                <span style={{ fontSize: '18px', color: 'white' }}>Выход</span>
+              <span style={{ fontSize: '18px', color: 'white' }}>Выход</span>
               </Menu.Item>
             </>
           )}
           {user.role === 'user' && (
             <>
               <Menu.Item key='7'>
-                <Link to='/buyer/profile'>
-                  <span style={{ fontSize: '18px', color: 'white' }}>
-                    Личный кабинет
-                  </span>
-                </Link>
+                <Link to='/buyer/profile'>Личный кабинет</Link>
               </Menu.Item>
-              <Menu.Item key='2' onClick={butHandler}>
-                <span style={{ fontSize: '18px', color: 'white' }}>Выход</span>
+              <Menu.Item key='2'>
+                <Button key='12' onClick={butHandler}>
+                  Logout
+                </Button>
               </Menu.Item>
             </>
           )}

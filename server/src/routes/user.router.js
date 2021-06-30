@@ -1,4 +1,3 @@
-/* eslint-disable object-shorthand */
 /* ЭТО РУЧКА ОБРАБОТКИ ПОЛЬЗОВАТЕЛЯ */
 
 const bcrypt = require('bcrypt');
@@ -7,7 +6,6 @@ const router = require('express').Router();
 const Buyer = require('../models/buyer.model');
 const SellerModel = require('../models/seller.model');
 const { tokenChecker } = require('../middleware/protect');
-const BasketModel = require('../models/basket.model');
 
 router.post('/reg', async (req, res) => {
   const { name, email, password, role, phone } = req.body;
@@ -20,12 +18,6 @@ router.post('/reg', async (req, res) => {
         phoneNumber: phone,
         password: hashPass,
       });
-      const basket = await BasketModel.create({
-        buyer: user.id,
-        products: [],
-        totalPrice: 0,
-        quantity: 0,
-      });
       const jwtToken = jwt.sign(
         {
           id: user._id,
@@ -33,10 +25,6 @@ router.post('/reg', async (req, res) => {
           role: role,
           email: user.email,
           phoneNumber: user.phoneNumber,
-          buyer: user.id,
-          products: basket.products,
-          totalPrice: basket.totalPrice,
-          quantity: basket.quantity,
         },
         process.env.SESSION_KEY,
         {
@@ -51,9 +39,6 @@ router.post('/reg', async (req, res) => {
         phone: user.phoneNumber,
         role,
         token: jwtToken,
-        products: basket.products,
-        totalPrice: basket.totalPrice,
-        quantity: basket.quantity,
       });
     }
     if (role === 'seller') {
@@ -104,10 +89,6 @@ router.post('/login', async (req, res) => {
   try {
     if (role === 'user') {
       const currentUser = await Buyer.findOne({ email });
-      const currentBasket = await BasketModel.findOne({
-        buyer: currentUser._id,
-      });
-      console.log(currentBasket);
 
       const jwtToken = jwt.sign(
         {
@@ -116,7 +97,6 @@ router.post('/login', async (req, res) => {
           role: role,
           email: currentUser.email,
           phone: currentUser.phoneNumber,
-          currentBasket: currentBasket,
         },
         process.env.SESSION_KEY,
         {
@@ -137,15 +117,13 @@ router.post('/login', async (req, res) => {
         email: currentUser.email,
         role,
         token: jwtToken,
-        currentBasket: currentBasket,
-
       });
     }
     if (role === 'seller') {
       const currentSeller = await SellerModel.findOne({ email });
       const jwtToken = jwt.sign(
         {
-          id: currentSeller._id,  
+          id: currentSeller._id,
           name: currentSeller.name,
           role: role,
           email: currentSeller.email,
@@ -181,16 +159,47 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/', tokenChecker, (req, res) => {
-  console.log('========>', req.user);
+  console.log(req.user);
   return res.status(200).json({
     id: req.user.id,
     name: req.user.name,
     email: req.user.email,
     role: req.user.role,
     phone: req.user.phone,
-    products: req.user.products,
-    totalPrice: req.user.totalPrice,
-    quantity: req.user.quantity,
+  });
+});
+
+router.patch('/profile', async (req, res) => {
+  const { name, phone, id, type } = req.body;
+
+  if (type === 'name')
+    await Buyer.findOneAndUpdate({ _id: id }, { name: name });
+  if (type === 'phone')
+    await Buyer.findOneAndUpdate({ _id: id }, { phoneNumber: phone });
+
+  const user = await Buyer.findOne({ _id: id });
+
+  const jwtToken = jwt.sign(
+    {
+      id: user._id,
+      name: user.name,
+      role: user.role,
+      email: user.email,
+      phone: user.phoneNumber,
+    },
+    process.env.SESSION_KEY,
+    {
+      expiresIn: '24h',
+    }
+  );
+
+  return res.status(200).json({
+    id: user._id,
+    phone: user.phoneNumber,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    token: jwtToken,
   });
 });
 

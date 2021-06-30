@@ -4,7 +4,7 @@ const cors = require('cors');
 const { connect } = require('./src/db/config');
 require('dotenv').config();
 
-const basketRouter = require('./src/routes/basket.router');
+// const basketRouter = require('./src/routes/basket.router');
 const goodRouter = require('./src/routes/good.router');
 const orderRouter = require('./src/routes/good.router');
 const userRouter = require('./src/routes/user.router');
@@ -19,15 +19,17 @@ app.use(
   cors({
     origin: true,
     credentials: true,
-  })
+  }),
 );
 app.use(morgan('dev'));
 
 // app.use('/basket', basketRouter);
 app.use('/good', goodRouter);
 app.use('/order', orderRouter);
-app.use('/basket', basketRouter);
 app.use('/', userRouter);
+
+
+app.use('/good', goodRouter)
 
 
 app.listen(PORT, () => {

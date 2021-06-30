@@ -19,6 +19,7 @@ function Body() {
               </Col>
               <Col span={18}>
                 <Content>
+                  <Search />
                   <CardsList />
                 </Content>
               </Col>

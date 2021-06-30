@@ -6,6 +6,7 @@ const { Schema, model } = require('mongoose');
 const goodSchema = Schema({
   title: {
     type: String,
+    
   },
   image: {
     type: String,
@@ -14,6 +15,7 @@ const goodSchema = Schema({
   },
   longDescription: {
     type: String,
+    
   },
   articul: {
     type: String, //заменил на СТРИНГ
@@ -33,6 +35,7 @@ const goodSchema = Schema({
   },
   price: {
     type: String,
+    
   },
 });
 

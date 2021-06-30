@@ -10,10 +10,10 @@ function CardsItem({ title, price, image }) {
     <Col >
       <Card 
         hoverable
-        style={{ width: 180, border: '1px solid #283655' }}
+        style={{ width: 180, borderRadius: '20px', border: '1px solid #283655' }}
         cover={
           <img
-            style={{ height: 240 }}
+            style={{ height: 240, borderRadius: '20px 20px 0px 0px', padding: '0px', }}
             alt="example"
             src={image}
           />

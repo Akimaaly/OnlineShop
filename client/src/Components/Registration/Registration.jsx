@@ -20,10 +20,10 @@ const layout = {
 };
 
 const validateMessages = {
-  required: 'Необходимо ввести имя',
+  required: '${label} is required!',
   types: {
-    email: 'Такой e-mail не подойдёт!',
-    number: 'Такой телефон не подойдёт!',
+    email: '${label} is not a valid email!',
+    number: '${label} is not a valid number!',
   },
   number: {
     range: '${label} must be between ${min} and ${max}',
@@ -87,8 +87,8 @@ const Registration = () => {
       onFinish={(values) => handleSubmit(values)}
       validateMessages={validateMessages}
     >
-      <p align='right' style={{ color: 'white', fontWeight: 'bold' }}>
-        Введите свои данные
+      <p align='right' style={{ color: 'black' }}>
+        AkimExpress style
       </p>
       <Form.Item
         name={['user', 'name']}
@@ -132,7 +132,7 @@ const Registration = () => {
 
       <Form.Item
         name='confirm'
-        label='Подтвердите пароль'
+        label='Повторите пароль'
         dependencies={['password']}
         hasFeedback
         rules={[
@@ -179,7 +179,6 @@ const Registration = () => {
           checked={role === 'user'}
           onChange={() => {}}
           onChange={onChange}
-          style={{ color: 'white' }}
         >
           Я - покупатель
         </Checkbox>
@@ -187,9 +186,8 @@ const Registration = () => {
           name='seller'
           onClick={() => handleClick('seller')}
           checked={role === 'seller'}
-          onChange={() => { }}
+          onChange={() => {}}
           onChange={onChange}
-          style={{ color: 'white' }}
         >
           Я продавец
         </Checkbox>

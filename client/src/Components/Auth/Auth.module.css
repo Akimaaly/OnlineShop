@@ -4,7 +4,8 @@ body {
 
 .login {
   overflow: hidden;
-  background-color: #283655;
+  /* background-color: #f45b69; */
+  background-color: #d0e1f9;
 
   padding: 20px 140px 0px 0px;
   border-radius: 10px;
@@ -30,15 +31,15 @@ body {
 }
 .login::before {
   left: 40%;
-  bottom: -150%;
-  background-color: #d0e1f9;
+  bottom: -130%;
+  background-color: #4d648d9f;
   animation: wawes 6s infinite linear;
 }
 
 .login::after {
   left: 35%;
-  bottom: -175%;
-  background-color: #4d648d;
+  bottom: -125%;
+  background-color: #2836559f;
   animation: wawes 7s infinite;
 }
 .login > input {
@@ -69,10 +70,6 @@ body {
 .login > button:hover {
   background-color: #626262;
   color: aliceblue;
-}
-[title='E-mail'],
-[title='Пароль'] {
-  color: white !important;
 }
 
 @keyframes wawes {

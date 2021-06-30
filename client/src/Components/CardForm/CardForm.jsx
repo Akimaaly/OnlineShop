@@ -1,70 +1,58 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
-import { addToBasket } from '../../Redux/actions/basket.actions';
+import { Card, Descriptions } from "antd";
+import {
+  EditOutlined,
+  DeleteOutlined,
+} from "@ant-design/icons";
+import { Typography } from "antd";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+const { Text } = Typography;
 
-import styles from './style.module.css';
-
-export default function CardForm() {
+const CardForm = () => {
   const goods = useSelector((state) => state.goods);
   const currentItemID = useParams();
-  const dispatch = useDispatch();
-  const history = useHistory();
 
-  const [qty, setQty] = useState(1);
+
   const currentItem = goods.find((el) => el._id === currentItemID.id);
-  console.log('QTY-----------', currentItem);
-
-  const addToCartHandler = () => {
-    console.log(qty);
-    console.log(currentItem._id);
-    dispatch(addToBasket(currentItem._id, qty));
-    history.push('/buyer/basket');
-  };
-
   return (
-    <div className={styles.productscreen}>
-      <>
-        <div className={styles.productscreen__left}>
-          <div className={styles.left__image}>
-            <img src={currentItem.image} alt={currentItem.title} />
-          </div>
-
-          <div className={styles.left__info}>
-            <p className={styles.left__name}>{currentItem.title}</p>
-            <p>Цена: {currentItem.price} р.</p>
-            <p>{currentItem.longDescription}</p>
-          </div>
-        </div>
-        <div className={styles.productscreen__right}>
-          <div className={styles.right__info}>
-            <p>
-              Цена: <span>{currentItem.price}р.</span>
-            </p>
-            <p>
-              Статус:{' '}
-              <span>
-                {currentItem.quantity > 0 ? 'В наличии' : 'Нет в наличии'}
-              </span>
-            </p>
-            <p>
-              Количество: {currentItem.quantity} шт.
-              <select value={qty} onChange={(e) => setQty(e.target.value)}>
-                {[...Array(currentItem.quantity).keys()].map((x) => (
-                  <option key={x + 1} value={x + 1}>
-                    {x + 1}
-                  </option>
-                ))}
-              </select>
-            </p>
-            <p>
-              <button type='button' onClick={addToCartHandler}>
-                Добавить в корзину
-              </button>
-            </p>
-          </div>
-        </div>
-      </>
-    </div>
+    <div align='center' className='container' style={{ paddingTop: '85px', }}>
+      <Card
+        style={{ width: "400px" }}
+        cover={
+          <img
+            style={{width: "240px", heigth: "360px" }}
+            alt="imageOfItem"
+            src={currentItem.image}
+          />
+        }
+        actions={[
+          <DeleteOutlined key="delete" />,
+          <EditOutlined key="edit" />,
+        ]}
+      >
+        <Descriptions title={currentItem.title}>
+          <Descriptions.Item label='Категория товара'>
+            <Text>{currentItem.category}</Text>
+          </Descriptions.Item>
+        </Descriptions>
+        <Descriptions>
+          <Descriptions.Item label='Характеристики'>
+            <Text>{currentItem.longDescription}</Text>
+          </Descriptions.Item>
+        </Descriptions>
+        <Descriptions>
+          <Descriptions.Item label='Артикул'>
+            <Text>{currentItem.articul}</Text>
+          </Descriptions.Item>
+        </Descriptions>
+        <Descriptions>
+          <Descriptions.Item label="Стоимость">
+            <Text>{currentItem.price} руб.</Text>
+          </Descriptions.Item>
+        </Descriptions>
+      </Card>
+      </div>
   );
-}
+};
+
+export default CardForm;

@@ -9,11 +9,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Auth.module.css';
 
+console.log(styles);
 const Auth = () => {
   const history = useHistory();
   const [role, setRole] = useState('user');
+  // const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
+  // console.log(user);
 
   const handleClick = (role) => {
     setRole(role);
@@ -63,8 +66,8 @@ const Auth = () => {
         onFinish={(values) => handleSubmit(values)}
         onFinishFailed={onFinishFailed}
       >
-        <p align='right' style={{ color: 'white', fontWeight: 'bold' }}>
-          Введите вашу почту и пароль
+        <p align='right' style={{ color: 'black' }}>
+          AkimExpress style
         </p>
         <Form.Item
           name='email'
@@ -104,7 +107,7 @@ const Auth = () => {
             span: 16,
           }}
         >
-          <Checkbox style={{ color: 'white' }}>Запомнить</Checkbox>
+          <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
         <Form.Item
@@ -117,9 +120,8 @@ const Auth = () => {
             name='user'
             onClick={() => handleClick('user')}
             checked={role === 'user'}
-            onChange={() => { }}
+            onChange={() => {}}
             onChange={onChange}
-            style={{ color: 'white' }}
           >
             Я - покупатель
           </Checkbox>
@@ -129,12 +131,11 @@ const Auth = () => {
             checked={role === 'seller'}
             onChange={() => {}}
             onChange={onChange}
-            style={{ color: 'white' }}
           >
-            Я - продавец
+            Я продавец
           </Checkbox>
           <Button type='primary' htmlType='submit'>
-            Готово
+            Submit
           </Button>
         </Form.Item>
       </Form>

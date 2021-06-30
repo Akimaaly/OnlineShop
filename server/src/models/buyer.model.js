@@ -1,6 +1,6 @@
 /* ЭТО МОДЕЛЬ ПОКУПАТЕЛЯ */
 
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require('mongoose')
 
 const buyerSchema = Schema({
   name: {
@@ -19,8 +19,8 @@ const buyerSchema = Schema({
     type: String,
     required: true,
   },
-});
+})
 
-const BuyerModel = model('Buyer', buyerSchema);
+const BuyerModel = model('Buyer', buyerSchema)
 
-module.exports = BuyerModel;
+module.exports = BuyerModel
