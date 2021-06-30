@@ -26,8 +26,17 @@ export default function BuyerProfile() {
   return (
     <>
       <NavigationProfile />
-      <div style={{ padding: '30px', background: '#ececec' }}>
-        <Card title={'Профиль'} bordered={false} style={{ width: 300 }}>
+      <div
+        style={{
+          marginTop: '60px',
+          marginLeft: '90px',
+          background: 'white',
+          border: '1px solid black',
+          width: '400px',
+          height: '200px',
+        }}
+      >
+        <Card title={'Профиль'} type bordered={false} style={{ width: 300 }}>
           <div
             style={{
               display: 'flex',
