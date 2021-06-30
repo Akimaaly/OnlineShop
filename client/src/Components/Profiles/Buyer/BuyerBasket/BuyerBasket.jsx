@@ -5,18 +5,30 @@ import BusketItem from '../BasketItem/BasketItem';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Link } from 'react-router-dom';
-import { addToBasket, deleteFromBasket } from '../../../../Redux/actions/basket.actions';
+import {
+  addToBasket,
+  deleteFromBasket,
+} from '../../../../Redux/actions/basket.actions';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-export default function BuyerBasket () {
+export default function BuyerBasket() {
   const dispatch = useDispatch();
-
   const cart = useSelector((state) => state.basket);
   const { products } = cart;
+  const [basket, setBasket] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/basket/all').then((res) => {
+      setBasket(res.data);
+    });
+  }, []);
+  console.log('============', products);
 
   //функция добавления товара в корзину
-  const qtyChangeHandler = (id, qty) => {
-    dispatch(addToBasket(id, qty));
-  };
+  // const qtyChangeHandler = (id, qty) => {
+  //   dispatch(addToBasket(id, qty));
+  // };
 
   //функция удаления товара из корзины
   const removeFromCartHandler = (id) => {
@@ -25,13 +37,13 @@ export default function BuyerBasket () {
 
   // функция для подсчета количества товаров в корзине
   const getCartCount = () => {
-    return products.reduce((qty, item) => Number(item.qty) + qty, 0);
+    return basket?.reduce((qty, item) => Number(item.qty) + qty, 0);
   };
 
   //подсчет общего количества денег
   const getCartSubTotal = () => {
-    return products
-      .reduce((price, item) => price + item.price * item.qty, 0)
+    return basket
+      ?.reduce((price, item) => price + item.price * item.qty, 0)
       .toFixed(2);
   };
 
@@ -39,17 +51,17 @@ export default function BuyerBasket () {
     <div className={styles.cartscreen}>
       <div className={styles.cartscreen__left}>
         <h2>Ваша корзина покупок</h2>
-        {products.length === 0 ? (
+        {basket ? (
           <div>
             Пока что корзина пуста
             <Link to='/'>На главную</Link>
           </div>
         ) : (
-          products.map((item) => (
+          basket?.map((item) => (
             <BusketItem
               key={item._id}
               item={item}
-              qtyChangeHandler={qtyChangeHandler}
+              // qtyChangeHandler={qtyChangeHandler}
               removeHandler={removeFromCartHandler}
             />
           ))
@@ -66,6 +78,4 @@ export default function BuyerBasket () {
       </div>
     </div>
   );
-};
-
-
+}

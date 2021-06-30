@@ -11,11 +11,12 @@ export default function BuyerProfile() {
   const user = useSelector((state) => state.user);
   const [buttonEdit, setButtonEdit] = useState(0);
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <>
       <NavigationProfile />
+      {console.log(user)}
       <div style={{ padding: '30px', background: '#ececec' }}>
         <Card title={user.name} bordered={false} style={{ width: 300 }}>
           <p>Email:{user.email} </p>

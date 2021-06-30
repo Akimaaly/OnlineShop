@@ -12,8 +12,6 @@ const { Header } = Layout;
 function Header2() {
   const history = useHistory();
   const user = useSelector((state) => state.user);
-  console.log(user);
-  console.log(user.name);
   const dispatch = useDispatch();
 
   async function butHandler() {
@@ -27,7 +25,6 @@ function Header2() {
   async function getUser() {
     try {
       const response = await api.getHome();
-      console.log(response);
       dispatch(getUserInfo(response));
     } catch (error) {}
   }
@@ -48,6 +45,8 @@ function Header2() {
       <Header
         style={{
           position: 'fixed',
+          top: 0,
+          left: 0,
           zIndex: 1,
           width: '120%',
           height: '70px',

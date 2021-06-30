@@ -53,3 +53,6 @@ label {
 svg {
   color: #fff;
 }
+.container--main {
+  margin-top: 70px;
+}

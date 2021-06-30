@@ -23,6 +23,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
+      <div className="container--main">
       <Switch>
         <Route exact path='/reg'>
           <Registration />
@@ -65,6 +66,7 @@ function App() {
           <Auth />
         </Route>
       </Switch>
+      </div>
     </BrowserRouter>
   );
 }

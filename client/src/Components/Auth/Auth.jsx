@@ -9,14 +9,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Auth.module.css';
 
-console.log(styles);
 const Auth = () => {
   const history = useHistory();
   const [role, setRole] = useState('user');
-  // const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  // console.log(user);
 
   const handleClick = (role) => {
     setRole(role);

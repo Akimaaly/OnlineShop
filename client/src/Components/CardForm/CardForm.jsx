@@ -12,10 +12,12 @@ export default function CardForm() {
   const history = useHistory();
 
   const [qty, setQty] = useState(1);
-  console.log('QTY-----------', qty);
   const currentItem = goods.find((el) => el._id === currentItemID.id);
+  console.log('QTY-----------', currentItem);
 
   const addToCartHandler = () => {
+    console.log(qty);
+    console.log(currentItem._id);
     dispatch(addToBasket(currentItem._id, qty));
     history.push('/buyer/basket');
   };
@@ -25,7 +27,7 @@ export default function CardForm() {
       <>
         <div className={styles.productscreen__left}>
           <div className={styles.left__image}>
-            <img src={currentItem?.image} alt={currentItem.title} />
+            <img src={currentItem.image} alt={currentItem.title} />
           </div>
 
           <div className={styles.left__info}>

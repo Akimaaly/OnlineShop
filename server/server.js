@@ -26,9 +26,9 @@ app.use(morgan('dev'));
 // app.use('/basket', basketRouter);
 app.use('/good', goodRouter);
 app.use('/order', orderRouter);
+app.use('/basket', basketRouter);
 app.use('/', userRouter);
 
-app.use('/basket', basketRouter);
 
 app.listen(PORT, () => {
   console.log('Server started on port', PORT);

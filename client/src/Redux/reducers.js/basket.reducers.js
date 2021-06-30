@@ -1,3 +1,4 @@
+import initState from '../initState';
 import { ADD_TO_BASKET, DELETE_FROM_BASKET } from '../types';
 
 export default function basketReducer(state = {}, action) {

@@ -3,38 +3,54 @@
 const router = require('express').Router();
 const { tokenChecker } = require('../middleware/protect');
 const BasketModel = require('../models/basket.model');
+const GoodModel = require('../models/good.model');
+
+router.route('/all').get(tokenChecker, async (req, res) => {
+  const state = await BasketModel.findById(req.user.id);
+  res.json(state);
+});
 
 //Здесь мы обновляем нашу текущую корзину, добавляя в нее товары
 // сюда приходит id-товара и количество(req.body.qty)
+const arrOfIds = [];
 const pushGoodsId = (quantity, id) => {
-  const arrOfIds = [];
   for (let i = 0; i < quantity; i++) {
     arrOfIds.push(id);
   }
   return arrOfIds;
 };
+async function fillingArray(newArr) {
+  const arr = [];
+
+  for (let i = 0; i < newArr.length; ++i) {
+    const arraaay = await GoodModel.findById(newArr[i]);
+    arr.push(arraaay);
+  }
+  console.log('array of objects>>>>>>>', arr.length);
+  return arr;
+}
 
 router.route('/:id').patch(tokenChecker, async (req, res) => {
-  const arr = pushGoodsId(req.body.qty, req.params.id);
-  const currentBasket = await BasketModel.findOne({ buyer: req.user.id }); //?
-  const newArr = arr.concat(currentBasket.products);
-  const resultArr = [];
-  for (let i = 0; i < newArr.length; i++) {
-    BasketModel.findById(newArr[i]).then((result) => resultArr.push(result));
-  }
-
+  const arr = pushGoodsId(req.body.qty, req.params.id); // works
+  console.log(arr, 'MAIN ARAAAAAAAAY');
+  const currentBasket = await BasketModel.findOne({ buyer: req.user.id });
+  // currentBasket.products.push(...arr)
+  const newArr = arr.concat(currentBasket.products); //works
+  console.log(newArr.length);
+  const a = await fillingArray(newArr);
   const updatedBasket = await BasketModel.findOneAndUpdate(
-    { buyer: req.session.user },
+    { buyer: req.user.id },
     {
-      products: resultArr,
-      quantity: resultArr.length,
-      totalPrice: resultArr.reduce((acc, el) => acc + el.price, 0),
+      products: a,
+      quantity: a.length,
+      totalPrice: a.reduce((acc, el) => acc + Number(el.price), 0),
     },
     { new: true }
-  );
+  ).populate('products');
+  // console.log(updatedBasket);
+  console.log(updatedBasket.products);
 
-  console.log(updatedBasket);
-  // res.json(updatedBasket);
+  res.json(updatedBasket);
 });
 
 //========================================================================
