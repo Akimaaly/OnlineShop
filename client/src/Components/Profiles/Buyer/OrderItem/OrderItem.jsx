@@ -8,8 +8,10 @@ import {
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import api from '../../../../api';
+import styles from './styles.module.css';
 
-export default function OrderHistory() {
+
+export default function OrderItem({order}) {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.basket);
   const { products } = cart;
@@ -26,8 +28,13 @@ export default function OrderHistory() {
   }, []);
 
   return (
-    <div>
-      <h2>Это один заказ</h2>
+    <div className={styles.cartitem}>
+      <h5>Заказ № {order._id}</h5>
+      <p>Дата заказа: {order.date}</p>
+      <ul> Товары в заказе:
+        {order.items.map(item => <li>{item}</li>)}
+      </ul>
+      <p>Статус заказа: {order.status ? 'Подтвержден' : 'Ждет подтверждения'}</p>
     </div>
   );
 }

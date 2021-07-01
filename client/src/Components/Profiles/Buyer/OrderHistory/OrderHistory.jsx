@@ -25,7 +25,7 @@ export default function OrderHistory() {
     {
       _id: 12, //id в монго
       date: Date.now(),
-      items: ['iphone', 'ipad'],
+      items: ['iphone', 'ipad', 'imac', 'ipod'],
       status: true,
     },
     {
@@ -36,31 +36,30 @@ export default function OrderHistory() {
     },
   ]
 
-  useEffect(() => {
-    fetchBasketAll();
-  }, []);
+  // useEffect(() => {
+  //   fetchBasketAll();
+  // }, []);
 
-  const removeFromCartHandler = (id) => {
-    dispatch(deleteFromBasket(id));
-  };
-  const getCartCount = () => {
-    return basket?.reduce((qty, item) => Number(item.quantity) + qty, 0);
-  };
+  // const removeFromCartHandler = (id) => {
+  //   dispatch(deleteFromBasket(id));
+  // };
+  // const getCartCount = () => {
+  //   return basket?.reduce((qty, item) => Number(item.quantity) + qty, 0);
+  // };
 
-  //подсчет общего количества денег
-  const getCartSubTotal = () => {
-    return basket
-      .reduce((price, item) => price + item.totalPrice, 0)
-      .toFixed(2);
-  };
+  // //подсчет общего количества денег
+  // const getCartSubTotal = () => {
+  //   return basket
+  //     .reduce((price, item) => price + item.totalPrice, 0)
+  //     .toFixed(2);
+  // };
 
   return (
     <div>
-      <h2>История заказов</h2>
-      <br />
+      <h2 style={{marginLeft: '30px'}}> История заказов</h2>
       <ul>
       {orders.length ? (
-          orders.map((order) => <Link key={order._id} to={`/order/${order._id}`}><hr /><OrderItem order={order}/><hr /></Link>)
+          orders.map((order) => <OrderItem order={order}/>)
       ): (<p>Ничего нет</p>)}
       </ul>
     </div>
