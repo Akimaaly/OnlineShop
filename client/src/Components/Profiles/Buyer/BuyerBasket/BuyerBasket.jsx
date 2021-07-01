@@ -3,18 +3,19 @@ import styles from './styles.module.css';
 import BusketItem from '../BasketItem/BasketItem';
 
 import { useSelector, useDispatch } from 'react-redux';
-
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import {
   addToBasket,
   deleteFromBasket,
 } from '../../../../Redux/actions/basket.actions';
+import { createOrder } from '../../../../Redux/actions/order.actions';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import api from '../../../../api';
 
 export default function BuyerBasket() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const cart = useSelector((state) => state.basket);
   const { products } = cart;
   const [basket, setBasket] = useState([]);
@@ -27,11 +28,6 @@ export default function BuyerBasket() {
   useEffect(() => {
     fetchBasketAll();
   }, []);
-
-  //функция добавления товара в корзину
-  // const qtyChangeHandler = (id, qty) => {
-  //   dispatch(addToBasket(id, qty));
-  // };
 
   //функция удаления товара из корзины
   const removeFromCartHandler = (id) => {
@@ -48,6 +44,14 @@ export default function BuyerBasket() {
     return basket
       .reduce((price, item) => price + item.totalPrice, 0)
       .toFixed(2);
+  };
+
+  const createNewOrder = async () => {
+    const items = basket[0].products?.map((el) => el._id);
+    // console.log(items);
+    dispatch(createOrder({ orders: items, date: String(Date.now()) }));
+    history.push('/seller/orders');
+
   };
 
   return (
@@ -82,7 +86,12 @@ export default function BuyerBasket() {
           <p>{getCartSubTotal()} р.</p>
         </div>
         <div>
-          <button style={{background: '#283655', fontWeight: 'bold'}}>Перейти к оформлению</button>
+          <button
+            onClick={createNewOrder}
+            style={{ background: '#283655', fontWeight: 'bold' }}
+          >
+            Перейти к оформлению
+          </button>
         </div>
       </div>
     </div>

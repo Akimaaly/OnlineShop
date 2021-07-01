@@ -6,8 +6,8 @@ require('dotenv').config();
 
 const basketRouter = require('./src/routes/basket.router');
 const goodRouter = require('./src/routes/good.router');
-const orderRouter = require('./src/routes/good.router');
 const userRouter = require('./src/routes/user.router');
+const orderRouter = require('./src/routes/order.router');
 
 const app = express();
 const PORT = 8080;
@@ -23,12 +23,11 @@ app.use(
 );
 app.use(morgan('dev'));
 
-// app.use('/basket', basketRouter);
 app.use('/good', goodRouter);
 app.use('/order', orderRouter);
 app.use('/basket', basketRouter);
+app.use('/order', orderRouter);
 app.use('/', userRouter);
-
 
 app.listen(PORT, () => {
   console.log('Server started on port', PORT);

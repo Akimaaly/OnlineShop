@@ -33,6 +33,10 @@ export default function SubNavigation() {
             <Typography.Link>
               <Link to='/seller/info'>Обо мне</Link>
             </Typography.Link>
+            |
+            <Typography.Link>
+              <Link to='/seller/orders'>Мои заказы</Link>
+            </Typography.Link>
           </Space>
         </Space>
       </Col>
