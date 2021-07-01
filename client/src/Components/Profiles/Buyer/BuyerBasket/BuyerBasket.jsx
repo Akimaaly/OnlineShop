@@ -73,7 +73,7 @@ export default function BuyerBasket() {
           <p>{getCartSubTotal()} р.</p>
         </div>
         <div>
-          <button>Перейти к оформлению</button>
+          <button style={{background: '#283655', fontWeight: 'bold'}}>Перейти к оформлению</button>
         </div>
       </div>
     </div>

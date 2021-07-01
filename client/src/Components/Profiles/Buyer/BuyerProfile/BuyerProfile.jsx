@@ -47,7 +47,7 @@ export default function BuyerProfile() {
             <span>{user.name}</span>
             <span>
               <EditOutlined
-                style={{ backgroundColor: 'black' }}
+                style={{ backgroundColor: '#283655' }}
                 onClick={() => handleOpen('name')}
               />
             </span>
@@ -62,7 +62,7 @@ export default function BuyerProfile() {
             <span>{user.phone}</span>
             <span>
               <EditOutlined
-                style={{ backgroundColor: 'black' }}
+                style={{ backgroundColor: '#283655' }}
                 onClick={() => handleOpen('phone')}
               />
             </span>
