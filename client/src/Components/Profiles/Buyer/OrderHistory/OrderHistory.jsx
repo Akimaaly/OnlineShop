@@ -1,43 +1,25 @@
-import { useSelector, useDispatch } from 'react-redux';
-
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import api from '../../../../api';
-import OrderItem from '../OrderItem/OrderItem'
+import { useSelector, useDispatch } from 'react-redux';
+import { getOrdersOfCurrentUser } from '../../../../Redux/actions/order.actions';
+import OrderItem from '../OrderItem/OrderItem';
 
-export default function OrderHistory() {
+export default function Orders() {
+  const orders = useSelector((state) => state.orders);
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.basket);
-  const { products } = cart;
-  const [basket, setBasket] = useState([]);
 
-  const fetchBasketAll = async () => {
-    const response = await api.getAllBasket();
-    setBasket(response);
-  };
-
-  const orders = [
-    {
-      _id: 12, //id в монго
-      date: Date.now(),
-      items: ['iphone', 'ipad', 'imac', 'ipod'],
-      status: true,
-    },
-    {
-      _id: 11,
-      date: Date.now(),
-      items: ['fruit', 'car'],
-      status: false,
-    },
-  ]
-
+  console.log(orders);
+  useEffect(() => {
+    dispatch(getOrdersOfCurrentUser());
+  }, []);
   return (
     <div>
-      <h2 style={{marginLeft: '30px'}}> История заказов</h2>
+      <h2 style={{ marginLeft: '30px' }}> Ваши заказы</h2>
       <ul>
-      {orders.length ? (
-          orders.map((order) => <OrderItem order={order}/>)
-      ): (<p>Ничего нет</p>)}
+        {orders.length ? (
+          orders.map((order) => <OrderItem order={{...order}} />)
+        ) : (
+          <p>Ничего нет</p>
+        )}
       </ul>
     </div>
   );
