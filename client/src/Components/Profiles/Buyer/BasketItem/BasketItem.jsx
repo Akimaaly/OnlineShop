@@ -1,8 +1,8 @@
 import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
 
-export default function BasketItem({ item, qtyChangeHandler, removeHandler }) {
-  console.log(item);
+export default function BasketItem({ item: itemInBasket, qtyChangeHandler, removeHandler }) {
+  const {qty, good: item} = itemInBasket;
   return (
     <div className={styles.cartitem}>
       <div className={styles.cartitem__image}>
@@ -13,15 +13,14 @@ export default function BasketItem({ item, qtyChangeHandler, removeHandler }) {
         <p>{item.title}</p>
       </Link>
 
-      <p className={styles.cartitem__price}>${item.price}</p>
+      <p className={styles.cartitem__price}>₽ {item.price}</p>
 
       <select
-        value={item.quality}
         onChange={(e) => qtyChangeHandler(item._id, e.target.value)}
         className={styles.cartItem__select}
       >
-        {[...Array(item.quality).keys()].map((x) => (
-          <option key={x + 1} value={x + 1}>
+        {Array.from(Array(Number(item.quantity)).keys()).map((x) => (
+          <option key={x + 1} value={x + 1} selected={x + 1 === Number(qty)}>
             {x + 1}
           </option>
         ))}
@@ -30,7 +29,6 @@ export default function BasketItem({ item, qtyChangeHandler, removeHandler }) {
         className={styles.cartitem__deleteBtn}
         onClick={() => removeHandler(item._id)}
       >
-        {/* <i className={styles.fasfa - trash}></i> */}
       </button>
     </div>
   );

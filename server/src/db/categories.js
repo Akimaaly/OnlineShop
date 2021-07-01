@@ -8,6 +8,6 @@ const categoriesList = [
   'Спорт',
   'Продукты',
   'Игрушки',
-]
+];
 
-module.exports = categoriesList
+module.exports = categoriesList;

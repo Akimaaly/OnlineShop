@@ -20,10 +20,12 @@ export default function CardForm() {
       dispatch(addToBasket(currentItem._id, qty)).then(() =>
         history.push('/buyer/basket')
       );
-      // history.push('/buyer/basket');
+      history.push('/buyer/basket');
     } catch (error) {}
     //off Loader
   };
+
+  const options = Array.from(Array(Number(currentItem.quantity)).keys())
 
   return (
     <div className={styles.productscreen}>
@@ -53,7 +55,7 @@ export default function CardForm() {
             <p>
               Количество: {currentItem.quantity} шт.
               <select value={qty} onChange={(e) => setQty(e.target.value)}>
-                {[...Array(currentItem.quantity).keys()].map((x) => (
+                {options.map((x) => (
                   <option key={x + 1} value={x + 1}>
                     {x + 1}
                   </option>
