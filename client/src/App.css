@@ -76,6 +76,31 @@
   background: #283655;
   border-color: #283655;
 }
+.ant-dropdown-menu-submenu.ant-dropdown-menu-submenu-vertical.ant-dropdown-menu-submenu-open.ant-dropdown-menu-submenu-active {
+  color: #fff;
+  background: #283655;
+  border-color: #283655;
+}
+.ant-dropdown-menu-submenu-title {
+  color: #fff;
+  background: #283655;
+  border-color: #283655;
+}
+.ant-dropdown.ant-dropdown-placement-bottomLeft.ant-dropdown-hidden {
+  color: #fff;
+  background: #283655;
+  border-color: #283655;
+}
+.ant-dropdown-menu.ant-dropdown-menu-root.ant-dropdown-menu-vertical.ant-dropdown-menu-light {
+  color: #fff;
+  background: #283655;
+  border-color: #283655;
+}
+.ant-dropdown-menu-item.ant-dropdown-menu-item-active {
+  color: #fff;
+  background: #283655;
+  border-color: #283655;
+}
 .ant-card-actions {
   background: #283655;
   border-color: #283655;

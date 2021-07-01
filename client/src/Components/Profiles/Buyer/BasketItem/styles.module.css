@@ -34,15 +34,6 @@
   color: red;
   background: #f4f4f4;
   border: 1px solid #171717;
-  cursor: pointer;
-  transition: all 0.3s ease-out;
-}
-
-.cartitem__deleteBtn:hover,
-.caritem__deleteBtn:active,
-.caritem__deleteBtn:focus {
-  background: #171717;
-  transform: scale(1.2);
 }
 
 @media (max-width: 700px) {
