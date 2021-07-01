@@ -2,53 +2,67 @@
 /* eslint-disable spaced-comment */
 const router = require('express').Router();
 const { tokenChecker } = require('../middleware/protect');
-const BasketModel = require('../models/basket.model');
+const { BasketModel, GoodInBasketModel } = require('../models/basket.model');
 const GoodModel = require('../models/good.model');
 
 router.route('/all').get(tokenChecker, async (req, res) => {
-  const state = await BasketModel.find({ buyer: req.user.id }).populate(
-    'products'
-  );
+  const state = await BasketModel.findOne({ buyer: req.user.id }).populate({
+    path: 'products',
+    populate: [{ path: 'good' }, { path: 'basket' }],
+  }).lean().exec();
+  let totalQty = 0;
+  let totalPrice = 0;
+  state.products.forEach((productInGroup) => {
+    totalQty += productInGroup.qty;
+    totalPrice += Number(productInGroup.good.price) * totalQty;
+  });
+  state.quantity = totalQty;
+  state.totalPrice = totalPrice;
   res.json(state);
 });
 
 router.route('/:id').patch(tokenChecker, async (req, res) => {
-  //Здесь мы обновляем нашу текущую корзину, добавляя в нее товары
+  // Здесь мы обновляем нашу текущую корзину, добавляя в нее товары
   // сюда приходит id-товара и количество(req.body.qty)
-  const arrOfIds = [];
-  const pushGoodsId = (quantity, id) => {
-    for (let i = 0; i < quantity; i++) {
-      arrOfIds.push(id);
-    }
-    return arrOfIds;
-  };
-  async function fillingArray(newArr) {
-    const arr = [];
 
-    for (let i = 0; i < newArr.length; ++i) {
-      const arraaay = await GoodModel.findById(newArr[i]);
-      arr.push(arraaay);
-    }
-    return arr;
-  }
-  //
-  //
-  //
-  //
-
-  const arr = pushGoodsId(req.body.qty, req.params.id);
   const currentBasket = await BasketModel.findOne({ buyer: req.user.id });
-  const newArr = [...arr, ...currentBasket.products];
-  const a = await fillingArray(newArr);
-  const updatedBasket = await BasketModel.findOneAndUpdate(
-    { buyer: req.user.id },
+  const currentBasketItem = await GoodInBasketModel.findOne({
+    good: req.params.id,
+    basket: currentBasket.id,
+  });
+
+  let newQty = req.body.qty;
+  if (currentBasketItem !== null && !req.body.updateQty) {
+    newQty = currentBasketItem.qty + req.body.qty;
+  }
+
+  if (currentBasketItem !== null) {
+    currentBasketItem.delete()
+  }
+
+  const newBasketItem = await GoodInBasketModel.create(
     {
-      products: a,
-      quantity: a.length,
-      totalPrice: a.reduce((acc, el) => acc + Number(el.price), 0),
+      good: req.params.id,
+      basket: currentBasket.id,
+      qty: newQty,
     },
-    { new: true }
-  ).populate('products');
+  );
+  await BasketModel.findOneAndUpdate({ buyer: req.user.id },
+    // eslint-disable-next-line no-underscore-dangle
+    { products: [...currentBasket.products, newBasketItem._id] });
+
+  const updatedBasket = await BasketModel.findOne({ buyer: req.user.id }).populate({
+    path: 'products',
+    populate: [{ path: 'good' }, { path: 'basket' }],
+  }).lean().exec();
+  let totalQty = 0;
+  let totalPrice = 0;
+  updatedBasket.products.forEach((productInGroup) => {
+    totalQty += productInGroup.qty;
+    totalPrice += Number(productInGroup.good.price) * totalQty;
+  });
+  updatedBasket.quantity = totalQty;
+  updatedBasket.totalPrice = totalPrice;
 
   res.json(updatedBasket);
 });
@@ -58,19 +72,13 @@ router.route('/:id').patch(tokenChecker, async (req, res) => {
 //сюда приходит id-товара который надо удалить из корзины
 router.route('/update/:id').patch(tokenChecker, async (req, res) => {
   const currentBasket = await BasketModel.findOne({ buyer: req.user.id });
-  const arr = currentBasket.products.filter((el) => el !== req.params.id);
-
-  const updatedBasket = await BasketModel.findOneAndUpdate(
-    { buyer: req.session.user },
-    {
-      products: arr,
-      quantity: arr.length,
-      totalPrice: arr.reduce((acc, el) => acc + el.price, 0),
-    },
-    { new: true }
-  );
-
-  // res.json(updatedBasket);
+  // eslint-disable-next-line no-underscore-dangle
+  const currItem = await GoodInBasketModel.findOne({ basket: currentBasket._id, good: req.params.id });
+  // eslint-disable-next-line no-underscore-dangle
+  BasketModel.updateOne({ buyer: req.user.id }, { products: currentBasket.products.filter((p) => p.id !== currItem._id) });
+  // eslint-disable-next-line no-underscore-dangle
+  await GoodInBasketModel.deleteOne({ basket: currentBasket._id, good: req.params.id });
+  res.json(currentBasket);
 });
 
 module.exports = router;

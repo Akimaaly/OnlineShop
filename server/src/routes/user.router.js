@@ -7,10 +7,12 @@ const router = require('express').Router();
 const Buyer = require('../models/buyer.model');
 const SellerModel = require('../models/seller.model');
 const { tokenChecker } = require('../middleware/protect');
-const BasketModel = require('../models/basket.model');
+const { BasketModel } = require('../models/basket.model');
 
 router.post('/reg', async (req, res) => {
-  const { name, email, password, role, phone } = req.body;
+  const {
+    name, email, password, role, phone,
+  } = req.body;
   try {
     const hashPass = await bcrypt.hash(password, +process.env.SALTROUNDS);
     if (role === 'user') {
@@ -23,8 +25,6 @@ router.post('/reg', async (req, res) => {
       const basket = await BasketModel.create({
         buyer: user.id,
         products: [],
-        totalPrice: 0,
-        quantity: 0,
       });
       const jwtToken = jwt.sign(
         {
@@ -41,7 +41,7 @@ router.post('/reg', async (req, res) => {
         process.env.SESSION_KEY,
         {
           expiresIn: '24h',
-        }
+        },
       );
 
       return res.status(200).json({
@@ -77,7 +77,7 @@ router.post('/reg', async (req, res) => {
         process.env.SESSION_KEY,
         {
           expiresIn: '24h',
-        }
+        },
       );
       return res.status(200).json({
         id: seller._id,
@@ -120,12 +120,12 @@ router.post('/login', async (req, res) => {
         process.env.SESSION_KEY,
         {
           expiresIn: '24h',
-        }
+        },
       );
 
       if (
-        !currentUser ||
-        !(await bcrypt.compare(password, currentUser.password))
+        !currentUser
+        || !(await bcrypt.compare(password, currentUser.password))
       ) {
         return res.status(400).json({ mess: 'Неверный логин или пароль' });
       }
@@ -152,11 +152,11 @@ router.post('/login', async (req, res) => {
         process.env.SESSION_KEY,
         {
           expiresIn: '24h',
-        }
+        },
       );
       if (
-        !currentSeller ||
-        !(await bcrypt.compare(password, currentSeller.password))
+        !currentSeller
+        || !(await bcrypt.compare(password, currentSeller.password))
       ) {
         return res.status(400).json({ mess: 'Неверный логин или пароль' });
       }
@@ -174,30 +174,26 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.get('/logout', (req, res) => {
-  return res.status(200).json({});
-});
+router.get('/logout', (req, res) => res.status(200).json({}));
 
-router.get('/', tokenChecker, (req, res) => {
-  return res.status(200).json({
-    id: req.user.id,
-    name: req.user.name,
-    email: req.user.email,
-    role: req.user.role,
-    phone: req.user.phone,
-    products: req.user.products,
-    totalPrice: req.user.totalPrice,
-    quantity: req.user.quantity,
-  });
-});
+router.get('/', tokenChecker, (req, res) => res.status(200).json({
+  id: req.user.id,
+  name: req.user.name,
+  email: req.user.email,
+  role: req.user.role,
+  phone: req.user.phone,
+  products: req.user.products,
+  totalPrice: req.user.totalPrice,
+  quantity: req.user.quantity,
+}));
 
 router.patch('/profile', tokenChecker, async (req, res) => {
-  const { name, phone, id, type } = req.body;
+  const {
+    name, phone, id, type,
+  } = req.body;
 
-  if (type === 'name')
-    await Buyer.findOneAndUpdate({ _id: id }, { name: name });
-  if (type === 'phone')
-    await Buyer.findOneAndUpdate({ _id: id }, { phoneNumber: phone });
+  if (type === 'name') await Buyer.findOneAndUpdate({ _id: id }, { name: name });
+  if (type === 'phone') await Buyer.findOneAndUpdate({ _id: id }, { phoneNumber: phone });
 
   const user = await Buyer.findOne({ _id: id });
 
@@ -212,7 +208,7 @@ router.patch('/profile', tokenChecker, async (req, res) => {
     process.env.SESSION_KEY,
     {
       expiresIn: '24h',
-    }
+    },
   );
 
   return res.status(200).json({

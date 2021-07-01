@@ -13,3 +13,7 @@ export const getAllBasket = () =>
   server.get('/basket/all').then((data) => {
     return data.data;
   });
+
+export const deleteFromBasket = async (id) => {
+  await server.patch(`/basket/update/${id}`)
+}

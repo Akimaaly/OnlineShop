@@ -1,26 +1,37 @@
-// import * as actionTypes from '../constants/cartConstants';
+import * as actionTypes from '../types';
 
 import axios from 'axios';
 import api from '../../api';
+import {getAllBasket} from '../../api/endpoints/basket';
 
 export const basketAddGood = (payload) => ({
-  type: ADD_TO_BASKET,
+  type: actionTypes.ADD_TO_BASKET,
   payload,
 });
+
+export const basketInit = (payload) => ({
+  type: actionTypes.BASKET_INIT,
+  payload
+})
+
+export const initBasket = () => async (dispatch) => {
+  const response = await getAllBasket();
+  return dispatch(basketInit(response));
+}
+
 export const addToBasket = (id, qty) => async (dispatch) => {
-  const response = await api.addGoodToBasket(id, { qty });
-  return dispatch(basketAddGood(response));
+  const response = await api.addGoodToBasket(id, { qty, updateQty: false });
+  return dispatch(initBasket())
 };
 
-export const deleteFromBasket = (id) => async (dispatch) => {
-  const { data } = await axios.patch(
-    `http://localhost:8080/basket/update/${id}`
-  );
+export const updateInBasket = (id, qty) => async (dispatch) => {
+  const response = await api.addGoodToBasket(id, { qty, updateQty: true });
+  return dispatch(initBasket())
+}
 
-  dispatch({
-    type: DELETE_FROM_BASKET,
-    payload: data,
-  });
+export const deleteFromBasket = (id) => async (dispatch) => {
+  await api.deleteFromBasket(id)
+  return dispatch(initBasket())
 };
 
 
@@ -28,7 +39,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
   const { data } = await axios.get(`/api/products/${id}`);
 
   dispatch({
-    type: actionTypes.ADD_TO_CART,
+    type: actionTypes.ADD_TO_BASKET,
     payload: {
       product: data._id,
       name: data.name,
@@ -44,7 +55,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
 
 export const removeFromCart = (id) => (dispatch, getState) => {
   dispatch({
-    type: actionTypes.REMOVE_FROM_CART,
+    type: actionTypes.DELETE_FROM_BASKET,
     payload: id,
   });
 

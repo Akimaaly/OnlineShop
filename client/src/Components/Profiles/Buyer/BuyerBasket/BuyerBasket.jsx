@@ -8,27 +8,20 @@ import { Link } from 'react-router-dom';
 
 import BasketItem from '../BasketItem/BasketItem';
 
-import { deleteFromBasket } from '../../../../Redux/actions/basket.actions';
+import {deleteFromBasket, initBasket, updateInBasket} from '../../../../Redux/actions/basket.actions';
 
 export default function BuyerBasket() {
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.basket);
-  const { products } = cart;
-  const [basket, setBasket] = useState([]);
-
-  const fetchBasketAll = async () => {
-    const response = await api.getAllBasket();
-    setBasket(response);
-  };
+  const basket = useSelector((state) => state.basket.basketItems);
 
   useEffect(() => {
-    fetchBasketAll();
-  }, []);
+    dispatch(initBasket())
+  }, [dispatch]);
 
-  //функция добавления товара в корзину
-  // const qtyChangeHandler = (id, qty) => {
-  //   dispatch(addToBasket(id, qty));
-  // };
+  // функция изменения количества товаров
+  const qtyChangeHandler = (id, qty) => {
+    dispatch(updateInBasket(id, qty));
+  };
 
   //функция удаления товара из корзины
   const removeFromCartHandler = (id) => {
@@ -37,14 +30,12 @@ export default function BuyerBasket() {
 
   // функция для подсчета количества товаров в корзине
   const getCartCount = () => {
-    return basket?.reduce((qty, item) => Number(item.quantity) + qty, 0);
+    return Number(basket.quantity)
   };
 
   //подсчет общего количества денег
   const getCartSubTotal = () => {
-    return basket
-      .reduce((price, item) => price + item.totalPrice, 0)
-      .toFixed(2);
+    return Number(basket.totalPrice)
   };
 
   return (
@@ -57,11 +48,11 @@ export default function BuyerBasket() {
             <Link to='/'>На главную</Link>
           </div>
         ) : (
-          basket?.map((item) => (
+          basket.products.map((item) => (
             <BasketItem
               key={item._id}
               item={item}
-              // qtyChangeHandler={qtyChangeHandler}
+              qtyChangeHandler={qtyChangeHandler}
               removeHandler={removeFromCartHandler}
             />
           ))
@@ -70,7 +61,7 @@ export default function BuyerBasket() {
       <div className={styles.cartscreen__right}>
         <div className={styles.cartscreen__info}>
           <p>Общее количество товаров {getCartCount()} шт.</p>
-          <p>{getCartSubTotal()} р.</p>
+          <p>₽ {getCartSubTotal()}</p>
         </div>
         <div>
           <button style={{background: '#283655', fontWeight: 'bold'}}>Перейти к оформлению</button>

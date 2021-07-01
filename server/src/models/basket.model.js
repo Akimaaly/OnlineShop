@@ -12,12 +12,25 @@ const basketSchema = Schema({
   products: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Good',
+      ref: 'GoodInBasket',
     },
   ],
   totalPrice: Number,
 });
 
+const goodInBasketSchema = Schema({
+  basket: {
+    type: Schema.Types.ObjectId,
+    ref: 'Basket',
+  },
+  good: {
+    type: Schema.Types.ObjectId,
+    ref: 'Good',
+  },
+  qty: Number,
+});
+
+const GoodInBasketModel = model('GoodInBasket', goodInBasketSchema);
 const BasketModel = model('Basket', basketSchema);
 
-module.exports = BasketModel;
+module.exports = { BasketModel, GoodInBasketModel };
