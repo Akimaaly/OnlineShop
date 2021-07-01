@@ -7,6 +7,8 @@ import styles from './style.module.css';
 
 export default function CardForm() {
   const goods = useSelector((state) => state.goods);
+  const user = useSelector((state) => state.user);
+
   const currentItemID = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -53,7 +55,7 @@ export default function CardForm() {
             <p>
               Количество: {currentItem.quantity} шт.
               <select value={qty} onChange={(e) => setQty(e.target.value)}>
-                {[...Array(currentItem.quantity).keys()].map((x) => (
+                {[...Array(Number(currentItem.quantity)).keys()].map((x) => (
                   <option key={x + 1} value={x + 1}>
                     {x + 1}
                   </option>
@@ -61,9 +63,17 @@ export default function CardForm() {
               </select>
             </p>
             <p>
-              <button className={styles.formBtn} type='button' onClick={addToCartHandler}>
-                Добавить в корзину
-              </button>
+              {user.role === 'user' ? (
+                <button
+                  className={styles.formBtn}
+                  type='button'
+                  onClick={addToCartHandler}
+                >
+                  Добавить в корзину
+                </button>
+              ) : (
+                <p></p>
+              )}
             </p>
           </div>
         </div>

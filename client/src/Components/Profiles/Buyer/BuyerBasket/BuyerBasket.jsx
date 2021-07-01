@@ -4,8 +4,6 @@ import BusketItem from '../BasketItem/BasketItem';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import NavigationProfile from '../Subnavigation/Subnavigation';
-
 import { Link } from 'react-router-dom';
 import {
   addToBasket,
@@ -26,10 +24,11 @@ export default function BuyerBasket() {
     const response = await api.getAllBasket();
     setBasket(response);
   };
-
   useEffect(() => {
     fetchBasketAll();
   }, []);
+
+  const [qty, setQty] = useState([]);
 
   //функция удаления товара из корзины
   const removeFromCartHandler = (id) => {
@@ -48,6 +47,8 @@ export default function BuyerBasket() {
       .toFixed(2);
   };
 
+  const qtyChangeHandler = () => {};
+
   const createNewOrder = async () => {
     const items = basket[0].products?.map((el) => el._id);
     let dat = new Date();
@@ -59,51 +60,53 @@ export default function BuyerBasket() {
       minute: 'numeric',
     };
     let dateNow = dat.toLocaleString('ru-RU', options);
-    dispatch(createOrder({ orders: items, date: dateNow }));
-    history.push('/seller/orders');
 
+    dispatch(createOrder({ orders: items, date: dateNow }));
+    
+    history.push('/seller/orders');
   };
 
   return (
-    <>
-      <NavigationProfile />
-      <div className={styles.cartscreen}>
-        <div className={styles.cartscreen__left}>
-          <h2>Ваша корзина покупок</h2>
-          {basket.length === 0 ? (
-            <div>
-              Пока что корзина пуста
-              <Link to='/'>На главную</Link>
-            </div>
-          ) : (
-            <>
-              {basket.map((item) => (
-                <>
-                  {item.products.map((item) => (
-                    <BusketItem
-                      key={item._id}
-                      item={item}
-                      // qtyChangeHandler={qtyChangeHandler}
-                      removeHandler={removeFromCartHandler}
-                    />
-                  ))}
-                </>
-              ))}
-            </>
-          )}
-        </div>
-        <div className={styles.cartscreen__right}>
-          <div className={styles.cartscreen__info}>
-            <p>Общее количество товаров {getCartCount()} шт.</p>
-            <p>{getCartSubTotal()} р.</p>
-          </div>
+    <div className={styles.cartscreen}>
+      <div className={styles.cartscreen__left}>
+        <h2>Ваша корзина покупок</h2>
+        {basket.length === 0 ? (
           <div>
-            <button
-            onClick={createNewOrder}
-            style={{ background: '#283655', fontWeight: 'bold' }}>Перейти к оформлению</button>
+            Пока что корзина пуста
+            <Link to='/'>На главную</Link>
           </div>
+        ) : (
+          <>
+            {basket.map((item) => (
+              <>
+                {item.products.map((item) => (
+
+                  <BusketItem
+                    key={item._id}
+                    item={item}
+                    qtyChangeHandler={qtyChangeHandler}
+                    removeHandler={removeFromCartHandler}
+                  />
+                ))}
+              </>
+            ))}
+          </>
+        )}
+      </div>
+      <div className={styles.cartscreen__right}>
+        <div className={styles.cartscreen__info}>
+          <p>Общее количество товаров {getCartCount()} шт.</p>
+          <p>{getCartSubTotal()} р.</p>
+        </div>
+        <div>
+          <button
+            onClick={createNewOrder}
+            style={{ background: '#283655', fontWeight: 'bold' }}
+          >
+            Перейти к оформлению
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }

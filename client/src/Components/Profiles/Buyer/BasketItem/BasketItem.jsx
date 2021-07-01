@@ -2,7 +2,6 @@ import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
 
 export default function BasketItem({ item, qtyChangeHandler, removeHandler }) {
-  console.log(item);
   return (
     <div className={styles.cartitem}>
       <div className={styles.cartitem__image}>
@@ -20,7 +19,7 @@ export default function BasketItem({ item, qtyChangeHandler, removeHandler }) {
         onChange={(e) => qtyChangeHandler(item._id, e.target.value)}
         className={styles.cartItem__select}
       >
-        {[...Array(item.quality).keys()].map((x) => (
+        {[...Array(item.quantity).keys()].map((x) => (
           <option key={x + 1} value={x + 1}>
             {x + 1}
           </option>

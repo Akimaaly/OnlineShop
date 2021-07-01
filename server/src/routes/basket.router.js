@@ -23,12 +23,15 @@ router.route('/:id').patch(tokenChecker, async (req, res) => {
     return arrOfIds;
   };
   async function fillingArray(newArr) {
+    console.log(123);
     const arr = [];
 
     for (let i = 0; i < newArr.length; ++i) {
+      console.log(123);
       const arraaay = await GoodModel.findById(newArr[i]);
       arr.push(arraaay);
     }
+    console.log(arr);
     return arr;
   }
   //
@@ -37,6 +40,7 @@ router.route('/:id').patch(tokenChecker, async (req, res) => {
   //
 
   const arr = pushGoodsId(req.body.qty, req.params.id);
+
   const currentBasket = await BasketModel.findOne({ buyer: req.user.id });
   const newArr = [...arr, ...currentBasket?.products];
   const a = await fillingArray(newArr);
@@ -58,17 +62,40 @@ router.route('/:id').patch(tokenChecker, async (req, res) => {
 //сюда приходит id-товара который надо удалить из корзины
 router.route('/update/:id').patch(tokenChecker, async (req, res) => {
   const currentBasket = await BasketModel.findOne({ buyer: req.user.id });
-  const arr = currentBasket.products.filter((el) => el !== req.params.id);
+  console.log('currentBasket', currentBasket.products);
+  console.log(typeof req.params.id);
+  async function func(arr) {
+    const newArr = [];
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] != req.params.id) {
+        newArr.push(arr[i]);
+      } else {
+        console.log('kdjfvkjnkjnk');
+      }
+    }
+    return newArr;
+  }
+  async function fillingArray(newArr) {
+    const arr = [];
 
-  const updatedBasket = await BasketModel.findOneAndUpdate(
-    { buyer: req.session.user },
-    {
-      products: arr,
-      quantity: arr.length,
-      totalPrice: arr.reduce((acc, el) => acc + el.price, 0),
-    },
-    { new: true }
-  );
+    for (let i = 0; i < newArr.length; ++i) {
+      const arraaay = await GoodModel.findById(newArr[i]);
+      arr.push(arraaay);
+    }
+    return arr;
+  }
+  const arr = await func(currentBasket.products);
+  console.log('arr', arr);
+
+  // const updatedBasket = await BasketModel.findOneAndUpdate(
+  //   { buyer: req.user.id },
+  //   {
+  //     products: arr,
+  //     quantity: arr.length,
+  //     totalPrice: arr.reduce((acc, el) => acc + Number(el), 0),
+  //   },
+  //   { new: true }
+  // );
 
   // res.json(updatedBasket);
 });
