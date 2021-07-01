@@ -27,7 +27,7 @@ export default function CardForm() {
       <>
         <div className={styles.productscreen__left}>
           <div className={styles.left__image}>
-            <img src={currentItem.image} alt={currentItem.title} />
+            <img height='80%' src={currentItem.image} alt={currentItem.title} />
           </div>
 
           <div className={styles.left__info}>
@@ -58,7 +58,7 @@ export default function CardForm() {
               </select>
             </p>
             <p>
-              <button type='button' onClick={addToCartHandler}>
+              <button className={styles.formBtn} type='button' onClick={addToCartHandler}>
                 Добавить в корзину
               </button>
             </p>

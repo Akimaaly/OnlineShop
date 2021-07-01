@@ -71,12 +71,12 @@ function CardsList() {
       </Menu.Item>
       <Menu.Item key='title'>Наименование товара</Menu.Item>
       <Menu.Item key='price'>Цена</Menu.Item>
-      <Menu.Item key='seller'>Продавец</Menu.Item>
+      {/* <Menu.Item key='seller'>Продавец</Menu.Item> */}
     </Menu>
   ); // выпадающий список сортировки по ключам
 
   return (
-    <div style={{ marginTop: '68px' }}>
+    <div style={{ marginTop: '20px' }}>
       <Space size={[120, 16]}>
         <Dropdown
           overlay={menu}
