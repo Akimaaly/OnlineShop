@@ -10,7 +10,7 @@ export default function Info() {
     <div className={styles.wrapper}>
       <Card title={'Имя: ' + user.name} bordered={false} style={{ width: 300 }}>
         <p>E-mail: {user.email}</p>
-        <p>Телефон: {user.phoneNumber}</p>
+        <p>Телефон: {user.phone}</p>
         <p>Адрес самовывоза: {user.location}</p>
       </Card>
     </div>

@@ -19,6 +19,7 @@ import './App.css';
 
 import BuyerProfile from './Components/Profiles/Buyer/BuyerProfile/BuyerProfile';
 import Auth from './Components/Auth/Auth';
+import OrderHistory from './Components/Profiles/Buyer/OrderHistory/OrderHistory';
 
 function App() {
   return (
@@ -60,6 +61,9 @@ function App() {
           </Route>
           <Route exact path='/buyer/basket'>
             <BuyerBasket />
+          </Route>
+          <Route exact path='/buyer/history'>
+            <OrderHistory />
           </Route>
           <Route exact path='/goods/:id'>
             <CardForm />

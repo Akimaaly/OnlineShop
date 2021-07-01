@@ -6,8 +6,8 @@ import {
 } from '../order.types';
 import api from '../../api';
 
-export const getOrdersOfCurrentUser = (id) => async (dispatch) => {
-  const allCurrentUserOrders = await api.getOrdersOfUser(id);
+export const getOrdersOfCurrentUser = () => async (dispatch) => {
+  const allCurrentUserOrders = await api.getOrdersOfUser();
   return dispatch({
     type: GET_ORDERS_OF_CURRENT_USER,
     payload: allCurrentUserOrders,

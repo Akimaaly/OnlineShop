@@ -23,7 +23,6 @@ app.use(
 );
 app.use(morgan('dev'));
 
-// app.use('/basket', basketRouter);
 app.use('/good', goodRouter);
 app.use('/order', orderRouter);
 app.use('/basket', basketRouter);

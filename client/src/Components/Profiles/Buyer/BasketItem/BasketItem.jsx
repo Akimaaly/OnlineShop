@@ -29,7 +29,9 @@ export default function BasketItem({ item, qtyChangeHandler, removeHandler }) {
       <button
         className={styles.cartitem__deleteBtn}
         onClick={() => removeHandler(item._id)}
+        style={{background: '#283655', fontWeight: 'bold', color: 'white'}}
       >
+        Удалить
         {/* <i className={styles.fasfa - trash}></i> */}
       </button>
     </div>
