@@ -6,16 +6,19 @@ const OrderModel = require('../models/order.model');
 router.route('/all').get(tokenChecker, async (req, res) => {
   const allOrdersOfCurrentSeller = await OrderModel.find({
     seller: req.user.id,
-  }).populate('buyer').populate('items');
+  })
+    .populate('buyer')
+    .populate('items');
   const allOrdersOfCurrentBuyer = await OrderModel.find({
     buyer: req.user.id,
-  }).populate('seller');
+  })
+    .populate('seller')
+    .populate('items');
 
   if (req.user.role === 'seller') {
     return res.json(allOrdersOfCurrentSeller);
   }
   return res.json(allOrdersOfCurrentBuyer);
-
 });
 
 router.route('/new').post(tokenChecker, async (req, res) => {
