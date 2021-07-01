@@ -17,7 +17,7 @@ export default function BuyerBasket() {
   const dispatch = useDispatch();
   const history = useHistory();
   const cart = useSelector((state) => state.basket);
-  const { products } = cart;
+  // const { products } = cart;
   const [basket, setBasket] = useState([]);
 
   const fetchBasketAll = async () => {
@@ -28,7 +28,6 @@ export default function BuyerBasket() {
     fetchBasketAll();
   }, []);
 
-  const [qty, setQty] = useState([]);
 
   //функция удаления товара из корзины
   const removeFromCartHandler = (id) => {
