@@ -107,7 +107,6 @@ router.post('/login', async (req, res) => {
       const currentBasket = await BasketModel.findOne({
         buyer: currentUser._id,
       });
-      console.log(currentBasket);
 
       const jwtToken = jwt.sign(
         {
@@ -138,14 +137,13 @@ router.post('/login', async (req, res) => {
         role,
         token: jwtToken,
         currentBasket: currentBasket,
-
       });
     }
     if (role === 'seller') {
       const currentSeller = await SellerModel.findOne({ email });
       const jwtToken = jwt.sign(
         {
-          id: currentSeller._id,  
+          id: currentSeller._id,
           name: currentSeller.name,
           role: role,
           email: currentSeller.email,
@@ -181,7 +179,6 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/', tokenChecker, (req, res) => {
-  console.log('========>', req.user);
   return res.status(200).json({
     id: req.user.id,
     name: req.user.name,
@@ -191,6 +188,40 @@ router.get('/', tokenChecker, (req, res) => {
     products: req.user.products,
     totalPrice: req.user.totalPrice,
     quantity: req.user.quantity,
+  });
+});
+
+router.patch('/profile', tokenChecker, async (req, res) => {
+  const { name, phone, id, type } = req.body;
+
+  if (type === 'name')
+    await Buyer.findOneAndUpdate({ _id: id }, { name: name });
+  if (type === 'phone')
+    await Buyer.findOneAndUpdate({ _id: id }, { phoneNumber: phone });
+
+  const user = await Buyer.findOne({ _id: id });
+
+  const jwtToken = jwt.sign(
+    {
+      id: user._id,
+      name: user.name,
+      role: req.user.role,
+      email: user.email,
+      phone: user.phoneNumber,
+    },
+    process.env.SESSION_KEY,
+    {
+      expiresIn: '24h',
+    }
+  );
+
+  return res.status(200).json({
+    id: user._id,
+    phone: user.phoneNumber,
+    name: user.name,
+    email: user.email,
+    role: req.user.role,
+    token: jwtToken,
   });
 });
 

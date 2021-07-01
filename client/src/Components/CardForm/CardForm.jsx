@@ -13,13 +13,16 @@ export default function CardForm() {
 
   const [qty, setQty] = useState(1);
   const currentItem = goods.find((el) => el._id === currentItemID.id);
-  console.log('QTY-----------', currentItem);
 
-  const addToCartHandler = () => {
-    console.log(qty);
-    console.log(currentItem._id);
-    dispatch(addToBasket(currentItem._id, qty));
-    history.push('/buyer/basket');
+  const addToCartHandler = async () => {
+    // on Loader
+    try {
+      dispatch(addToBasket(currentItem._id, qty)).then(() =>
+        history.push('/buyer/basket')
+      );
+      // history.push('/buyer/basket');
+    } catch (error) {}
+    //off Loader
   };
 
   return (

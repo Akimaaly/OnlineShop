@@ -8,7 +8,6 @@ export const basketAddGood = (payload) => ({
 });
 export const addToBasket = (id, qty) => async (dispatch) => {
   const response = await api.addGoodToBasket(id, { qty });
-  console.log(response);
   return dispatch(basketAddGood(response));
 };
 

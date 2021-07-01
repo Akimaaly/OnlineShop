@@ -2,10 +2,11 @@ import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
 
 export default function BasketItem({ item, qtyChangeHandler, removeHandler }) {
+  console.log(item);
   return (
     <div className={styles.cartitem}>
       <div className={styles.cartitem__image}>
-        <img src={item.image} alt={item.title} />
+        <img className={styles.image} src={item.image} alt={item.title} />
       </div>
 
       <Link to={`/goods/${item._id}`} className={styles.cartitem__name}>
@@ -29,7 +30,7 @@ export default function BasketItem({ item, qtyChangeHandler, removeHandler }) {
         className={styles.cartitem__deleteBtn}
         onClick={() => removeHandler(item._id)}
       >
-        <i className={styles.fasfa-trash}></i>
+        {/* <i className={styles.fasfa - trash}></i> */}
       </button>
     </div>
   );
