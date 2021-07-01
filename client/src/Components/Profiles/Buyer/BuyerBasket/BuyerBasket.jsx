@@ -48,8 +48,16 @@ export default function BuyerBasket() {
 
   const createNewOrder = async () => {
     const items = basket[0].products?.map((el) => el._id);
-    // console.log(items);
-    dispatch(createOrder({ orders: items, date: String(Date.now()) }));
+    let dat = new Date();
+    let options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    };
+    let dateNow = dat.toLocaleString('ru-RU', options);
+    dispatch(createOrder({ orders: items, date: dateNow }));
     history.push('/seller/orders');
 
   };
