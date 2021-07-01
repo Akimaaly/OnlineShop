@@ -32,7 +32,7 @@ router.post('/reg', async (req, res) => {
           name: user.name,
           role: role,
           email: user.email,
-          phoneNumber: user.phoneNumber,
+          phone: user.phoneNumber,
           buyer: user.id,
           products: basket.products,
           totalPrice: basket.totalPrice,
@@ -200,7 +200,6 @@ router.patch('/profile', tokenChecker, async (req, res) => {
     await Buyer.findOneAndUpdate({ _id: id }, { phoneNumber: phone });
 
   const user = await Buyer.findOne({ _id: id });
-
   const jwtToken = jwt.sign(
     {
       id: user._id,
@@ -214,7 +213,6 @@ router.patch('/profile', tokenChecker, async (req, res) => {
       expiresIn: '24h',
     }
   );
-
   return res.status(200).json({
     id: user._id,
     phone: user.phoneNumber,

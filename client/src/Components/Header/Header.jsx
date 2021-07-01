@@ -13,7 +13,7 @@ function Header2() {
   const history = useHistory();
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.basket);
-  console.log('**************', cart.products.length);
+  // console.log(cart);
   const dispatch = useDispatch();
 
   async function butHandler() {
@@ -95,14 +95,14 @@ function Header2() {
                   Вы вошли как продавец: {user.name}
                 </p>
               </Menu.Item>
-              <Menu.Item key='7'>
+              <Menu.Item key='71'>
                 <Link to='/seller/profile'>
                   <span style={{ fontSize: '18px', color: 'white' }}>
                     Личный кабинет
                   </span>
                 </Link>
               </Menu.Item>
-              <Menu.Item key='2' onClick={butHandler}>
+              <Menu.Item key='21' onClick={butHandler}>
                 <span style={{ fontSize: '18px', color: 'white' }}>Выход</span>
               </Menu.Item>
             </>
@@ -110,7 +110,7 @@ function Header2() {
           {user.role === 'user' && (
             <>
               <Menu.Item key='256'>
-                <Badge count={cart.products.length} overflowCount={5} size="default">
+                <Badge count={cart.products?.length} overflowCount={5} size="default">
                   <Link to='/buyer/basket'>
                     <ShoppingCartOutlined style={{ fontSize: '32px' }}/>
                   </Link>
