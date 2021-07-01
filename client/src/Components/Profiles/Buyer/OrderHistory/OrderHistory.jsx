@@ -1,10 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Link } from 'react-router-dom';
-import {
-  addToBasket,
-  deleteFromBasket,
-} from '../../../../Redux/actions/basket.actions';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import api from '../../../../api';
@@ -35,24 +30,6 @@ export default function OrderHistory() {
       status: false,
     },
   ]
-
-  // useEffect(() => {
-  //   fetchBasketAll();
-  // }, []);
-
-  // const removeFromCartHandler = (id) => {
-  //   dispatch(deleteFromBasket(id));
-  // };
-  // const getCartCount = () => {
-  //   return basket?.reduce((qty, item) => Number(item.quantity) + qty, 0);
-  // };
-
-  // //подсчет общего количества денег
-  // const getCartSubTotal = () => {
-  //   return basket
-  //     .reduce((price, item) => price + item.totalPrice, 0)
-  //     .toFixed(2);
-  // };
 
   return (
     <div>
