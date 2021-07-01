@@ -89,7 +89,7 @@ function Header2() {
             <>
               <Menu.Item key='32'>
                 <p style={{ fontSize: '18px', color: 'white' }}>
-                  Привет {user.name}!
+                  Вы вошли как продавец: {user.name}
                 </p>
               </Menu.Item>
               <Menu.Item key='7'>
@@ -106,6 +106,11 @@ function Header2() {
           )}
           {user.role === 'user' && (
             <>
+              <Menu.Item key='333'>
+                <p style={{ fontSize: '18px', color: 'white' }}>
+                  Привет, {user.name}!
+                </p>
+              </Menu.Item>
               <Menu.Item key='7'>
                 <Link to='/buyer/profile'>
                   <span style={{ fontSize: '18px', color: 'white' }}>

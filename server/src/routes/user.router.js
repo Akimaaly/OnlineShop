@@ -107,7 +107,6 @@ router.post('/login', async (req, res) => {
       const currentBasket = await BasketModel.findOne({
         buyer: currentUser._id,
       });
-      console.log(currentBasket);
 
       const jwtToken = jwt.sign(
         {
@@ -138,14 +137,13 @@ router.post('/login', async (req, res) => {
         role,
         token: jwtToken,
         currentBasket: currentBasket,
-
       });
     }
     if (role === 'seller') {
       const currentSeller = await SellerModel.findOne({ email });
       const jwtToken = jwt.sign(
         {
-          id: currentSeller._id,  
+          id: currentSeller._id,
           name: currentSeller.name,
           role: role,
           email: currentSeller.email,
@@ -181,7 +179,6 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/', tokenChecker, (req, res) => {
-  console.log('========>', req.user);
   return res.status(200).json({
     id: req.user.id,
     name: req.user.name,
@@ -194,7 +191,7 @@ router.get('/', tokenChecker, (req, res) => {
   });
 });
 
-router.patch('/profile', async (req, res) => {
+router.patch('/profile', tokenChecker, async (req, res) => {
   const { name, phone, id, type } = req.body;
 
   if (type === 'name')
@@ -208,7 +205,7 @@ router.patch('/profile', async (req, res) => {
     {
       id: user._id,
       name: user.name,
-      role: user.role,
+      role: req.user.role,
       email: user.email,
       phone: user.phoneNumber,
     },
@@ -223,7 +220,7 @@ router.patch('/profile', async (req, res) => {
     phone: user.phoneNumber,
     name: user.name,
     email: user.email,
-    role: user.role,
+    role: req.user.role,
     token: jwtToken,
   });
 });

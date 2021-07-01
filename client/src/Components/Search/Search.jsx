@@ -1,19 +1,19 @@
-import { Input, Space } from "antd";
+import { Input, Space } from 'antd';
 
 const { Search } = Input;
 
 const SearchFunc = () => {
   const onSearch = (value) => {
-    console.log(value);
+    // console.log(value);
   };
 
   return (
-    <Space direction="vertical">
+    <Space direction='vertical'>
       <Search
-        placeholder="input search text"
+        placeholder='input search text'
         allowClear
-        enterButton="Search"
-        size="large"
+        enterButton='Search'
+        size='large'
         onSearch={onSearch}
       />
     </Space>

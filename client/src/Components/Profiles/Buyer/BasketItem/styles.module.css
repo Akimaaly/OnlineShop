@@ -8,12 +8,17 @@
   border-radius: 2px;
   place-items: center;
   margin-bottom: 8px;
-  box-shadow: 0 1px 4px rgb(0 0 0 / 40%)
+  box-shadow: 0 1px 4px rgb(0 0 0 / 40%);
 }
 
 .cartitem__name {
   text-decoration: none;
   color: #171717;
+}
+
+.image {
+  max-width: 200px;
+  max-height: 200px;
 }
 
 .cartitem__name:hover {

@@ -1,4 +1,4 @@
-import * as actionTypes from '../constants/cartConstants';
+// import * as actionTypes from '../constants/cartConstants';
 
 import axios from 'axios';
 import api from '../../api';
@@ -9,7 +9,6 @@ export const basketAddGood = (payload) => ({
 });
 export const addToBasket = (id, qty) => async (dispatch) => {
   const response = await api.addGoodToBasket(id, { qty });
-  console.log(response);
   return dispatch(basketAddGood(response));
 };
 
@@ -24,16 +23,6 @@ export const deleteFromBasket = (id) => async (dispatch) => {
   });
 };
 
-
-
-
-
-// 
-
-
-
-
-import axios from 'axios';
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
   const { data } = await axios.get(`/api/products/${id}`);

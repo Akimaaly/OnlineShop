@@ -1,4 +1,4 @@
-import * as actionTypes from '../types';
+// import * as actionTypes from '../types';
 
 export default function basketReducer(state = { basketItems: [] }, action) {
   switch (action.type) {
