@@ -3,6 +3,7 @@ import styles from './styles.module.css';
 import BusketItem from '../BasketItem/BasketItem';
 
 import { useSelector, useDispatch } from 'react-redux';
+import NavigationProfile from '../Subnavigation/Subnavigation';
 
 import { Link } from 'react-router-dom';
 import {
@@ -51,40 +52,43 @@ export default function BuyerBasket() {
   };
 
   return (
-    <div className={styles.cartscreen}>
-      <div className={styles.cartscreen__left}>
-        <h2>Ваша корзина покупок</h2>
-        {basket.length === 0 ? (
-          <div>
-            Пока что корзина пуста
-            <Link to='/'>На главную</Link>
+    <>
+      <NavigationProfile />
+      <div className={styles.cartscreen}>
+        <div className={styles.cartscreen__left}>
+          <h2>Ваша корзина покупок</h2>
+          {basket.length === 0 ? (
+            <div>
+              Пока что корзина пуста
+              <Link to='/'>На главную</Link>
+            </div>
+          ) : (
+            <>
+              {basket.map((item) => (
+                <>
+                  {item.products.map((item) => (
+                    <BusketItem
+                      key={item._id}
+                      item={item}
+                      // qtyChangeHandler={qtyChangeHandler}
+                      removeHandler={removeFromCartHandler}
+                    />
+                  ))}
+                </>
+              ))}
+            </>
+          )}
+        </div>
+        <div className={styles.cartscreen__right}>
+          <div className={styles.cartscreen__info}>
+            <p>Общее количество товаров {getCartCount()} шт.</p>
+            <p>{getCartSubTotal()} р.</p>
           </div>
-        ) : (
-          <>
-            {basket.map((item) => (
-              <>
-                {item.products.map((item) => (
-                  <BusketItem
-                    key={item._id}
-                    item={item}
-                    // qtyChangeHandler={qtyChangeHandler}
-                    removeHandler={removeFromCartHandler}
-                  />
-                ))}
-              </>
-            ))}
-          </>
-        )}
-      </div>
-      <div className={styles.cartscreen__right}>
-        <div className={styles.cartscreen__info}>
-          <p>Общее количество товаров {getCartCount()} шт.</p>
-          <p>{getCartSubTotal()} р.</p>
-        </div>
-        <div>
-          <button>Перейти к оформлению</button>
+          <div>
+            <button>Перейти к оформлению</button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
