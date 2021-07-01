@@ -24,10 +24,11 @@ export default function BuyerBasket() {
     const response = await api.getAllBasket();
     setBasket(response);
   };
-
   useEffect(() => {
     fetchBasketAll();
   }, []);
+
+  const [qty, setQty] = useState([]);
 
   //функция удаления товара из корзины
   const removeFromCartHandler = (id) => {
@@ -45,6 +46,8 @@ export default function BuyerBasket() {
       .reduce((price, item) => price + item.totalPrice, 0)
       .toFixed(2);
   };
+
+  const qtyChangeHandler = () => {};
 
   const createNewOrder = async () => {
     const items = basket[0].products?.map((el) => el._id);
@@ -76,10 +79,11 @@ export default function BuyerBasket() {
             {basket.map((item) => (
               <>
                 {item.products.map((item) => (
+
                   <BusketItem
                     key={item._id}
                     item={item}
-                    // qtyChangeHandler={qtyChangeHandler}
+                    qtyChangeHandler={qtyChangeHandler}
                     removeHandler={removeFromCartHandler}
                   />
                 ))}

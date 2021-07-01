@@ -12,12 +12,9 @@ export const addToBasket = (id, qty) => async (dispatch) => {
 };
 
 export const deleteFromBasket = (id) => async (dispatch) => {
-  const { data } = await axios.patch(
-    `http://localhost:8080/basket/update/${id}`
-  );
-
+  const response = await api.deleteGood(id)
   dispatch({
     type: DELETE_FROM_BASKET,
-    payload: data,
+    payload: response,
   });
 };
