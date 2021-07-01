@@ -1,16 +1,13 @@
 import styles from './styles.module.css';
-
-import BusketItem from '../BasketItem/BasketItem';
+import axios from 'axios';
 
 import { useSelector, useDispatch } from 'react-redux';
-
-import { Link } from 'react-router-dom';
-import {
-  addToBasket,
-  deleteFromBasket,
-} from '../../../../Redux/actions/basket.actions';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
+
+import BasketItem from '../BasketItem/BasketItem';
+
+import { deleteFromBasket } from '../../../../Redux/actions/basket.actions';
 
 export default function BuyerBasket() {
   const dispatch = useDispatch();
@@ -58,7 +55,7 @@ export default function BuyerBasket() {
           </div>
         ) : (
           basket?.map((item) => (
-            <BusketItem
+            <BasketItem
               key={item._id}
               item={item}
               // qtyChangeHandler={qtyChangeHandler}
