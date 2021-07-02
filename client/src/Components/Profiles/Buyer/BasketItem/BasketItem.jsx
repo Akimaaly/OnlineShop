@@ -12,7 +12,7 @@ export default function BasketItem({ item, qtyChangeHandler, removeHandler }) {
         <p>{item.title}</p>
       </Link>
 
-      <p className={styles.cartitem__price}>${item.price}</p>
+      <p className={styles.cartitem__price}>{item.price} руб.</p>
 
       <select
         value={item.quality}

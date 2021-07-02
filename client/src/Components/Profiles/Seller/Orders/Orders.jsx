@@ -13,7 +13,7 @@ export default function Orders() {
   }, []);
   return (
     <div>
-      <h2 style={{ marginLeft: '30px' }}> Ваши заказы</h2>
+      <h2 style={{ marginLeft: '30px' }}>Заказы покупателей</h2>
       <ul>
         {orders.length ? (
           orders.map((order) => <OrderItem order={{...order}} />)

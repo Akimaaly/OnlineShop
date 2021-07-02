@@ -59,7 +59,7 @@ function Header2() {
         }}
       >
             <Link to='/'>
-              <span style={{ fontSize: '36px', color: 'white'}}>
+              <span style={{ fontSize: '36px', color: 'white', paddingLeft: '10px'}}>
                 Akim Express
               </span>
             </Link>

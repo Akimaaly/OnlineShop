@@ -123,7 +123,22 @@ svg {
 .ant-card-head-title {
   color: #fff;
 }
-
+.ant-btn:hover,
+.ant-btn:focus,
+.ant-btn:active {
+  color: #fff;
+  background: #283655;
+  border-color: #283655;
+}
+.ant-dropdown-menu-item:hover,
+.ant-dropdown-menu-submenu-title:hover {
+  background-color: #283655;
+}
+.ant-btn,
+.ant-btn-icon-only,
+.ant-input-search-button:hover {
+  background-color: #283655;
+}
 .circle {
   width: 5em;
   height: 5em;

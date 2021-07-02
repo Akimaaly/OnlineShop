@@ -15,6 +15,7 @@ import Info from './Components/Profiles/Seller/Info/Info';
 import Orders from './Components/Profiles/Seller/Orders/Orders';
 import SubNavigation from './Components/Profiles/Seller/SubNavigation/SubNavigation';
 import BuyerBasket from './Components/Profiles/Buyer/BuyerBasket/BuyerBasket';
+import SellerNavigation from './Components/Profiles/Seller/SellerNavigation/SellerNavigation';
 import './App.css';
 
 import BuyerProfile from './Components/Profiles/Buyer/BuyerProfile/BuyerProfile';
@@ -34,7 +35,7 @@ function App() {
             <SellerProfile />
           </Route>
           <Route exact path='/seller/good/new'>
-            <SubNavigation />
+            <SellerNavigation />
             <AddGoodForm />
           </Route>
           <Route exact path='/seller/goods'>
@@ -46,10 +47,9 @@ function App() {
             <Info />
           </Route>
           <Route exact path='/seller/orders'>
-            <SubNavigation />
+            <SellerNavigation />
             <Orders />
           </Route>
-
           <Route exact path='/cardlist/:name'>
             <Body />
           </Route>
