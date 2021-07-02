@@ -8,7 +8,6 @@ import styles from './style.module.css';
 export default function CardForm() {
   const goods = useSelector((state) => state.goods);
   const user = useSelector((state) => state.user);
-
   const currentItemID = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -17,14 +16,10 @@ export default function CardForm() {
   const currentItem = goods.find((el) => el._id === currentItemID.id);
 
   const addToCartHandler = async () => {
-    // on Loader
     try {
-      dispatch(addToBasket(currentItem._id, qty)).then(() =>
-        history.push('/buyer/basket')
-      );
+      dispatch(addToBasket(currentItem._id, qty)).then(() => history.push('/'));
       // history.push('/buyer/basket');
     } catch (error) {}
-    //off Loader
   };
 
   return (
