@@ -92,4 +92,15 @@ router.route('/update/:id').patch(tokenChecker, async (req, res) => {
   res.json(updatedBasket);
 });
 
+router.route('/clearBasket').patch(tokenChecker, async (req, res) => {
+  console.log(4324313);
+  const userId = req.user.id;
+  try {
+    await BasketModel.findOneAndDelete({ buyer: userId });
+    return res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 module.exports = router;

@@ -20,10 +20,10 @@ export const deleteFromBasket = (id) => async (dispatch) => {
   });
 };
 
-// export const deleteFromBasket = (id) => async (dispatch) => {
-//   const response = await api.deleteGood(id);
-//   dispatch({
-//     type: DELETE_FROM_BASKET,
-//     payload: response,
-//   });
-// };
+export const clearBasket = () => async (dispatch) => {
+  const response = await api.clearBasket();
+  console.log(response.status);
+  dispatch({
+    type: CLEAR_BASKET,
+  });
+};

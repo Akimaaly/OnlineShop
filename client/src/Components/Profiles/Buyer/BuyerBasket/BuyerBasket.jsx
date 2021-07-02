@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import {
   addToBasket,
   deleteFromBasket,
+  clearBasket,
 } from '../../../../Redux/actions/basket.actions';
 import { createOrder } from '../../../../Redux/actions/order.actions';
 import { useEffect, useState } from 'react';
@@ -61,8 +62,8 @@ export default function BuyerBasket() {
     let dateNow = dat.toLocaleString('ru-RU', options);
 
     dispatch(createOrder({ orders: items, date: dateNow }));
-    
-    history.push('/seller/orders');
+    // dispatch(clearBasket());
+    history.push('/buyer/history');
   };
 
   return (

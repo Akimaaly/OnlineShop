@@ -13,3 +13,6 @@ export const getAllBasket = () =>
   server.get('/basket/all').then((data) => {
     return data.data;
   });
+
+export const clearBasket = () =>
+  server.patch('/clearBasket').then((data) => console.log('-------', data));
