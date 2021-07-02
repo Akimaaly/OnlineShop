@@ -28,7 +28,14 @@ export default function GoodsForSale() {
         {goodsOfCurrentSeller.length === 0 ? (
           <p>У вас пока нет товаров!</p>
         ) : (
-          <ul>
+          <ul
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'space-between',
+              margin: '-10px',
+            }}
+          >
             {goodsOfCurrentSeller.map((good) => (
               <GoodItem
                 key={good._id}

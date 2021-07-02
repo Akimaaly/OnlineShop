@@ -4,18 +4,16 @@ import {
   EllipsisOutlined,
   DeleteOutlined,
 } from '@ant-design/icons';
+import styles from './styles.module.css';
 
 const { Meta } = Card;
-export default function GoodItem({image, _id, deletehandler, title }) {
+export default function GoodItem({ image, _id, deletehandler, title }) {
   return (
     <Card
-      style={{ width: 300 }}
+      className={styles.cardItem}
       cover={<img alt='example' src={image} />}
       actions={[
-        <DeleteOutlined
-          key='delete'
-          onClick={() => deletehandler(_id)}
-        />,
+        <DeleteOutlined key='delete' onClick={() => deletehandler(_id)} />,
         <EditOutlined key='edit' />,
       ]}
     >
@@ -27,5 +25,5 @@ export default function GoodItem({image, _id, deletehandler, title }) {
         description='This is the description'
       />
     </Card>
-  )
+  );
 }

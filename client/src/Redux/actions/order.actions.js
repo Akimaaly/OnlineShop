@@ -27,6 +27,6 @@ export const changeStatusOfCurrentOrder = (id) => async (dispatch) => {
   const updatedOrder = await api.changeStatusOfOrder(id);
   return dispatch({
     type: CHANGE_STATUS_OF_ORDER,
-    payload: updatedOrder,
+    payload: {updatedOrder, id},
   });
 };

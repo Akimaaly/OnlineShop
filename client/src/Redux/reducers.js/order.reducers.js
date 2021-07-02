@@ -23,7 +23,9 @@ export default function orderReducer(state = [], { type, payload }) {
       return newOrdersState;
     }
     case CHANGE_STATUS_OF_ORDER: {
-      return [...state, payload];
+      console.log(payload);
+      const newState = state.map(el=> el._id === payload.id ? payload.updatedOrder : el);
+      return newState
     }
 
     default:
