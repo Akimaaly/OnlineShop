@@ -23,12 +23,15 @@ router.route('/:id').patch(tokenChecker, async (req, res) => {
     return arrOfIds;
   };
   async function fillingArray(newArr) {
+    console.log(123);
     const arr = [];
 
     for (let i = 0; i < newArr.length; ++i) {
+      console.log(123);
       const arraaay = await GoodModel.findById(newArr[i]);
       arr.push(arraaay);
     }
+    console.log(arr);
     return arr;
   }
   //
@@ -37,8 +40,9 @@ router.route('/:id').patch(tokenChecker, async (req, res) => {
   //
 
   const arr = pushGoodsId(req.body.qty, req.params.id);
+
   const currentBasket = await BasketModel.findOne({ buyer: req.user.id });
-  const newArr = [...arr, ...currentBasket.products];
+  const newArr = [...arr, ...currentBasket?.products];
   const a = await fillingArray(newArr);
   const updatedBasket = await BasketModel.findOneAndUpdate(
     { buyer: req.user.id },

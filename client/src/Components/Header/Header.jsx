@@ -1,7 +1,6 @@
-
 import { Layout, Menu, Badge } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import api from '../../api';
@@ -14,10 +13,7 @@ function Header2() {
   const history = useHistory();
   const user = useSelector((state) => state.user);
   const cart = useSelector((state) => state.basket);
-  console.log(cart);
-  console.log(cart[0]);
-  const [basket, setBasket] = useState ([])
-
+  // console.log(cart);
   const dispatch = useDispatch();
 
   async function butHandler() {
@@ -38,13 +34,13 @@ function Header2() {
   useEffect(() => {
     getUser();
   }, []);
-  const fetchBasketAll = async () => {
-    const response = await api.getAllBasket();
-    setBasket(response);
-  };
-  useEffect(() => {
-    fetchBasketAll();
-  }, []);
+  // const fetchBasketAll = async () => {
+  //   const response = await api.getAllBasket();
+  //   setBasket(response);
+  // };
+  // useEffect(() => {
+  //   fetchBasketAll();
+  // }, []);
 
   useEffect(() => {
     historyServer.listen(({ location, action }) => {
@@ -122,7 +118,7 @@ function Header2() {
           {user.role === 'user' && (
             <>
               <Menu.Item key='256'>
-                <Badge count={basket.products?.length} overflowCount={5} size="default">
+                <Badge count={cart.products?.length} overflowCount={5} size="default">
                   <Link to='/buyer/basket'>
                     <ShoppingCartOutlined style={{ fontSize: '32px' }}/>
                   </Link>

@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { tokenChecker } = require('../middleware/protect');
+const { findOne } = require('../models/good.model');
 const GoodModel = require('../models/good.model');
 const OrderModel = require('../models/order.model');
 
@@ -31,8 +32,20 @@ router.route('/new').post(tokenChecker, async (req, res) => {
     items: req.body.orders,
   });
 
-  // res.json(newOrder);
-  console.log(newOrder);
+  res.json(newOrder);
+});
+
+router.route('/status/:id').patch(async (req, res) => {
+  const currentOrder = await OrderModel.findById(req.params.id);
+  const updatedStatus = await OrderModel.findByIdAndUpdate(
+    req.params.id,
+    {
+      status: !currentOrder.status,
+    },
+    { new: true }
+  );
+  console.log(updatedStatus);
+  res.json(updatedStatus);
 });
 
 module.exports = router;

@@ -1,6 +1,6 @@
 import server from '../server';
 
-// export const getBasketItem = (id) =>
+// export const changeStatusOfItem = (id) =>
 //   server.get(`/good/${id}`).then((data) => data.data);
 
 export const deleteGood = (id) =>

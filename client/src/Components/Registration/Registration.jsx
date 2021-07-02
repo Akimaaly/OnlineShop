@@ -30,19 +30,6 @@ const validateMessages = {
   },
 };
 
-const prefixSelector = (
-  <Form.Item name='prefix' noStyle>
-    <Select
-      style={{
-        width: 70,
-      }}
-    >
-      {/* <Option value='8'>8</Option> */}
-      <Option value='+7'>+7</Option>
-    </Select>
-  </Form.Item>
-);
-
 const Registration = () => {
   const history = useHistory();
   const [role, setRole] = useState('user');
@@ -55,12 +42,12 @@ const Registration = () => {
 
   const handleSubmit = async (values) => {
     const { email, name } = values.user;
-    const { prefix, password, phone } = values;
+    const { password, phone } = values;
     const body = {
       name,
       email,
       password,
-      phone: prefix + phone,
+      phone: phone,
       role,
     };
     // console.log(body);
@@ -68,6 +55,7 @@ const Registration = () => {
     try {
       const response = await api.postReg(body);
       Cookie.set('key', response.token);
+      console.log(response);
       dispatch(getUserInfo(response));
       history.push('/');
     } catch (error) {}
@@ -165,9 +153,11 @@ const Registration = () => {
         ]}
       >
         <Input
-          addonBefore={prefixSelector}
+          type='tel'
+          name='tel'
           style={{
             width: '100%',
+            type: 'tel',
           }}
         />
       </Form.Item>
@@ -187,7 +177,7 @@ const Registration = () => {
           name='seller'
           onClick={() => handleClick('seller')}
           checked={role === 'seller'}
-          onChange={() => { }}
+          onChange={() => {}}
           onChange={onChange}
           style={{ color: 'white' }}
         >

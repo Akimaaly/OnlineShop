@@ -3,6 +3,7 @@ import {
   GET_ORDERS_OF_CURRENT_USER,
   CREATE_ORDER,
   DELETE_ORDER,
+  CHANGE_STATUS_OF_ORDER
 } from '../order.types';
 
 export default function orderReducer(state = [], { type, payload }) {
@@ -20,6 +21,9 @@ export default function orderReducer(state = [], { type, payload }) {
         return order._id !== id;
       });
       return newOrdersState;
+    }
+    case CHANGE_STATUS_OF_ORDER: {
+      return [...state, payload];
     }
 
     default:

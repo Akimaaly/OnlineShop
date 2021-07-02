@@ -61,6 +61,7 @@ export default function BuyerBasket() {
     let dateNow = dat.toLocaleString('ru-RU', options);
 
     dispatch(createOrder({ orders: items, date: dateNow }));
+    
     history.push('/seller/orders');
   };
 
