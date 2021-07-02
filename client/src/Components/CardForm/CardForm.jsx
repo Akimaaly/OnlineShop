@@ -7,6 +7,8 @@ import styles from './style.module.css';
 
 export default function CardForm() {
   const goods = useSelector((state) => state.goods);
+  const user = useSelector((state) => state.user);
+
   const currentItemID = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -63,9 +65,17 @@ export default function CardForm() {
               </select>
             </p>
             <p>
-              <button className={styles.formBtn} type='button' onClick={addToCartHandler}>
-                Добавить в корзину
-              </button>
+              {user.role === 'user' ? (
+                <button
+                  className={styles.formBtn}
+                  type='button'
+                  onClick={addToCartHandler}
+                >
+                  Добавить в корзину
+                </button>
+              ) : (
+                <p></p>
+              )}
             </p>
           </div>
         </div>

@@ -1,27 +1,47 @@
 import styles from './styles.module.css';
-import axios from 'axios'
-
+import axios from 'axios';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
-import BasketItem from '../BasketItem/BasketItem';
-
-import {deleteFromBasket, initBasket, updateInBasket} from '../../../../Redux/actions/basket.actions';
+import {
+  addToBasket,
+  basketAddGood,
+  deleteFromBasket,
+  clearBasket,
+} from '../../../../Redux/actions/basket.actions';
+import { createOrder } from '../../../../Redux/actions/order.actions';
+import { useEffect, useState } from 'react';
+import api from '../../../../api';
 
 export default function BuyerBasket() {
   const dispatch = useDispatch();
-  const basket = useSelector((state) => state.basket.basketItems);
+  const history = useHistory();
+  // const cart = useSelector((state) => state.basket);
 
-  useEffect(() => {
-    dispatch(initBasket())
-  }, [dispatch]);
+  // const { products } = cart;
+  // const [basket, setBasket] = useState([]);
 
-  // функция изменения количества товаров
-  const qtyChangeHandler = (id, qty) => {
-    dispatch(updateInBasket(id, qty));
+  const basket = useSelector((store) => store.basket);
+
+  const fetchBasketAll = async () => {
+    const response = await api.getAllBasket();
+    const data = {
+      ...response[0],
+      products: response[0].products.reduce((acum, item) => {
+        const index = acum.findIndex((el) => el._id === item._id);
+        if (index === -1) acum = [...acum, { ...item, count: 1 }];
+        else acum[index] = { ...acum[index], count: acum[index].count + 1 };
+        return acum;
+      }, []),
+    };
+    // console.log(data);
+    dispatch(basketAddGood(data));
+    // setBasket([data]);
   };
+  useEffect(() => {
+    dispatch(initBasket());
+  }, [dispatch]);
 
   //функция удаления товара из корзины
   const removeFromCartHandler = (id) => {
@@ -30,12 +50,38 @@ export default function BuyerBasket() {
 
   // функция для подсчета количества товаров в корзине
   const getCartCount = () => {
-    return Number(basket.quantity)
+    return basket?.products?.reduce(
+      (qty, item) => Number(item.quantity) + qty,
+      0
+    );
   };
 
   //подсчет общего количества денег
-  const getCartSubTotal = () => {
-    return Number(basket.totalPrice)
+  // const getCartSubTotal = () => {
+  //   return basket?.products
+  //     ?.reduce((price, item) => price + item.totalPrice, 0)
+  //     .toFixed(2);
+  // };
+
+  const qtyChangeHandler = () => {};
+
+  const createNewOrder = async () => {
+    const items = basket.products?.map((el) => el._id);
+    let dat = new Date();
+    let options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    };
+    let dateNow = dat.toLocaleString('ru-RU', options);
+
+    dispatch(createOrder({ orders: items, date: dateNow }));
+    // dispatch(clearBasket());
+    history.push('/buyer/history');
+
+    // history.push('/seller/orders');
   };
 
   return (
@@ -48,14 +94,24 @@ export default function BuyerBasket() {
             <Link to='/'>На главную</Link>
           </div>
         ) : (
-          basket.products.map((item) => (
-            <BasketItem
-              key={item._id}
-              item={item}
-              qtyChangeHandler={qtyChangeHandler}
-              removeHandler={removeFromCartHandler}
-            />
-          ))
+          <>
+            {
+              basket.products && (
+                // basket.map((item) => (
+                <>
+                  {basket.products.map((item) => (
+                    <BusketItem
+                      key={item._id}
+                      item={item}
+                      qtyChangeHandler={qtyChangeHandler}
+                      removeHandler={removeFromCartHandler}
+                    />
+                  ))}
+                </>
+              )
+              // ))
+            }
+          </>
         )}
       </div>
       <div className={styles.cartscreen__right}>
@@ -64,7 +120,12 @@ export default function BuyerBasket() {
           <p>₽ {getCartSubTotal()}</p>
         </div>
         <div>
-          <button style={{background: '#283655', fontWeight: 'bold'}}>Перейти к оформлению</button>
+          <button
+            onClick={createNewOrder}
+            style={{ background: '#283655', fontWeight: 'bold' }}
+          >
+            Перейти к оформлению
+          </button>
         </div>
       </div>
     </div>

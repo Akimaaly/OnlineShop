@@ -1,17 +1,19 @@
-import { PageHeader, Button, Layout, Menu } from 'antd';
+import { Layout, Menu, Badge } from 'antd';
+import { ShoppingCartOutlined } from '@ant-design/icons';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import api from '../../api';
 import { historyServer } from '../../api/server';
 import { deleteUserInfo, getUserInfo } from '../../Redux/actions/user.action';
-import styles from './Header.modules.css';
 
 const { Header } = Layout;
 
 function Header2() {
   const history = useHistory();
   const user = useSelector((state) => state.user);
+  const cart = useSelector((state) => state.basket);
+  // console.log(cart);
   const dispatch = useDispatch();
 
   async function butHandler() {
@@ -32,6 +34,13 @@ function Header2() {
   useEffect(() => {
     getUser();
   }, []);
+  // const fetchBasketAll = async () => {
+  //   const response = await api.getAllBasket();
+  //   setBasket(response);
+  // };
+  // useEffect(() => {
+  //   fetchBasketAll();
+  // }, []);
 
   useEffect(() => {
     historyServer.listen(({ location, action }) => {
@@ -48,24 +57,25 @@ function Header2() {
           top: 0,
           left: 0,
           zIndex: 1,
-          width: '120%',
+          width: '100%',
           height: '70px',
+          padding: 0,
           background: '#283655',
+          display: 'flex',
+          justifyContent: 'space-between'
         }}
       >
+            <Link to='/'>
+              <span style={{ fontSize: '36px', color: 'white', paddingLeft: '10px'}}>
+                Akim Express
+              </span>
+            </Link>
         <Menu
           theme='dark'
           mode='horizontal'
           defaultSelectedKeys={['2']}
-          style={{ height: '70px', marginLeft: '-50px', background: '#283655' }}
+          style={{ height: '70px', background: '#283655', minWidth: '700px', display: 'flex', justifyContent: 'flex-end'}}
         >
-          <Menu.Item key='34'>
-            <Link to='/'>
-              <span style={{ fontSize: '36px', color: 'white' }}>
-                Akim Express
-              </span>
-            </Link>
-          </Menu.Item>
           {!user.role && (
             <>
               <Menu.Item key='1'>
@@ -85,27 +95,35 @@ function Header2() {
             </>
           )}
 
-          {user.role === 'seller' && (
+
+{user.role === 'seller' && (
             <>
               <Menu.Item key='32'>
                 <p style={{ fontSize: '18px', color: 'white' }}>
                   Вы вошли как продавец: {user.name}
                 </p>
               </Menu.Item>
-              <Menu.Item key='7'>
+              <Menu.Item key='71'>
                 <Link to='/seller/profile'>
                   <span style={{ fontSize: '18px', color: 'white' }}>
                     Личный кабинет
                   </span>
                 </Link>
               </Menu.Item>
-              <Menu.Item key='2' onClick={butHandler}>
+              <Menu.Item key='21' onClick={butHandler}>
                 <span style={{ fontSize: '18px', color: 'white' }}>Выход</span>
               </Menu.Item>
             </>
           )}
           {user.role === 'user' && (
             <>
+              <Menu.Item key='256'>
+                <Badge count={cart.products?.length} overflowCount={5} size="default">
+                  <Link to='/buyer/basket'>
+                    <ShoppingCartOutlined style={{ fontSize: '32px' }}/>
+                  </Link>
+                </Badge>
+              </Menu.Item>
               <Menu.Item key='333'>
                 <p style={{ fontSize: '18px', color: 'white' }}>
                   Привет, {user.name}!

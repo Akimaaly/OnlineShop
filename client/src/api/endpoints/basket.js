@@ -1,10 +1,10 @@
 import server from '../server';
 
-// export const getBasketItem = (id) =>
+// export const changeStatusOfItem = (id) =>
 //   server.get(`/good/${id}`).then((data) => data.data);
 
-// export const postAddGood = (body) =>
-//   server.post(`/good/new`, body).then((data) => data.data);
+export const deleteGood = (id) =>
+  server.patch(`/basket/update/${id}`).then((data) => data.data);
 
 export const addGoodToBasket = (id, body) =>
   server.patch(`/basket/${id}`, body).then((data) => data.data);

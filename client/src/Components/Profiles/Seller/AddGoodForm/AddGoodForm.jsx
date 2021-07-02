@@ -150,7 +150,7 @@ const AddGoodForm = () => {
   };
 
   return (
-    <Form style={{paddingTop: '100px'}}
+    <Form style={{paddingTop: '100px', width: '80%'}}
       {...formItemLayout}
       encType='multipart/form-data'
       form={form}
@@ -194,6 +194,9 @@ const AddGoodForm = () => {
         <Upload>
           <Button icon={<UploadOutlined />}>Выберите файлы</Button>
         </Upload>
+      </Form.Item>
+      <Form.Item rows={4} name='image' label='URL-картинки(TEST)'>
+        <TextArea />
       </Form.Item>
       <Form.Item {...tailFormItemLayout}>
         <Button type='primary' htmlType='submit'>

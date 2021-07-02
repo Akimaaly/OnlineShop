@@ -9,7 +9,7 @@ import {
 } from '@ant-design/icons';
 import { black } from 'color-name';
 
-function NavigationProfile() {
+function SellerNavigation() {
   return (
     <Row align='middle' className={styles.navdiv}>
       <Col span={24}>
@@ -21,15 +21,19 @@ function NavigationProfile() {
             </Typography.Link>
             |
             <Typography.Link>
-              <Link to='/buyer/profile'>Профиль</Link>
+              <Link to='/seller/profile'>Профиль</Link>
             </Typography.Link>
             <PlusOutlined className={styles.icons} />|
             <Typography.Link>
-              <Link to='/buyer/basket'>Корзина товаров</Link>
+              <Link to='/seller/good/new'>Добавить товар</Link>
             </Typography.Link>
             <ShoppingOutlined className={styles.icons} />|
             <Typography.Link>
-              <Link to='/buyer/history'>История покупок</Link>
+              <Link to='/seller/goods'>Товары</Link>
+            </Typography.Link>
+            <ShoppingOutlined className={styles.icons} />|
+            <Typography.Link>
+              <Link to='/seller/orders'>Заказы покупателей</Link>
             </Typography.Link>
             <UserOutlined className={styles.icons} />
           </Space>
@@ -39,4 +43,4 @@ function NavigationProfile() {
   );
 }
 
-export default NavigationProfile;
+export default SellerNavigation;

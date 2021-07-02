@@ -1,7 +1,5 @@
-import styles from './styles.module.css'
-export default function OrderItem({ order }) {
-
-  
+import styles from './styles.module.css';
+export default function OrderItem({ order, changeStatus }) {
   return (
     <div className={styles.cartitem}>
       <h5><span style={{ fontWeight: 'bold' }}>Заказ №  </span>{order._id.slice()}</h5>
