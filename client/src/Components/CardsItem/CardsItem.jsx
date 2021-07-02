@@ -18,9 +18,9 @@ function CardsItem({ title, price, image }) {
             src={image}
           />
         }
-          actions={[
-            <ShoppingCartOutlined key='addToCard'/>
-          ]}
+          // actions={[
+          //   <ShoppingCartOutlined key='addToCard'/>
+          // ]}
       >
         <Meta title={title} description={`${price} руб.`} />
       </Card>

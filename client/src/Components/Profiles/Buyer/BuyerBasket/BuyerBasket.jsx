@@ -44,7 +44,6 @@ export default function BuyerBasket() {
     fetchBasketAll();
   }, []);
 
-
   //функция удаления товара из корзины
   const removeFromCartHandler = (id) => {
     dispatch(deleteFromBasket(id));
@@ -52,10 +51,8 @@ export default function BuyerBasket() {
 
   // функция для подсчета количества товаров в корзине
   const getCartCount = () => {
-    return basket?.products?.reduce(
-      (qty, item) => Number(item.quantity) + qty,
-      0
-    );
+    console.log(basket);
+    return basket?.products?.reduce((qty, item) => Number(item.count) + qty, 0);
   };
 
   //подсчет общего количества денег

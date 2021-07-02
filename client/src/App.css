@@ -173,3 +173,7 @@ a.ant-typography,
   width: 128px;
   height: 128px;
 }
+.salerProfile-info-key {
+  display: inline-block;
+  min-width: 230px;
+}

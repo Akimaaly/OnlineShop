@@ -38,7 +38,7 @@ router
   .route('/:id')
   .get(tokenChecker, async (req, res) => {
     try {
-      const allGoods = await GoodModel.find({ seller: req.params.id });
+      const allGoods = await GoodModel.find({ seller: req.params.id }).sort([['updatedAt', -1]]);
       res.json(allGoods);
     } catch (error) {
       console.log(error);
