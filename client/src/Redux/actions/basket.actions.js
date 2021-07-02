@@ -14,15 +14,7 @@ export const addToBasket = (id, qty) => async (dispatch) => {
 
 export const deleteFromBasket = (id) => async (dispatch) => {
   const response = await api.deleteGood(id);
-  dispatch({
-    type: DELETE_FROM_BASKET,
-    payload: response,
-  });
-};
-
-export const deleteFromBasket = (id) => async (dispatch) => {
-  const response = await api.deleteGood(id);
-  dispatch({
+  return dispatch({
     type: DELETE_FROM_BASKET,
     payload: response,
   });
