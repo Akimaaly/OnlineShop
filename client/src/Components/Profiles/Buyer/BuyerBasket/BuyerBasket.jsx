@@ -68,7 +68,7 @@ export default function BuyerBasket() {
   const qtyChangeHandler = () => {};
 
   const createNewOrder = async () => {
-    const items = basket[0].products?.map((el) => el._id);
+    const items = basket.products?.map((el) => el._id);
     let dat = new Date();
     let options = {
       year: 'numeric',
