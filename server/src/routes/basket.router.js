@@ -23,15 +23,15 @@ router.route('/:id').patch(tokenChecker, async (req, res) => {
     return arrOfIds;
   };
   async function fillingArray(newArr) {
-    console.log(123);
+    // console.log(123);
     const arr = [];
 
     for (let i = 0; i < newArr.length; ++i) {
-      console.log(123);
+      // console.log(123);
       const arraaay = await GoodModel.findById(newArr[i]);
       arr.push(arraaay);
     }
-    console.log(arr);
+    // console.log(arr);
     return arr;
   }
   //
@@ -62,8 +62,8 @@ router.route('/:id').patch(tokenChecker, async (req, res) => {
 //сюда приходит id-товара который надо удалить из корзины
 router.route('/update/:id').patch(tokenChecker, async (req, res) => {
   const currentBasket = await BasketModel.findOne({ buyer: req.user.id });
-  console.log('currentBasket', currentBasket.products);
-  console.log(typeof req.params.id);
+  // console.log(‘currentBasket’, currentBasket.products);
+  // console.log(typeof req.params.id);
   async function func(arr) {
     const newArr = [];
     for (let i = 0; i < arr.length; i++) {
@@ -75,32 +75,26 @@ router.route('/update/:id').patch(tokenChecker, async (req, res) => {
     }
     return newArr;
   }
-
+  async function fillingArray(newArr) {
+    const arr = [];
+    for (let i = 0; i < newArr.length; ++i) {
+      const arraaay = await GoodModel.findById(newArr[i]);
+      arr.push(arraaay);
+    }
+    return arr;
+  }
   const arr = await func(currentBasket.products);
-  console.log('arr', arr);
-
+  const a = await fillingArray(arr);
   const updatedBasket = await BasketModel.findOneAndUpdate(
     { buyer: req.user.id },
     {
-      products: arr,
+      products: a,
       quantity: arr.length,
-      totalPrice: arr.reduce((acc, el) => acc + Number(el), 0),
+      totalPrice: a.reduce((acc, el) => acc + Number(el.price), 0),
     },
     { new: true }
-  );
-
+  ).populate('products');
   res.json(updatedBasket);
-});
-
-router.route('/clearBasket').patch(tokenChecker, async (req, res) => {
-  console.log(4324313);
-  const userId = req.user.id;
-  try {
-    await BasketModel.findOneAndDelete({ buyer: userId });
-    return res.sendStatus(200);
-  } catch (err) {
-    console.log(err);
-  }
 });
 
 module.exports = router;

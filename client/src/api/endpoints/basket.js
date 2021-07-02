@@ -4,7 +4,7 @@ import server from '../server';
 //   server.get(`/good/${id}`).then((data) => data.data);
 
 export const deleteGood = (id) =>
-  server.patch(`/basket/update/${id}`).then((data) => console.log(data));
+  server.patch(`/basket/update/${id}`).then((data) => data.data);
 
 export const addGoodToBasket = (id, body) =>
   server.patch(`/basket/${id}`, body).then((data) => data.data);

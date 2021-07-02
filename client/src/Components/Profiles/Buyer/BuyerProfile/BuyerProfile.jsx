@@ -2,12 +2,19 @@ import React from 'react';
 import Webcam from 'react-webcam';
 import { Space, Card, Button, Row, Col, Input, Tooltip } from 'antd';
 import ModalEdit from '../../../BuyerProfile/ModalEdit';
-import { EditOutlined, PercentageOutlined } from '@ant-design/icons';
+import {
+  EditOutlined,
+  InstagramOutlined,
+  WechatOutlined,
+  YoutubeOutlined,
+  TwitterOutlined,
+} from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import NavigationProfile from '../Subnavigation/Subnavigation';
 import { useState } from 'react';
 import styles from './styles.module.css';
 import Avatar from './Avatar';
+import Contact from './Contact';
 
 export default function BuyerProfile() {
   const user = useSelector((state) => state.user);
@@ -42,23 +49,68 @@ export default function BuyerProfile() {
                 width: '100%',
               }}
             >
-              <span>Логин:</span>
-              <span>{user.name}</span>
-              <span>
-                <EditOutlined onClick={() => handleOpen('name')} />
-              </span>
+              <div
+                className='container-info'
+                style={{ display: 'flex', justifyContent: 'flex-start' }}
+              >
+                <span
+                  style={{
+                    display: 'inline-block',
+                    minWidth: '70px',
+                    marginRight: '10px',
+                  }}
+                >
+                  Логин:
+                </span>
+                <span>{user.name}</span>
+              </div>
+              <div>
+                <EditOutlined
+                  style={{ fontSize: '18px' }}
+                  onClick={() => handleOpen('name')}
+                />
+              </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span>Email:</span>
-              <span>{user.email}</span>
+              <div
+                className='container-info'
+                style={{ display: 'flex', justifyContent: 'flex-start' }}
+              >
+                <span
+                  style={{
+                    display: 'inline-block',
+                    minWidth: '70px',
+                    marginRight: '10px',
+                  }}
+                >
+                  Email:
+                </span>
+                <span>{user.email}</span>
+              </div>
               <span></span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <span>Телефон:</span>
-              <span>{user.phone}</span>
-              <span>
-                <EditOutlined onClick={() => handleOpen('phone')} />
-              </span>
+              <div
+                className='container-info'
+                style={{ display: 'flex', justifyContent: 'flex-start' }}
+              >
+                <span
+                  style={{
+                    display: 'inline-block',
+                    minWidth: '70px',
+                    marginRight: '10px',
+                  }}
+                >
+                  Телефон:
+                </span>
+                <span>{user.phone}</span>
+              </div>
+              <div>
+                <EditOutlined
+                  style={{ fontSize: '18px' }}
+                  onClick={() => handleOpen('phone')}
+                />
+              </div>
             </div>
           </Card>
         </div>
@@ -82,7 +134,7 @@ export default function BuyerProfile() {
               <div className='circle'>
                 <h5>12%</h5>
               </div>
-              <p className='buyoutPrice'>Сумма выкупа: </p>
+              <p className='buyoutPrice'>Сумма выкупа: 0 рублей </p>
             </div>
           </Card>
         </div>
@@ -102,14 +154,18 @@ export default function BuyerProfile() {
                 width: '100%',
               }}
             >
-              <span>Сохраненный адрес: </span>
+              <span>
+                Сохраненный адрес:
+                <br />
+                Москва, ул.Большая Ордынка, 64{' '}
+              </span>
             </div>
           </Card>
         </div>
         <div className={styles.profileCardsUser}>
           <Card
             bordered={false}
-            title={'Ваша скидка:'}
+            title={'Обратная связь:'}
             type
             bordered={false}
             style={{ backgroundColor: '#4d648d', color: 'white' }}
@@ -122,7 +178,10 @@ export default function BuyerProfile() {
                 width: '100%',
               }}
             >
-              <span>Сумма выкупа: </span>
+              <InstagramOutlined style={{ fontSize: '42px' }} />
+              <WechatOutlined style={{ fontSize: '42px' }} />
+              <TwitterOutlined style={{ fontSize: '42px' }} />
+              <YoutubeOutlined style={{ fontSize: '42px' }} />
             </div>
           </Card>
         </div>

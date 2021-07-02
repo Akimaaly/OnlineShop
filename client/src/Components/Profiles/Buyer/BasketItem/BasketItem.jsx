@@ -15,11 +15,11 @@ export default function BasketItem({ item, qtyChangeHandler, removeHandler }) {
       <p className={styles.cartitem__price}>{item.price} руб.</p>
 
       <select
-        value={item.quality}
+        value={item.count}
         onChange={(e) => qtyChangeHandler(item._id, e.target.value)}
         className={styles.cartItem__select}
       >
-        {[...Array(item.quantity).keys()].map((x) => (
+        {[...Array(item.count).keys()].map((x) => (
           <option key={x + 1} value={x + 1}>
             {x + 1}
           </option>
@@ -28,7 +28,7 @@ export default function BasketItem({ item, qtyChangeHandler, removeHandler }) {
       <button
         className={styles.cartitem__deleteBtn}
         onClick={() => removeHandler(item._id)}
-        style={{background: '#283655', fontWeight: 'bold', color: 'white'}}
+        style={{ background: '#283655', fontWeight: 'bold', color: 'white' }}
       >
         Удалить
         {/* <i className={styles.fasfa - trash}></i> */}
