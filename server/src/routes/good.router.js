@@ -14,7 +14,7 @@ router.route('/all').get(async (req, res) => {
 
 /*добавляем новый товар*/
 router.route('/new').post(tokenChecker, async (req, res) => {
-  const { title, longDescription, articul, residence, quantity, price } =
+  const { title, longDescription, articul, residence, quantity, price, image } =
     req.body;
 
   // в каждую ручку на беке нужно доварить tokenChecker он записывает все данные ures в req.user
@@ -27,8 +27,9 @@ router.route('/new').post(tokenChecker, async (req, res) => {
     quantity: Number(quantity),
     price: Number(price),
     seller: req.user.id,
+    image,
   });
-
+  
   res.json(newGood);
 });
 

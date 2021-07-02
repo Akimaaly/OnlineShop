@@ -195,6 +195,9 @@ const AddGoodForm = () => {
           <Button icon={<UploadOutlined />}>Выберите файлы</Button>
         </Upload>
       </Form.Item>
+      <Form.Item rows={4} name='image' label='URL-картинки(TEST)'>
+        <TextArea />
+      </Form.Item>
       <Form.Item {...tailFormItemLayout}>
         <Button type='primary' htmlType='submit'>
           Добавить товар

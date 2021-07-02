@@ -11,7 +11,8 @@ const goodSchema = Schema({
     type: String,
     default:
       // 'https://pix10.agoda.net/geo/country/156/3_156_kyrgyzstan_02.jpg?s=1920x',
-      'https://kitobz.com/image/cache/catalog/easyphoto/7617/screenshot-58-jpg-1-1600x900-product_popup.jpg'
+      // 'https://kitobz.com/image/cache/catalog/easyphoto/7617/screenshot-58-jpg-1-1600x900-product_popup.jpg'
+      'https://images-na.ssl-images-amazon.com/images/I/71Y67UzW5GL.jpg',
   },
   longDescription: {
     type: String,
