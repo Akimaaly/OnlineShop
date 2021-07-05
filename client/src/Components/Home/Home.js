@@ -11,7 +11,7 @@ const Home = () => {
     <div className='container'>
       <div className={styles.wrapper}>
         <div className={styles.typing} onClick={toLogin}>
-          Вы в "Akim Express"! "Akim Express" - интернет-дукөнунө кош келиңиз!!! Катталсаңыз, кубанычта болобуз!
+          Вы в "Akim Express"! Авторизуйтесь, или зарегистрируйтесь!
         </div>
       </div>
     </div>
