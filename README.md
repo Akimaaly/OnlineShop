@@ -60,7 +60,7 @@ Yarn start
 - [Акимаалы Аманкулов](https://github.com/Akimaaly)
 - [Калинников Михаил](https://github.com/MikhailKalinnikov)
 - [Яночкин Виктор](https://github.com/yanochkinvic)
-- [ВоскобойниковТимур](https://github.com/TimurVs)
+- [Воскобойников Тимур](https://github.com/TimurVs)
 
 
 
