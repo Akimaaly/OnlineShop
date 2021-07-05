@@ -22,7 +22,6 @@ export default function GoodItem({ image, _id, deletehandler, title }) {
           <Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />
         }
         title={title}
-        description='This is the description'
       />
     </Card>
   );
