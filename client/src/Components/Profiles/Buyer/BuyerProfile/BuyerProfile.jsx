@@ -156,7 +156,7 @@ export default function BuyerProfile() {
               <span style={{ marginBottom: '5px' }}>
                 Адрес доставки:
                 <br />
-                г. Москва, ул. Дружбы, 6 корпус 1, Москва, 115127
+                г. Москва
               </span>
             </div>
           </Card>
