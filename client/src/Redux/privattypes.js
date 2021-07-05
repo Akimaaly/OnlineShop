@@ -1,0 +1,3 @@
+export const GET_INFO_OF_USER = 'GET_INFO_OF_USER';
+export const DELETE_INFO_OF_USER = 'DELETE_INFO_OF_USER';
+export const EDIT_INFO_OF_USER = 'EDIT_INFO_OF_USER';

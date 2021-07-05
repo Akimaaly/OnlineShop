@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const options = {
   useNewUrlParser: true, // говорим mongoose, что строка подключения будет в новом формате (новый формат должен обязательно содеражт порт)
@@ -8,22 +8,23 @@ const options = {
   poolSize: 10, // максимальное количество сокетов, которые драйвер MongoDB будет держать открытыми для этого соединения
   bufferMaxEntries: 0, // говорим mongoose перестать выполнять любые операции с базой данных, после того как произодет отключение от последней.
   // В противном случае mongoose пытается дождаться восстановления соездинения, для завершения  операций
-}
+};
 
-
-
-const dbConnectionURL = `mongodb+srv://admin:admin@cluster0.68k7m.mongodb.net/ONLINE-SHOP?retryWrites=true&w=majority`
+const dbConnectionURL = `mongodb+srv://admin:admin@cluster0.68k7m.mongodb.net/ONLINE-SHOP?retryWrites=true&w=majority`;
 
 module.exports = {
   dbConnectionURL,
   options,
-}
+};
 function connect() {
-  mongoose.connect(dbConnectionURL, options).then(() => console.log('Connect to DB')).catch(() => console.log('Error with DB'))
+  mongoose
+    .connect(dbConnectionURL, options)
+    .then(() => console.log('Connect to DB'))
+    .catch(() => console.log('Error with DB'));
 }
 
 function disconnect() {
-  mongoose.disconnect()
+  mongoose.disconnect();
 }
 
-module.exports = { connect, disconnect }
+module.exports = { connect, disconnect };

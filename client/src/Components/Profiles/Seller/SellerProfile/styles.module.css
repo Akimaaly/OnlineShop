@@ -1,0 +1,20 @@
+.wrapperProfileCardsUser {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+.profileCardsUser {
+  flex: 1 1 auto;
+  margin: 7.5px;
+  width: 400px;
+  height: 200px;
+  background-color: #4d648d;
+  border: 1px solid #000;
+}
+.salerProfile-info-key {
+  display: inline-block;
+  min-width: 100px;
+}
