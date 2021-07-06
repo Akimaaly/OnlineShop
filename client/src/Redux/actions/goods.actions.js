@@ -20,6 +20,7 @@ export const getAllGoods = () => async (dispatch) => {
 };
 
 export const addGoodStart = () => ({ type: GOOD_ADD_START });
+
 export const addGoodSuccess = (payload) => ({
   type: GOOD_ADD_SUCCESS,
   payload,
@@ -31,6 +32,7 @@ export const addGoodErr = (err) => ({
 });
 
 export const addGood = (params) => async (dispatch) => {
+  console.log(params);
   dispatch(addGoodStart());
 
   try {
