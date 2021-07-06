@@ -218,7 +218,7 @@ const [urlPhoto, setUrlPhoto] = useState('')
       </Form.Item>
       <Form.Item name="image" label="Фото">
         <Upload {...props}>
-          <Button icon={<UploadOutlined />}>Выберите изображениен</Button>
+          <Button icon={<UploadOutlined />}>Выберите изображение</Button>
         </Upload>
       </Form.Item>
       
