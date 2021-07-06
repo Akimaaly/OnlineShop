@@ -7,19 +7,19 @@ import styles from './style.module.css';
 
 export default function CardForm() {
   const goods = useSelector((state) => state.goods);
+  const user = useSelector((state) => state.user);
   const currentItemID = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [qty, setQty] = useState(1);
   const currentItem = goods.find((el) => el._id === currentItemID.id);
-  console.log('QTY-----------', currentItem);
 
-  const addToCartHandler = () => {
-    console.log(qty);
-    console.log(currentItem._id);
-    dispatch(addToBasket(currentItem._id, qty));
-    history.push('/buyer/basket');
+  const addToCartHandler = async () => {
+    try {
+      dispatch(addToBasket(currentItem._id, qty)).then(() => history.push('/'));
+      // history.push('/buyer/basket');
+    } catch (error) {}
   };
 
   return (
@@ -27,7 +27,7 @@ export default function CardForm() {
       <>
         <div className={styles.productscreen__left}>
           <div className={styles.left__image}>
-            <img src={currentItem.image} alt={currentItem.title} />
+            <img height='80%' src={currentItem.image} alt={currentItem.title} />
           </div>
 
           <div className={styles.left__info}>
@@ -50,7 +50,7 @@ export default function CardForm() {
             <p>
               Количество: {currentItem.quantity} шт.
               <select value={qty} onChange={(e) => setQty(e.target.value)}>
-                {[...Array(currentItem.quantity).keys()].map((x) => (
+                {[...Array(Number(currentItem.quantity)).keys()].map((x) => (
                   <option key={x + 1} value={x + 1}>
                     {x + 1}
                   </option>
@@ -58,9 +58,17 @@ export default function CardForm() {
               </select>
             </p>
             <p>
-              <button type='button' onClick={addToCartHandler}>
-                Добавить в корзину
-              </button>
+              {user.role === 'user' ? (
+                <button
+                  className={styles.formBtn}
+                  type='button'
+                  onClick={addToCartHandler}
+                >
+                  Добавить в корзину
+                </button>
+              ) : (
+                <p></p>
+              )}
             </p>
           </div>
         </div>

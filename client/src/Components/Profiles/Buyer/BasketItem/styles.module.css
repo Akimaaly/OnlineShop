@@ -8,7 +8,7 @@
   border-radius: 2px;
   place-items: center;
   margin-bottom: 8px;
-  box-shadow: 0 1px 4px rgb(0 0 0 / 40%)
+  box-shadow: 0 1px 4px rgb(0 0 0 / 40%);
 }
 
 .cartitem__name {
@@ -16,8 +16,13 @@
   color: #171717;
 }
 
+.image {
+  max-width: 200px;
+  max-height: 200px;
+}
+
 .cartitem__name:hover {
-  color: #dd219e;
+  color: black;
 }
 
 .cartitem__select {
@@ -29,15 +34,6 @@
   color: red;
   background: #f4f4f4;
   border: 1px solid #171717;
-  cursor: pointer;
-  transition: all 0.3s ease-out;
-}
-
-.cartitem__deleteBtn:hover,
-.caritem__deleteBtn:active,
-.caritem__deleteBtn:focus {
-  background: #171717;
-  transform: scale(1.2);
 }
 
 @media (max-width: 700px) {

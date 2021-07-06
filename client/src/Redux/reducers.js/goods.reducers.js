@@ -18,7 +18,8 @@ export default function goodsReducer(state = [], { type, payload }) {
     }
 
     case GOOD_DELETE_SUCCESS: {
-      const { id } = payload;
+      const { id} = payload;
+
       const newGoodState = state.filter((good) => {
         return good._id !== id;
       });

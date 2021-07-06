@@ -76,6 +76,31 @@
   background: #283655;
   border-color: #283655;
 }
+.ant-dropdown-menu-submenu.ant-dropdown-menu-submenu-vertical.ant-dropdown-menu-submenu-open.ant-dropdown-menu-submenu-active {
+  color: #fff;
+  background: #283655;
+  border-color: #283655;
+}
+.ant-dropdown-menu-submenu-title {
+  color: #fff;
+  background: #283655;
+  border-color: #283655;
+}
+.ant-dropdown.ant-dropdown-placement-bottomLeft.ant-dropdown-hidden {
+  color: #fff;
+  background: #283655;
+  border-color: #283655;
+}
+.ant-dropdown-menu.ant-dropdown-menu-root.ant-dropdown-menu-vertical.ant-dropdown-menu-light {
+  color: #fff;
+  background: #283655;
+  border-color: #283655;
+}
+.ant-dropdown-menu-item.ant-dropdown-menu-item-active {
+  color: #fff;
+  background: #283655;
+  border-color: #283655;
+}
 .ant-card-actions {
   background: #283655;
   border-color: #283655;
@@ -93,4 +118,62 @@ svg {
 }
 .container--main {
   margin-top: 70px;
+}
+
+.ant-card-head-title {
+  color: #fff;
+}
+.ant-btn:hover,
+.ant-btn:focus,
+.ant-btn:active {
+  color: #fff;
+  background: #283655;
+  border-color: #283655;
+}
+.ant-dropdown-menu-item:hover,
+.ant-dropdown-menu-submenu-title:hover {
+  background-color: #283655;
+}
+.ant-btn,
+.ant-btn-icon-only,
+.ant-input-search-button:hover {
+  background-color: #283655;
+}
+.circle {
+  width: 5em;
+  height: 5em;
+
+  border-radius: 50%;
+  line-height: 5em;
+  text-align: center;
+  background: #d0e1f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle h5 {
+  margin: 0%;
+}
+
+.ant-typography {
+  color: rgb(248, 248, 248);
+}
+
+.buyoutPrice {
+  margin-left: 10px;
+}
+
+a.ant-typography,
+.ant-typography a {
+  color: rgb(255, 255, 255);
+}
+
+.avatar-uploader > .ant-upload {
+  width: 128px;
+  height: 128px;
+}
+.salerProfile-info-key {
+  display: inline-block;
+  min-width: 230px;
 }

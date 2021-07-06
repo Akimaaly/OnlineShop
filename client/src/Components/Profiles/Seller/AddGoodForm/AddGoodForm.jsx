@@ -176,8 +176,7 @@ const [urlPhoto, setUrlPhoto] = useState('')
     },
   };
   return (
-    <Form
-      style={{ paddingTop: "100px" }}
+    <Form style={{paddingTop: '100px', width: '80%'}}
       {...formItemLayout}
       encType="multipart/form-data"
       form={form}
@@ -222,6 +221,7 @@ const [urlPhoto, setUrlPhoto] = useState('')
           <Button icon={<UploadOutlined />}>Выберите изображениен</Button>
         </Upload>
       </Form.Item>
+      
       <Form.Item {...tailFormItemLayout}>
         <Button type="primary" htmlType="submit">
           Добавить товар

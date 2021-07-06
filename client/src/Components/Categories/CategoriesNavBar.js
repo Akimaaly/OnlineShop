@@ -27,7 +27,7 @@ const CategoriesNavBar = () => {
     history.push('/cardlist');
   };
   return (
-    <div style={{ width: 256, marginLeft: '5px', marginTop: '68px' }}>
+    <div style={{ width: 256, marginLeft: '5px', marginTop: '20px' }}>
       <div></div>
       <Menu mode='inline' theme='dark' inlineCollapsed={false}>
         <SubMenu key='sub11' icon={<SkinOutlined />} title='Обувь'>

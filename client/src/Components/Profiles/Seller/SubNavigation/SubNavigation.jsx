@@ -17,21 +17,22 @@ export default function SubNavigation() {
             <HomeOutlined className={styles.icons} />
             <Typography.Link>
               <Link to='/'>Главная</Link>
-            </Typography.Link>
+            </Typography.Link>{' '}
             |
-            <PlusOutlined className={styles.icons} />
+            <Typography.Link>
+              <Link to='/seller/info'>Профиль</Link>
+            </Typography.Link>
+            <PlusOutlined className={styles.icons} />|
+            <Typography.Link>
+              <Link to='/seller/goods'>Товары</Link>
+            </Typography.Link>
+            <ShoppingOutlined className={styles.icons} />|
             <Typography.Link>
               <Link to='/seller/good/new'>Добавить товар</Link>
             </Typography.Link>
-            |
-            <ShoppingOutlined className={styles.icons} />
+            <UserOutlined className={styles.icons} />|
             <Typography.Link>
-              <Link to='/seller/goods'>Мои товары</Link>
-            </Typography.Link>
-            |
-            <UserOutlined className={styles.icons} />
-            <Typography.Link>
-              <Link to='/seller/info'>Обо мне</Link>
+              <Link to='/seller/orders'>Мои заказы</Link>
             </Typography.Link>
           </Space>
         </Space>
