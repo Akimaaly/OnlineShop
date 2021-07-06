@@ -9,8 +9,8 @@ const goodSchema = Schema({
   },
   image: {
     type: String,
-    default:
-      'https://images-na.ssl-images-amazon.com/images/I/71Y67UzW5GL.jpg',
+    // default:
+    //   'https://pix10.agoda.net/geo/country/156/3_156_kyrgyzstan_02.jpg?s=1920x',
   },
   longDescription: {
     type: String,

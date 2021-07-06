@@ -1,25 +1,22 @@
 /* eslint-disable spaced-comment */
 /* ЭТО РУЧКА ОБРАБОТКИ ТОВАРА */
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const router = require('express').Router();
 const { tokenChecker } = require('../middleware/protect');
 
 const GoodModel = require('../models/good.model');
-
 /*Получаем вообще все товары которые есть*/
 router.route('/all').get(async (req, res) => {
   const allGoods = await GoodModel.find();
   res.json(allGoods);
 });
-
 /*добавляем новый товар*/
 router.route('/new').post(tokenChecker, async (req, res) => {
-  const { title, longDescription, articul, residence, quantity, price, image } =
-    req.body;
-
+  const { title, longDescription, articul, residence, quantity, price, urlPhoto } = req.body;
   // в каждую ручку на беке нужно доварить tokenChecker он записывает все данные ures в req.user
 
   const newGood = await GoodModel.create({
+    image: `http://localhost:8080/images/${urlPhoto}`,
     title,
     longDescription,
     articul,
@@ -27,9 +24,7 @@ router.route('/new').post(tokenChecker, async (req, res) => {
     quantity: Number(quantity),
     price: Number(price),
     seller: req.user.id,
-    image,
   });
-  
   res.json(newGood);
 });
 
