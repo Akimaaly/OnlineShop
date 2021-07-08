@@ -36,14 +36,15 @@ router.route('/new').post(tokenChecker, async (req, res) => {
 });
 
 router.route('/status/:id').patch(async (req, res) => {
+  console.log(req.params.id);
   const currentOrder = await OrderModel.findById(req.params.id);
   const updatedStatus = await OrderModel.findByIdAndUpdate(
     req.params.id,
     {
       status: !currentOrder.status,
     },
-    { new: true }
-  );
+    { new: true },
+  ).populate('items');
   console.log(updatedStatus);
   res.json(updatedStatus);
 });

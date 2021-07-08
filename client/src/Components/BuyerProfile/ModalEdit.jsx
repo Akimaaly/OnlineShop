@@ -37,7 +37,10 @@ const ModalEdit = ({ visible, handleCancel, type, user }) => {
   return (
     <>
       <Modal
-        title='Title'
+        style={{ background: '#D0E1F9', color: '#D0E1F9' }}
+        cancelText='Отменить'
+        okText='Готово'
+        title='Редактировать данные'
         visible={visible}
         onOk={handleSubmit}
         confirmLoading={confirmLoading}

@@ -23,7 +23,7 @@ function NavigationProfile() {
             <Typography.Link>
               <Link to='/buyer/profile'>Профиль</Link>
             </Typography.Link>
-            <PlusOutlined className={styles.icons} />|
+            <UserOutlined className={styles.icons} />|
             <Typography.Link>
               <Link to='/buyer/basket'>Корзина товаров</Link>
             </Typography.Link>
@@ -31,7 +31,7 @@ function NavigationProfile() {
             <Typography.Link>
               <Link to='/buyer/history'>История покупок</Link>
             </Typography.Link>
-            <UserOutlined className={styles.icons} />
+            <PlusOutlined className={styles.icons} />
           </Space>
         </Space>
       </Col>

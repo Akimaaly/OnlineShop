@@ -13,9 +13,7 @@ import { useSelector } from 'react-redux';
 import NavigationProfile from '../Subnavigation/Subnavigation';
 import { useState } from 'react';
 import styles from './styles.module.css';
-import Avatar from './Avatar';
-import Contact from './Contact';
-
+import AddAdress from './AddAdress';
 export default function BuyerProfile() {
   const user = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
@@ -64,7 +62,7 @@ export default function BuyerProfile() {
                 </span>
                 <span>{user.name}</span>
               </div>
-              <div>
+              <div style={{ marginLeft: '50px' }}>
                 <EditOutlined
                   style={{ fontSize: '18px' }}
                   onClick={() => handleOpen('name')}
@@ -105,7 +103,7 @@ export default function BuyerProfile() {
                 </span>
                 <span>{user.phone}</span>
               </div>
-              <div>
+              <div style={{ marginLeft: 'auto' }}>
                 <EditOutlined
                   style={{ fontSize: '18px' }}
                   onClick={() => handleOpen('phone')}
@@ -152,12 +150,13 @@ export default function BuyerProfile() {
                 display: 'flex',
                 justifyContent: 'space-between',
                 width: '100%',
+                flexDirection: 'column',
               }}
             >
-              <span>
-                Сохраненный адрес:
+              <span style={{ marginBottom: '5px' }}>
+                Адрес доставки:
                 <br />
-                Москва, ул.Большая Ордынка, 64{' '}
+                г. Москва
               </span>
             </div>
           </Card>
@@ -178,10 +177,18 @@ export default function BuyerProfile() {
                 width: '100%',
               }}
             >
-              <InstagramOutlined style={{ fontSize: '42px' }} />
-              <WechatOutlined style={{ fontSize: '42px' }} />
-              <TwitterOutlined style={{ fontSize: '42px' }} />
-              <YoutubeOutlined style={{ fontSize: '42px' }} />
+              <a
+                href='https://instagram.com/akimaalyamankulov?utm_medium=copy_lin'
+                className='title'
+              >
+                <InstagramOutlined style={{ fontSize: '50px' }} />
+              </a>
+              <a href='https://youtu.be/zfNbIaf53o4' className='title'>
+                <YoutubeOutlined style={{ fontSize: '50px' }} />
+              </a>
+              <a href='https://twitter.com/jackma' className='title'>
+                <TwitterOutlined style={{ fontSize: '50px' }} />
+              </a>
             </div>
           </Card>
         </div>

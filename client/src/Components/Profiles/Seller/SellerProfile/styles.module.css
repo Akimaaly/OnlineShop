@@ -14,3 +14,7 @@
   background-color: #4d648d;
   border: 1px solid #000;
 }
+.salerProfile-info-key {
+  display: inline-block;
+  min-width: 100px;
+}
