@@ -10,7 +10,7 @@ const options = {
   // В противном случае mongoose пытается дождаться восстановления соездинения, для завершения  операций
 };
 
-const dbConnectionURL = `mongodb+srv://admin:admin@cluster0.68k7m.mongodb.net/ONLINE-SHOP?retryWrites=true&w=majority`;
+const dbConnectionURL = 'mongodb+srv://admin:admin@cluster0.68k7m.mongodb.net/ONLINE-SHOP?retryWrites=true&w=majority';
 
 module.exports = {
   dbConnectionURL,

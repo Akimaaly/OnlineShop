@@ -1,47 +1,29 @@
 import styles from './styles.module.css';
-import axios from 'axios';
+import axios from 'axios'
+
 
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import {
-  addToBasket,
-  basketAddGood,
-  deleteFromBasket,
-  clearBasket,
-} from '../../../../Redux/actions/basket.actions';
-import { createOrder } from '../../../../Redux/actions/order.actions';
 import { useEffect, useState } from 'react';
-import api from '../../../../api';
+import {Link, useHistory} from 'react-router-dom';
+
+import BasketItem from '../BasketItem/BasketItem';
+import { createOrder } from '../../../../Redux/actions/order.actions';
+
+import {deleteFromBasket, initBasket, updateInBasket} from '../../../../Redux/actions/basket.actions';
 
 export default function BuyerBasket() {
   const dispatch = useDispatch();
+  const basket = useSelector((state) => state.basket.basketItems);
   const history = useHistory();
-  // const cart = useSelector((state) => state.basket);
 
-  // const { products } = cart;
-  // const [basket, setBasket] = useState([]);
-
-  const basket = useSelector((store) => store.basket);
-
-  const fetchBasketAll = async () => {
-    const response = await api.getAllBasket();
-    const data = {
-      ...response[0],
-      products: response[0].products.reduce((acum, item) => {
-        const index = acum.findIndex((el) => el._id === item._id);
-        if (index === -1) acum = [...acum, { ...item, count: 1 }];
-        else acum[index] = { ...acum[index], count: acum[index].count + 1 };
-        return acum;
-      }, []),
-    };
-    // console.log(data);
-    dispatch(basketAddGood(data));
-    // setBasket([data]);
-  };
   useEffect(() => {
-    fetchBasketAll();
-  }, []);
+    dispatch(initBasket())
+  }, [dispatch]);
+
+  // функция изменения количества товаров
+  const qtyChangeHandler = (id, qty) => {
+    dispatch(updateInBasket(id, qty));
+  };
 
   //функция удаления товара из корзины
   const removeFromCartHandler = (id) => {
@@ -50,18 +32,8 @@ export default function BuyerBasket() {
 
   // функция для подсчета количества товаров в корзине
   const getCartCount = () => {
-    console.log(basket);
-    return basket?.products?.reduce((qty, item) => Number(item.count) + qty, 0);
+    return Number(basket.quantity)
   };
-
-  //подсчет общего количества денег
-  // const getCartSubTotal = () => {
-  //   return basket?.products
-  //     ?.reduce((price, item) => price + item.totalPrice, 0)
-  //     .toFixed(2);
-  // };
-
-  const qtyChangeHandler = () => {};
 
   const createNewOrder = async () => {
     const items = basket.products?.map((el) => el._id);
@@ -82,6 +54,11 @@ export default function BuyerBasket() {
     // history.push('/seller/orders');
   };
 
+  //подсчет общего количества денег
+  const getCartSubTotal = () => {
+    return Number(basket.totalPrice)
+  };
+
   return (
     <div className={styles.cartscreen}>
       <div className={styles.cartscreen__left}>
@@ -92,24 +69,14 @@ export default function BuyerBasket() {
             <Link to='/'>На главную</Link>
           </div>
         ) : (
-          <>
-            {
-              basket.products && (
-                // basket.map((item) => (
-                <>
-                  {basket.products.map((item) => (
-                    <BusketItem
-                      key={item._id}
-                      item={item}
-                      qtyChangeHandler={qtyChangeHandler}
-                      removeHandler={removeFromCartHandler}
-                    />
-                  ))}
-                </>
-              )
-              // ))
-            }
-          </>
+          basket.products.map((item) => (
+            <BasketItem
+              key={item._id}
+              item={item}
+              qtyChangeHandler={qtyChangeHandler}
+              removeHandler={removeFromCartHandler}
+            />
+          ))
         )}
       </div>
       <div className={styles.cartscreen__right}>

@@ -1,9 +1,9 @@
-const express = require("express");
-const morgan = require("morgan");
-const fileUpload = require("express-fileupload");
-const cors = require("cors");
-const { connect } = require("./src/db/config");
-require("dotenv").config();
+const express = require('express');
+const morgan = require('morgan');
+const fileUpload = require('express-fileupload');
+const cors = require('cors');
+const { connect } = require('./src/db/config');
+require('dotenv').config();
 
 const basketRouter = require('./src/routes/basket.router');
 const goodRouter = require('./src/routes/good.router');
@@ -14,7 +14,7 @@ const app = express();
 const PORT = 8080;
 
 connect();
-app.use(express.static("public"));
+app.use(express.static('public'));
 app.use(express.json());
 app.use(
   cors({
@@ -23,16 +23,16 @@ app.use(
   }),
 );
 app.use(fileUpload({}));
-app.use(morgan("dev"));
+app.use(morgan('dev'));
 
 // app.use('/basket', basketRouter);
-app.use("/good", goodRouter);
-app.use("/order", orderRouter);
-app.use("/basket", basketRouter);
-app.use("/", userRouter);
+app.use('/good', goodRouter);
+app.use('/order', orderRouter);
+app.use('/basket', basketRouter);
+app.use('/', userRouter);
 
-app.post('/upload', function (req, res) {
-  req.files.file.mv('public/images/' + req.files.file.name);
+app.post('/upload', (req, res) => {
+  req.files.file.mv(`public/images/${req.files.file.name}`);
 });
 
 app.listen(PORT, () => {
